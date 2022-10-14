@@ -1,0 +1,29 @@
+<mat-drawer-container
+  class="example-container"
+  style="background-color: #fff"
+>
+  <mat-drawer
+    style="background-color: #f9fafc; border: transparent"
+    mode="side"
+    [opened]="sideBarOpen"
+  >
+    <app-sidebar (sidenavToggle)="changeWidth($event)"></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content
+  id="main-drawer"
+    class="mat-drawer-content"
+    [ngClass]="toggleWidth ? 'marginLEft' : 'marginfull'"
+    [class.addScroller]="checkScreen()"
+    style="
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+      background-color: #f9fafc;
+      padding-right: 30px;
+      padding-left: 30px;
+      box-shadow: 2px 3px 10px 6px #e9e8e8;
+      z-index: 99999;
+    "
+  >
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

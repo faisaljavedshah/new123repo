@@ -1,0 +1,208 @@
+.access{
+    font-size: 34px;
+    font-weight: 700;
+    text-align: center;
+    color: #718096;
+    padding-top: 20px;
+}
+.mainAdmin{
+    background-color: #F9FAFC;
+    border-radius: 8px;
+    margin: 30px;
+    padding-bottom: 80px;
+    height: 95%;
+}
+.accountadmin{
+    font-size: 16px;
+    font-weight: 400;
+    color: #718096;
+    text-align: center;
+    padding-top: 15px;
+    padding: 0 30px;
+}
+.Dropcol {
+    color: #b5b5bd;
+  }
+  .Dropcol-active {
+    color: #ea714a !important;
+  }
+  .dateDropdown {
+    width: 252px;
+    height: 40px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 8px 0px 12px;
+    align-items: center;
+    cursor: pointer;
+  }
+  .dateDropdown:hover {
+    background-color: #f4faff !important;
+  }
+  .dateDropdownList {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 8px;
+    width: 250px;
+    z-index: 99;
+    background-color: #fff;
+    color: #585556;
+  }
+  .dateDropdownList::selection {
+    background-color: transparent;
+  }
+  .dateDropdownList > div {
+    text-align: start;
+    padding: 7px;
+    border-radius: 8px;
+    color: #585556;
+    padding-left: 10px;
+    cursor: pointer;
+    align-items: center;
+  }
+  .dateDropdownList > div::selection {
+    background-color: transparent;
+  }
+  .dateDropdownList > div:hover {
+    // background-color: #2999fd;
+    color: #ea714a !important;
+    // transition: all 0.3s;
+  }
+  .dateDropdownactive {
+    border: 2px solid #1f95ff !important;
+    outline: 0;
+    box-shadow: 0px 0px 0px 2px rgba(41, 153, 253, 0.3) !important;
+  }
+  .adminlabel{
+      font-size: 14px;
+      font-weight: 500;
+      color: #425466;
+      margin-bottom: 5px;
+  }
+  .searchadmin{
+    padding: 0px 4px 0px 12px;
+    width: 332px;
+    height: 40px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 1px 2px rgba(50, 50, 71, 0.08), 0px 0px 1px rgba(50, 50, 71, 0.2);
+    border-radius: 8px;
+    border: none;
+  }
+  .Accountdrop {
+    width: 600px;
+    height: 40px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 8px 0px 12px;
+    align-items: center;
+    outline: none;
+    color: #585556;
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+  }
+  .Accountdrop:hover {
+    background-color: #f4faff !important;
+  }
+  .AccountdropList {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 8px;
+    width: 600px;
+    z-index: 99;
+    background-color: #fff;
+    color: #585556;
+    max-height: 185px;
+    overflow-y: auto;
+  }
+  .AccountdropList::selection {
+    background-color: transparent;
+  }
+  .AccountdropList > div {
+    text-align: start;
+    padding: 7px;
+    border-radius: 8px;
+    color: #585556;
+    padding-left: 10px;
+    cursor: pointer;
+    align-items: center;
+  }
+  .AccountdropList > div::selection {
+    background-color: transparent;
+  }
+  .AccountdropList > div:hover {
+    // background-color: #2999fd;
+    color: #ea714a !important;
+    // transition: all 0.3s;
+  }
+  .Accountdropactive {
+    border: 2px solid #1f95ff !important;
+    outline: 0;
+    box-shadow: 0px 0px 0px 2px rgba(41, 153, 253, 0.3) !important;
+  }
+  .Impersonate{
+      background-color: #2999fd;
+      width: 252px;
+      height: 40px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      margin-top: 40px;
+      border: 1px solid transparent;
+  }
+  .Impersonate:hover{
+    background-color: #54ADFD;
+  }
+  .Impersonate:disabled{
+    background-color: #54ADFD;
+  }
+  .Impersonate:active{
+    border: 1px solid #ea714a;
+  }
+  .Impersonate:active , .Impersonate:disabled{
+    border: 1px solid transparent;
+  }
+.none{
+  display: none;
+}
+.spinner-border{
+  color: #2999fd;
+}
+.color-white {
+  color: #fff !important;
+}
+.groupFilterSearch{
+  padding: 0px 8px 0px 12px;
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  color: #585556;
+  box-shadow: 0px 1px 2px rgb(50 50 71 / 8%), 0px 0px 1px rgb(50 50 71 / 20%);
+  display: block;
+  margin: 0 auto;
+}

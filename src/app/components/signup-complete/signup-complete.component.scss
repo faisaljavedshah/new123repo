@@ -1,0 +1,19 @@
+.mainclass{
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login{
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #2999FD;
+    padding: 8px 24px 8px 24px;
+    border-radius: 8px;
+}
+.btn:focus{
+    outline: none !important;
+    box-shadow: none !important;
+}

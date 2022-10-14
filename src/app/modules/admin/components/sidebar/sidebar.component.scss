@@ -1,0 +1,353 @@
+:host {
+  .mat-icon {
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+}
+.test {
+  stroke: #fff;
+}
+.logo {
+  padding-left: 40px;
+}
+.mat-divider {
+  border-top-width: 2px;
+  border-color: white;
+}
+.mat-list-item {
+  background-color: #f9fafc;
+  color: #707070 !important;
+  font-size: 0.9rem;
+  // height: 44px;
+  margin-bottom: 12px;
+  font-weight: 500;
+  &:hover {
+    .list-item-active_svg {
+      stroke: #fff;
+    }
+
+    color: #fff;
+    background-color: #2999fd;
+    width: 100%;
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+  }
+  &:hover {
+    .list-item-active_PathDown{
+      fill: #fff;
+    }
+    .list-item-active_up{
+      stroke: #fff;
+    }
+
+
+    color: #fff;
+    background-color: #2999fd;
+    width: 100%;
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+  }
+  ::ng-deep {
+    .mat-list-item-content {
+      border-radius: 12px;
+      // margin: 0 15px;
+      width: 100%;
+    }
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+.font_sizee {
+  font-size: 14px;
+}
+@media (min-width: 1000px) and (max-width: 1300px) {
+  ::ng-deep {
+    .mat-list-item-content {
+      font-size: 16px;
+    }
+  }
+  .mat-icon {
+    font-size: 18px;
+  }
+  .mat-list-item {
+    height: 44px !important;
+  }
+  .font_sizee {
+    font-size: 12px;
+  }
+  .padiing_top {
+    padding-top: 8px;
+  }
+}
+.user-image {
+  border-radius: 50px;
+  width: 46px;
+  height: 46px;
+}
+
+::ng-deep {
+  .mat-list-item-content {
+    padding: 0px !important;
+  }
+}
+.list-item-active_svg {
+  stroke: #707070;
+}
+
+.list-item-active {
+  background-color: #2999fd !important;
+  width: 88% !important;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+  .list-item-active_svg {
+    stroke: #fff !important;
+  }
+  .list-item-active_PathDown{
+    fill: #fff;
+  }
+  .list-item-active_up{
+    stroke: #fff;
+  }
+
+  ::ng-deep {
+    .mat-list-item-content {
+      // .list-item-active_svg {
+      //   stroke: #fff;
+      // }
+      background-color: #2999fd !important;
+      color: #fff;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}
+.list-item-active2 {
+  background-color: #2999fd !important;
+  width: 110%!important;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+  .list-item-active_svg {
+    stroke: #fff;
+  }
+
+  ::ng-deep {
+    .mat-list-item-content {
+      // .list-item-active_svg {
+      //   stroke: #fff;
+      // }
+      background-color: #2999fd !important;
+      color: #fff;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}
+.userProfile{
+  display: flex;
+  align-items: center;
+  height: 44px;
+  position: relative;
+  width: 91%;
+}
+.userProfile:hover{
+  background-color: #2999fd !important;
+  width: 91%;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+  .list-item-active_svg {
+    stroke: #fff;
+  }
+}
+.list-item-active1 {
+  background-color: #2999fd !important;
+  width: 91% !important;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+  display: flex;
+  align-items: center;
+  color: #fff !important;
+  .list-item-active_svg {
+    stroke: #fff;
+  }
+  .settingicon{
+    position:absolute !important;
+    top: 8px;
+    right: 8px;
+  }
+
+  ::ng-deep {
+    .mat-list-item-content {
+      // .list-item-active_svg {
+      //   stroke: #fff;
+      // }
+      background-color: #2999fd !important;
+      color: #fff;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}
+.active {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
+.mat-subheader {
+  color: #818cf8;
+  font-size: 0.6rem;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+
+.active-list-item {
+  background-color: #2999fd;
+  border-radius: 0 10px 10px 0;
+}
+.active-list-item > .not-active{
+  stroke: #fff;
+}
+.active-list-item > .recordingIcon{
+  fill: #fff;
+}
+.active-list-item > .dashboardIcon{
+  stroke: #fff;
+}
+.not-active{
+  stroke:#707070 ;
+}
+.recordingIcon{
+  fill: #707070;
+  margin-right: 10px;
+}
+.dashboardIcon{
+stroke: #707070;
+}
+
+.padd {
+  padding: 12px 18px 14px 16px;
+}
+
+@media (min-width: 1300px) and (max-width: 1450px) {
+  ::ng-deep {
+    .mat-list-item-content {
+      font-size: 16px;
+    }
+  }
+  .mat-icon {
+    font-size: 18px;
+  }
+  .mat-list-item {
+    height: 44px !important;
+  }
+  .font_sizee {
+    font-size: 12px;
+  }
+  .padiing_top {
+    padding-top: 8px;
+  }
+}
+.sidebarmenu {
+  color: #585556;
+  padding-left: 40px !important;
+}
+.sidebarmenu:hover{
+  color: #fff !important;
+}
+.active-list-item .settin img {
+  filter: brightness(5) !important;
+}
+.recordingsIcon{
+  fill: #707070;
+}
+.list-item-active .recordingsIcon{
+  fill: #fff;
+}
+.list-item-active:hover .recordingsIcon{
+  fill: #fff;
+}
+.fillWhite{
+  fill: #fff;
+}
+
+.sidename{
+  white-space: nowrap;
+  width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  line-height: 40px;
+  pointer-events:none;
+}
+
+.sidename:after {
+  content:"";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48px;
+  height: 48px;
+  z-index: 1;
+  pointer-events:initial;
+}
+
+.sidename:hover:after{
+  cursor: pointer;
+}
+
+.tooltip {
+  width: 210px;
+  visibility: hidden;
+  position: absolute;
+  top: -45px;
+  // border-radius: 12px;
+  background-color: #fff;
+  letter-spacing: 0.7px;
+  border: 1px solid #f0f0f0;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24);
+  border-radius: 16px 16px 0px 16px;
+  line-height: 18px;
+  color: #585556;
+  padding: 10px;
+  opacity: 0;
+}
+
+
+.sidename:hover + .tooltip {
+  visibility: visible;
+  // transition: opacity 0.5s ease;
+  opacity: 1;
+}
+.activeStatus{
+  position: absolute;
+  top: -4px;
+  right: 0;
+  background-color: #66CB9F;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 4px;
+  z-index: 99;
+  border: 3px solid #fff;
+}
+.collapseIcons:hover{
+  background-color: #2999fd;
+  border-radius: 0 12px 12px 0;
+  .not-active{
+    stroke: #fff;
+  }
+}
+.collapseIconsRec:hover{
+  background-color: #2999fd;
+  border-radius: 0 12px 12px 0;
+  .recordingIcon{
+    fill: #fff;
+  }
+}
+.sidebaTopMargin{
+  margin-top: 2rem;
+}

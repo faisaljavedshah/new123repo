@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAA;EACN,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;CACtB;;AACD,AAAA,MAAM,CAAA;EACF,KAAK,EAAE,IAAI;EACX,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,GAAG;EAChB,gBAAgB,EAAE,OAAO;EACzB,OAAO,EAAE,iBAAiB;EAC1B,aAAa,EAAE,GAAG;CACrB;;AACD,AAAA,IAAI,AAAA,MAAM,CAAA;EACN,OAAO,EAAE,eAAe;EACxB,UAAU,EAAE,eAAe;CAC9B",
+    "sources": [
+        "signup-complete.component.scss"
+    ],
+    "names": [],
+    "file": "signup-complete.component.css"
+}

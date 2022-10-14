@@ -1,0 +1,464 @@
+<mat-nav-list disableRipple *ngIf="toggleNavbar">
+  <div class="logo pt-4" style="display: flex; align-items: center">
+    <img src="{{userData.logo}}" alt="" style="width: 150px" />
+    <a
+      style="padding-left: 9px"
+      href="javascript:void(0)"
+      (click)="sidebarToggle()"
+    >
+      <svg
+        style="margin-left: 20px"
+        xmlns="http://www.w3.org/2000/svg"
+        width="8"
+        height="14"
+        viewBox="0 0 8 14"
+        fill="none"
+      >
+        <path
+          d="M7 1L1 7.00133L6.99667 13"
+          stroke="#585556"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </a>
+  </div>
+
+  <a
+    class=" sidebarmenu sidebaTopMargin"
+    mat-list-item
+    routerLinkActive="list-item-active"
+    routerLink="./home"
+    style="width: 88%;"
+  >
+    <svg
+      style="padding-right: 8px"
+      xmlns="http://www.w3.org/2000/svg"
+      width="30"
+      height="30"
+      viewBox="0 0 24 24"
+      fill="none"
+      class="list-item-active_svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M20 21V21C21.105 21 22 20.105 22 19V5C22 3.895 21.105 3 20 3V3C18.895 3 18 3.895 18 5V19C18 20.105 18.895 21 20 21Z"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M12 21.0001V21.0001C13.105 21.0001 14 20.1051 14 19.0001V10.6841C14 9.57908 13.105 8.68408 12 8.68408V8.68408C10.895 8.68408 10 9.57908 10 10.6841V19.0001C10 20.1051 10.895 21.0001 12 21.0001Z"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M4 21.0002V21.0002C5.105 21.0002 6 20.1052 6 19.0002V16.3682C6 15.2632 5.105 14.3682 4 14.3682V14.3682C2.895 14.3682 2 15.2632 2 16.3682V19.0002C2 20.1052 2.895 21.0002 4 21.0002Z"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    Dashboard
+  </a>
+  <!-- <a
+    mat-list-item
+    routerLinkActive="list-item-active"
+    routerLink="./reports"
+    class="sidebarmenu"
+    style="width: 82%;"
+  >
+  <svg class="list-item-active_svg"  style="padding-right: 8px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none">
+    <path d="M7.5 15H16.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 15V8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15 15V10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9 15V11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="3.06836" y="3.21875" width="18" height="18" rx="5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Reports
+  </a> -->
+  <a
+    mat-list-item
+    routerLinkActive="list-item-active"
+    routerLink="./recordings"
+    class="sidebarmenu"
+    (mouseover)="changeColorWhite()"
+    (mouseleave)="changeColorGray()"
+    style="width: 88%;"
+  >
+    <svg
+      class="recordingsIcon"
+      [ngClass]="fillWhite"
+      style="padding-right: 8px"
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M12 7.25C12.4142 7.25 12.75 7.58579 12.75 8V16C12.75 16.4142 12.4142 16.75 12 16.75C11.5858 16.75 11.25 16.4142 11.25 16V8C11.25 7.58579 11.5858 7.25 12 7.25Z"
+      />
+      <path
+        d="M9.75 9.33301C9.75 8.91879 9.41421 8.58301 9 8.58301C8.58579 8.58301 8.25 8.91879 8.25 9.33301V14.666C8.25 15.0802 8.58579 15.416 9 15.416C9.41421 15.416 9.75 15.0802 9.75 14.666V9.33301Z"
+      />
+      <path
+        d="M6.75 11.1108C6.75 10.6966 6.41421 10.3608 6 10.3608C5.58579 10.3608 5.25 10.6966 5.25 11.1108V12.8888C5.25 13.3031 5.58579 13.6388 6 13.6388C6.41421 13.6388 6.75 13.3031 6.75 12.8888V11.1108Z"
+      />
+      <path
+        d="M15.75 9.33301C15.75 8.91879 15.4142 8.58301 15 8.58301C14.5858 8.58301 14.25 8.91879 14.25 9.33301V14.666C14.25 15.0802 14.5858 15.416 15 15.416C15.4142 15.416 15.75 15.0802 15.75 14.666V9.33301Z"
+      />
+      <path
+        d="M18 10.3608C18.4142 10.3608 18.75 10.6966 18.75 11.1108V12.8888C18.75 13.3031 18.4142 13.6388 18 13.6388C17.5858 13.6388 17.25 13.3031 17.25 12.8888V11.1108C17.25 10.6966 17.5858 10.3608 18 10.3608Z"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M18.8943 18.8943C22.7019 15.0867 22.7019 8.91332 18.8943 5.10571C15.0867 1.2981 8.91332 1.2981 5.10571 5.10571C1.2981 8.9133 1.2981 15.0867 5.10571 18.8943C8.9133 22.7019 15.0867 22.7019 18.8943 18.8943ZM6.16637 6.16637C9.3882 2.94454 14.6118 2.94455 17.8336 6.16637C21.0551 9.38823 21.0553 14.6119 17.8336 17.8336C14.6118 21.0554 9.38818 21.0554 6.16637 17.8336C2.94454 14.6118 2.94455 9.38818 6.16637 6.16637Z"
+      />
+    </svg>
+    <!-- <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="30"
+      height="30"
+      viewBox="0 0 20 20"
+      fill="none"
+      class="list-item-active_svg"
+      style="padding-right: 8px"
+    >
+      <path
+        d="M10 5.25C10.4142 5.25 10.75 5.58579 10.75 6V14C10.75 14.4142 10.4142 14.75 10 14.75C9.58579 14.75 9.25 14.4142 9.25 14V6C9.25 5.58579 9.58579 5.25 10 5.25Z"
+      />
+      <path
+        d="M7.75 7.33301C7.75 6.91879 7.41421 6.58301 7 6.58301C6.58579 6.58301 6.25 6.91879 6.25 7.33301V12.666C6.25 13.0802 6.58579 13.416 7 13.416C7.41421 13.416 7.75 13.0802 7.75 12.666V7.33301Z"
+      />
+      <path
+        d="M4.75 9.11084C4.75 8.69663 4.41421 8.36084 4 8.36084C3.58579 8.36084 3.25 8.69663 3.25 9.11084V10.8888C3.25 11.3031 3.58579 11.6388 4 11.6388C4.41421 11.6388 4.75 11.3031 4.75 10.8888V9.11084Z"
+      />
+      <path
+        d="M13.75 7.33301C13.75 6.91879 13.4142 6.58301 13 6.58301C12.5858 6.58301 12.25 6.91879 12.25 7.33301V12.666C12.25 13.0802 12.5858 13.416 13 13.416C13.4142 13.416 13.75 13.0802 13.75 12.666V7.33301Z"
+      />
+      <path
+        d="M16 8.36084C16.4142 8.36084 16.75 8.69663 16.75 9.11084V10.8888C16.75 11.3031 16.4142 11.6388 16 11.6388C15.5858 11.6388 15.25 11.3031 15.25 10.8888V9.11084C15.25 8.69663 15.5858 8.36084 16 8.36084Z"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M16.8943 16.8943C20.7019 13.0867 20.7019 6.91332 16.8943 3.10571C13.0867 -0.701905 6.91332 -0.701902 3.10571 3.10571C-0.701905 6.9133 -0.701902 13.0867 3.10571 16.8943C6.9133 20.7019 13.0867 20.7019 16.8943 16.8943ZM4.16637 4.16637C7.3882 0.944543 12.6118 0.944545 15.8336 4.16637C19.0551 7.38823 19.0553 12.6119 15.8336 15.8336C12.6118 19.0554 7.38818 19.0554 4.16637 15.8336C0.944543 12.6118 0.944546 7.38818 4.16637 4.16637Z"
+      />
+    </svg> -->
+    Recordings
+  </a>
+  <a
+    mat-list-item
+    routerLinkActive="list-item-active"
+    routerLink="./keyword-list"
+    class="sidebarmenu"
+    style="width: 88%;"
+  >
+  <svg  style="padding-right: 8px"   xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 22 16" fill="none">
+    <path class="list-item-active_PathDown" d="M0.25 15C0.25 15.4142 0.585786 15.75 1 15.75C1.41421 15.75 1.75 15.4142 1.75 15H0.25ZM12.25 15C12.25 15.4142 12.5858 15.75 13 15.75C13.4142 15.75 13.75 15.4142 13.75 15H12.25ZM1.75 15C1.75 13.2142 3.21421 11.75 5 11.75V10.25C2.38579 10.25 0.25 12.3858 0.25 15H1.75ZM5 11.75H9V10.25H5V11.75ZM9 11.75C10.7858 11.75 12.25 13.2142 12.25 15H13.75C13.75 12.3858 11.6142 10.25 9 10.25V11.75Z" fill="#707070"/>
+<path class="list-item-active_up" d="M9.49999 2.00003C10.9 3.40003 10.9 5.60003 9.49999 6.90003C8.09999 8.20003 5.89999 8.30003 4.59999 6.90003C3.29999 5.50003 3.19999 3.40003 4.49999 2.00003C5.79999 0.60003 8.09999 0.70003 9.49999 2.00003" stroke="#707070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="list-item-active_PathDown" d="M15 9.25C14.5858 9.25 14.25 9.58579 14.25 10C14.25 10.4142 14.5858 10.75 15 10.75V9.25ZM20.25 13C20.25 13.4142 20.5858 13.75 21 13.75C21.4142 13.75 21.75 13.4142 21.75 13H20.25ZM15 10.75H18V9.25H15V10.75ZM18 10.75C19.2858 10.75 20.25 11.7142 20.25 13H21.75C21.75 10.8858 20.1142 9.25 18 9.25V10.75Z" fill="#707070"/>
+<path class="list-item-active_up" d="M18.3 2.70002C19.3 3.70002 19.3 5.30002 18.3 6.20002C17.3 7.10002 15.7 7.20002 14.8 6.20002C13.9 5.20002 13.8 3.60002 14.8 2.70002C15.7 1.80002 17.3 1.80002 18.3 2.70002" stroke="#707070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+    Team
+  </a>
+  <a
+  *ngIf="userRole !== 2 && userRole !== 3 && userRole !== 8"
+  mat-list-item
+  routerLinkActive="list-item-active"
+  routerLink="./groups"
+  class="sidebarmenu"
+  style="width: 88%; white-space: nowrap; font-size: 15px;"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="30"
+    height="30"
+    viewBox="0 0 24 24"
+    fill="none"
+    class="list-item-active_svg"
+    style="padding-right: 8px"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M9.2251 6.452V6.452C9.2251 4.92 10.4671 3.677 12.0001 3.677V3.677C13.5321 3.677 14.7751 4.919 14.7751 6.452V6.452C14.7751 7.984 13.5331 9.227 12.0001 9.227V9.227C10.4671 9.225 9.2251 7.983 9.2251 6.452Z"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M2.5 17.5479V17.5479C2.5 16.0159 3.742 14.7729 5.275 14.7729V14.7729C6.807 14.7729 8.05 16.0149 8.05 17.5479V17.5479C8.049 19.0799 6.808 20.3229 5.275 20.3229V20.3229C3.742 20.3229 2.5 19.0809 2.5 17.5479Z"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M15.9509 17.5479V17.5479C15.9509 16.0159 17.1929 14.7729 18.7259 14.7729V14.7729C20.2579 14.7729 21.5009 16.0149 21.5009 17.5479V17.5479C21.5009 19.0799 20.2589 20.3229 18.7259 20.3229V20.3229C17.1919 20.3229 15.9509 19.0809 15.9509 17.5479H15.9509Z"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M8.48998 11.9199L6.47998 15.0599"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M13.5 8.78003L15.51 11.92"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M15.95 17.55H12"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+  Groups & Users
+</a>
+<a
+mat-list-item
+[href]="'https://stag-5-cmo-1.convirza.com/#/login?ct_remote_token='+ accessToken + '&redirect=/'"
+class="sidebarmenu"
+style="width: 88%;"
+target="_blank"
+>
+<svg class="list-item-active_svg"
+style="padding-right: 8px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M18.9645 16.61L17.7915 15.437C17.2055 14.851 16.2555 14.851 15.6705 15.437L14.7485 16.359C14.5425 16.565 14.2305 16.634 13.9645 16.517C12.6285 15.932 11.3085 15.045 10.1315 13.868C8.95954 12.696 8.07554 11.382 7.48954 10.051C7.36754 9.77597 7.43854 9.45297 7.65154 9.23997L8.47754 8.41397C9.14854 7.74297 9.14854 6.79397 8.56254 6.20797L7.38954 5.03497C6.60854 4.25397 5.34254 4.25397 4.56154 5.03497L3.90954 5.68597C3.16854 6.42697 2.85954 7.49597 3.05954 8.55597C3.55354 11.169 5.07154 14.03 7.52054 16.479C9.96954 18.928 12.8305 20.446 15.4435 20.94C16.5035 21.14 17.5725 20.831 18.3135 20.09L18.9645 19.439C19.7455 18.658 19.7455 17.392 18.9645 16.61V16.61Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13 6.99256C14.031 6.97856 15.067 7.36056 15.854 8.14756" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18.682 5.31884C17.113 3.74984 15.056 2.96484 13 2.96484" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.0085 11.0024C17.0225 9.97144 16.6405 8.93544 15.8535 8.14844" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18.6816 5.32031C20.2506 6.88931 21.0356 8.94631 21.0356 11.0023" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+Call Tracking
+</a>
+
+</mat-nav-list>
+
+<mat-nav-list *ngIf="!toggleNavbar" style="position: relative; height: 100vh">
+  <div
+    class="pt-4"
+    style="display: flex; align-items: center; margin-left: 14px"
+  >
+    <a
+      href="javascript:void(0)"
+      style="margin-left: 65px"
+      (click)="sidebarToggle()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="8"
+        height="14"
+        viewBox="0 0 8 14"
+        fill="none"
+      >
+        <path
+          d="M1.00333 1L7 7.018L1 13"
+          stroke="#585556"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </a>
+  </div>
+  <div style="margin-top: 48px">
+    <div style="margin-bottom: 25px">
+      <a class="padd collapseIcons" routerLinkActive="active-list-item" routerLink="./home">
+        <svg
+          class="dashboardIcon not-active"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M20 21V21C21.105 21 22 20.105 22 19V5C22 3.895 21.105 3 20 3V3C18.895 3 18 3.895 18 5V19C18 20.105 18.895 21 20 21Z"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M12 20.9996V20.9996C13.105 20.9996 14 20.1046 14 18.9996V10.6836C14 9.57859 13.105 8.68359 12 8.68359V8.68359C10.895 8.68359 10 9.57859 10 10.6836V18.9996C10 20.1046 10.895 20.9996 12 20.9996Z"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M4 21.0002V21.0002C5.105 21.0002 6 20.1052 6 19.0002V16.3682C6 15.2632 5.105 14.3682 4 14.3682V14.3682C2.895 14.3682 2 15.2632 2 16.3682V19.0002C2 20.1052 2.895 21.0002 4 21.0002Z"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+    </div>
+    <!-- <div style="margin-bottom: 25px">
+      <a
+        class="padd collapseIcons"
+        routerLinkActive="active-list-item"
+        routerLink="./reports"
+      >
+      <svg style="vertical-align: middle !important"
+      class="not-active" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M7.5 15H16.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 15V8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15 15V10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 15V11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="3.06836" y="3.21875" width="18" height="18" rx="5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div> -->
+    <div style="margin-bottom: 25px">
+      <a
+        class="padd collapseIconsRec"
+        routerLinkActive="active-list-item"
+        routerLink="./recordings"
+      >
+        <svg
+          class="recordingIcon"
+          style="margin-right: 0 !important;"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 7.25C12.4142 7.25 12.75 7.58579 12.75 8V16C12.75 16.4142 12.4142 16.75 12 16.75C11.5858 16.75 11.25 16.4142 11.25 16V8C11.25 7.58579 11.5858 7.25 12 7.25Z"
+          />
+          <path
+            d="M9.75 9.33301C9.75 8.91879 9.41421 8.58301 9 8.58301C8.58579 8.58301 8.25 8.91879 8.25 9.33301V14.666C8.25 15.0802 8.58579 15.416 9 15.416C9.41421 15.416 9.75 15.0802 9.75 14.666V9.33301Z"
+          />
+          <path
+            d="M6.75 11.1108C6.75 10.6966 6.41421 10.3608 6 10.3608C5.58579 10.3608 5.25 10.6966 5.25 11.1108V12.8888C5.25 13.3031 5.58579 13.6388 6 13.6388C6.41421 13.6388 6.75 13.3031 6.75 12.8888V11.1108Z"
+          />
+          <path
+            d="M15.75 9.33301C15.75 8.91879 15.4142 8.58301 15 8.58301C14.5858 8.58301 14.25 8.91879 14.25 9.33301V14.666C14.25 15.0802 14.5858 15.416 15 15.416C15.4142 15.416 15.75 15.0802 15.75 14.666V9.33301Z"
+          />
+          <path
+            d="M18 10.3608C18.4142 10.3608 18.75 10.6966 18.75 11.1108V12.8888C18.75 13.3031 18.4142 13.6388 18 13.6388C17.5858 13.6388 17.25 13.3031 17.25 12.8888V11.1108C17.25 10.6966 17.5858 10.3608 18 10.3608Z"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M18.8943 18.8943C22.7019 15.0867 22.7019 8.91332 18.8943 5.10571C15.0867 1.2981 8.91332 1.2981 5.10571 5.10571C1.2981 8.9133 1.2981 15.0867 5.10571 18.8943C8.9133 22.7019 15.0867 22.7019 18.8943 18.8943ZM6.16637 6.16637C9.3882 2.94454 14.6118 2.94455 17.8336 6.16637C21.0551 9.38823 21.0553 14.6119 17.8336 17.8336C14.6118 21.0554 9.38818 21.0554 6.16637 17.8336C2.94454 14.6118 2.94455 9.38818 6.16637 6.16637Z"
+          />
+        </svg>
+      </a>
+    </div>
+    <div style="margin-bottom: 25px">
+      <a
+        class="padd collapseIcons"
+        routerLinkActive="active-list-item"
+        routerLink="./keyword-list"
+      >
+      <svg class="not-active" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M1.25 19C1.25 19.4142 1.58579 19.75 2 19.75C2.41421 19.75 2.75 19.4142 2.75 19H1.25ZM13.25 19C13.25 19.4142 13.5858 19.75 14 19.75C14.4142 19.75 14.75 19.4142 14.75 19H13.25ZM2.75 19C2.75 17.2142 4.21421 15.75 6 15.75V14.25C3.38579 14.25 1.25 16.3858 1.25 19H2.75ZM6 15.75H10V14.25H6V15.75ZM10 15.75C11.7858 15.75 13.25 17.2142 13.25 19H14.75C14.75 16.3858 12.6142 14.25 10 14.25V15.75Z"/>
+    <path d="M10.5002 6.00015C11.9002 7.40015 11.9002 9.60015 10.5002 10.9002C9.10017 12.2002 6.90017 12.3002 5.60017 10.9002C4.30017 9.50015 4.20017 7.40015 5.50017 6.00015C6.80017 4.60015 9.10017 4.70015 10.5002 6.00015" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16 13.25C15.5858 13.25 15.25 13.5858 15.25 14C15.25 14.4142 15.5858 14.75 16 14.75V13.25ZM21.25 17C21.25 17.4142 21.5858 17.75 22 17.75C22.4142 17.75 22.75 17.4142 22.75 17H21.25ZM16 14.75H19V13.25H16V14.75ZM19 14.75C20.2858 14.75 21.25 15.7142 21.25 17H22.75C22.75 14.8858 21.1142 13.25 19 13.25V14.75Z"/>
+    <path d="M19.2999 6.70039C20.2999 7.70039 20.2999 9.30039 19.2999 10.2004C18.2999 11.1004 16.6999 11.2004 15.7999 10.2004C14.8999 9.20039 14.7999 7.60039 15.7999 6.70039C16.6999 5.80039 18.2999 5.80039 19.2999 6.70039" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+      </a>
+    </div>
+
+    <div *ngIf="userRole !== 2 && userRole !== 3 && userRole !== 8" style="margin-bottom: 25px">
+      <a
+        class="padd collapseIcons"
+        routerLinkActive="active-list-item"
+        routerLink="./groups"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          class="not-active"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M9.2251 6.45176V6.45176C9.2251 4.91976 10.4671 3.67676 12.0001 3.67676V3.67676C13.5321 3.67676 14.7751 4.91876 14.7751 6.45176V6.45176C14.7751 7.98376 13.5331 9.22676 12.0001 9.22676V9.22676C10.4671 9.22476 9.2251 7.98276 9.2251 6.45176Z"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M2.5 17.5479V17.5479C2.5 16.0159 3.742 14.7729 5.275 14.7729V14.7729C6.807 14.7729 8.05 16.0149 8.05 17.5479V17.5479C8.049 19.0799 6.808 20.3229 5.275 20.3229V20.3229C3.742 20.3229 2.5 19.0809 2.5 17.5479Z"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M15.9509 17.5479V17.5479C15.9509 16.0159 17.1929 14.7729 18.7259 14.7729V14.7729C20.2579 14.7729 21.5009 16.0149 21.5009 17.5479V17.5479C21.5009 19.0799 20.2589 20.3229 18.7259 20.3229V20.3229C17.1919 20.3229 15.9509 19.0809 15.9509 17.5479H15.9509Z"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M8.48998 11.9199L6.47998 15.0599"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M13.5 8.78027L15.51 11.9203"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M15.95 17.5498H12"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+    </div>
+    <div style="margin-bottom: 25px">
+      <a
+        class="padd collapseIcons"
+        [href]="'https://stag-5-cmo-1.convirza.com/#/login?ct_remote_token='+ accessToken + '&redirect=/'"
+        target="_blank"
+      >
+      <svg class="not-active" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M18.9645 16.61L17.7915 15.437C17.2055 14.851 16.2555 14.851 15.6705 15.437L14.7485 16.359C14.5425 16.565 14.2305 16.634 13.9645 16.517C12.6285 15.932 11.3085 15.045 10.1315 13.868C8.95954 12.696 8.07554 11.382 7.48954 10.051C7.36754 9.77597 7.43854 9.45297 7.65154 9.23997L8.47754 8.41397C9.14854 7.74297 9.14854 6.79397 8.56254 6.20797L7.38954 5.03497C6.60854 4.25397 5.34254 4.25397 4.56154 5.03497L3.90954 5.68597C3.16854 6.42697 2.85954 7.49597 3.05954 8.55597C3.55354 11.169 5.07154 14.03 7.52054 16.479C9.96954 18.928 12.8305 20.446 15.4435 20.94C16.5035 21.14 17.5725 20.831 18.3135 20.09L18.9645 19.439C19.7455 18.658 19.7455 17.392 18.9645 16.61V16.61Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 6.99256C14.031 6.97856 15.067 7.36056 15.854 8.14756" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18.682 5.31884C17.113 3.74984 15.056 2.96484 13 2.96484" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M17.0085 11.0024C17.0225 9.97144 16.6405 8.93544 15.8535 8.14844" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18.6816 5.32031C20.2506 6.88931 21.0356 8.94631 21.0356 11.0023" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+</mat-nav-list>

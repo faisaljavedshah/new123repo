@@ -1,0 +1,579 @@
+.guageprogress{
+    position: relative;
+    margin: 4px;
+    float:left;
+    text-align: center;
+    margin-bottom: 35px;
+    margin-top: 10px;
+  }
+  .barOverflow{ /* Wraps the rotating .bar */
+    position: relative;
+    overflow: hidden; /* Comment this line to understand the trick */
+    width: 90px; height: 45px; /* Half circle (overflow) */
+    margin-bottom: -14px; /* bring the numbers up */
+    transform: scale(1.7);
+  }
+  .bar{
+    position: absolute;
+    top: 0; left: 0;
+    width: 90px; height: 90px; /* full circle! */
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 15px solid #eee;
+  }
+  .bar0{
+    transform: rotate(-45deg);
+    border-bottom-color: #eeeeee;  /* half azure */
+    border-left-color: #eeeeee;
+  }
+  .bar1{
+    transform: rotate(-43.2deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar2{
+    transform: rotate(-41.4deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar3{
+    transform: rotate(-39.6deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar4{
+    transform: rotate(-37.8deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar5{
+    transform: rotate(-36.2deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar6{
+    transform: rotate(-34.4deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar7{
+    transform: rotate(-32.6deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar8{
+    transform: rotate(-30.8deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar9{
+    transform: rotate(-29deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar10{
+    transform: rotate(-27.2deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar11{
+    transform: rotate(-25.4deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar12{
+    transform: rotate(-23.6deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar13{
+    transform: rotate(-21.8deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar14{
+    transform: rotate(-20deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar15{
+    transform: rotate(-18.2deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar16{
+    transform: rotate(-16.4deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar17{
+    transform: rotate(-14.6deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar18{
+    transform: rotate(-12.8deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar19{
+    transform: rotate(-11deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar20{
+    transform: rotate(-9.2deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar21{
+    transform: rotate(-7.2deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar22{
+    transform: rotate(-5.4deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar23{
+    transform: rotate(-3.6deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar24{
+    transform: rotate(-1.8deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar25{
+    transform: rotate(0deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar26{
+    transform: rotate(1.8deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar27{
+    transform: rotate(3.6deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar28{
+    transform: rotate(5.4deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar29{
+    transform: rotate(7.2deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar30{
+    transform: rotate(9deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar31{
+    transform: rotate(10.8deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar32{
+    transform: rotate(12.6deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar33{
+    transform: rotate(14.4deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar34{
+    transform: rotate(16.2deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar35{
+    transform: rotate(18deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar36{
+    transform: rotate(19.8deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar37{
+    transform: rotate(21.6deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar38{
+    transform: rotate(23.4deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar39{
+    transform: rotate(25.2deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar40{
+    transform: rotate(27deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar41{
+    transform: rotate(28.8deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar42{
+    transform: rotate(30.6deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar43{
+    transform: rotate(32.4deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar44{
+    transform: rotate(34.2deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar45{
+    transform: rotate(36deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar46{
+    transform: rotate(37.8deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar47{
+    transform: rotate(39.6deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar48{
+    transform: rotate(41.4deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar49{
+    transform: rotate(43.2deg);
+    border-bottom-color: red;  /* half azure */
+    border-left-color: red;
+  }
+  .bar50{
+    transform: rotate(45deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar51{
+    transform: rotate(46.8deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar52{
+    transform: rotate(48.6deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar53{
+    transform: rotate(50.4deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar54{
+    transform: rotate(52.2deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar55{
+    transform: rotate(54deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar56{
+    transform: rotate(55.8deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar57{
+    transform: rotate(57.6deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar58{
+    transform: rotate(59.4deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar59{
+    transform: rotate(61.2deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar60{
+    transform: rotate(63deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar61{
+    transform: rotate(64.8deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar62{
+    transform: rotate(66.6deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar63{
+    transform: rotate(68.4deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar64{
+    transform: rotate(70.2deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar65{
+    transform: rotate(72deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar66{
+    transform: rotate(73.8deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar67{
+    transform: rotate(75.6deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar68{
+    transform: rotate(77.4deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar69{
+    transform: rotate(79.2deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar70{
+    transform: rotate(81deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar71{
+    transform: rotate(82.8deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar72{
+    transform: rotate(84.6deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar73{
+    transform: rotate(86.4deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar74{
+    transform: rotate(88.2deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar75{
+    transform: rotate(90deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar76{
+    transform: rotate(91.8deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar77{
+    transform: rotate(93.6deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar78{
+    transform: rotate(95.4deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar79{
+    transform: rotate(97.2deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar80{
+    transform: rotate(99deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar81{
+    transform: rotate(100.8deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar82{
+    transform: rotate(102.6deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar83{
+    transform: rotate(104.4deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar84{
+    transform: rotate(106.2deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar85{
+    transform: rotate(108deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar86{
+    transform: rotate(109.8deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar87{
+    transform: rotate(111.6deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar88{
+    transform: rotate(113.4deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar89{
+    transform: rotate(115.2deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar90{
+    transform: rotate(117deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar91{
+    transform: rotate(118.8deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar92{
+    transform: rotate(120.6deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar93{
+    transform: rotate(122.2deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar94{
+    transform: rotate(124deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar95{
+    transform: rotate(125.8deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar96{
+    transform: rotate(127.6deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar97{
+    transform: rotate(129.4deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar98{
+    transform: rotate(131.6deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar99{
+    transform: rotate(133.2deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }
+  .bar100{
+    transform: rotate(135deg);
+
+    border-bottom-color: #66CB9F;  /* half azure */
+    border-left-color: #66CB9F;    /* half gray, */
+  }

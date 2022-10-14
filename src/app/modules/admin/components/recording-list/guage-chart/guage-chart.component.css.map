@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "guage-chart.component.scss"
+    ],
+    "names": [],
+    "file": "guage-chart.component.css"
+}

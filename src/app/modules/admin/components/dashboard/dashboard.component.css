@@ -1,0 +1,167 @@
+.examplee::-webkit-scrollbar {
+  display: none;
+}
+
+.examplee {
+  height: 73vh;
+  overflow-y: scroll;
+}
+
+.graph_head {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+#chart {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 0;
+}
+
+mat-toolbar {
+  background: #f9fafc;
+}
+
+@media (min-width: 1000px) and (max-width: 1300px) {
+  .graph_head {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .examplee {
+    height: 70vh;
+    overflow-y: scroll;
+  }
+}
+
+@media (min-width: 1300px) and (max-width: 1450px) {
+  .graph_head {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .examplee {
+    height: 75vh;
+    overflow-y: scroll;
+  }
+}
+
+.dashtab ::ng-deep .mat-tab-label {
+  height: 35px;
+  padding: 0 0 !important;
+  min-width: 80px !important;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+  background: transparent !important;
+}
+
+.dashtab ::ng-deep .mat-tab-label .mat-tab-label-content {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.dashtab ::ng-deep .mat-tab-label-active {
+  color: #ea714a;
+  opacity: 1;
+  border-bottom: 2px solid #ea714a;
+  background: transparent !important;
+}
+
+.dashtab ::ng-deep mat-ink-bar {
+  background-color: transparent !important;
+}
+
+.dashtab ::ng-deep #mat-tab-label-0-4 {
+  background-color: transparent !important;
+}
+
+.active_check {
+  color: #ea714a !important;
+}
+
+.not_active {
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
+::ng-deep .mat-expansion-panel {
+  -webkit-box-shadow: 0px 1px 2px rgba(50, 50, 71, 0.08), 0px 0px 1px rgba(50, 50, 71, 0.2) !important;
+          box-shadow: 0px 1px 2px rgba(50, 50, 71, 0.08), 0px 0px 1px rgba(50, 50, 71, 0.2) !important;
+  border-radius: 8px !important;
+}
+
+::ng-deep .right {
+  display: none !important;
+}
+
+::ng-deep .drp-selected {
+  display: none !important;
+}
+
+::ng-deep .cancelBtn {
+  border: 1px solid #cfc8c8;
+  width: 90px;
+  height: 36px;
+  border-radius: 8px;
+  margin-right: 5px;
+}
+
+::ng-deep .applyBtn {
+  border: 1px solid #cfc8c8;
+  width: 95px;
+  height: 36px;
+  border-radius: 8px;
+  margin-left: 5px;
+  background-color: #2999fd !important;
+}
+
+::ng-deep .drp-buttons {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+  border-top: none !important;
+}
+
+::ng-deep .daterangepicker td.active {
+  background-color: #2999fd !important;
+}
+
+.testing_tabss::ng-deep .mat-tab-header {
+  width: 510px !important;
+  border-bottom: 0px solid rgba(0, 0, 0, 0.12);
+}
+
+.testingclasss::ng-deep .mat-tab-header {
+  width: 620px !important;
+}
+
+::ng-deep .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+  display: none !important;
+}
+
+::ng-deep ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  border-radius: 20px !important;
+}
+
+::ng-deep ::-webkit-scrollbar-corner,
+::ng-deep ::-webkit-scrollbar-track {
+  border-radius: 20px !important;
+  background-color: #eeeeee;
+}
+
+::ng-deep ::-webkit-scrollbar-thumb {
+  background-color: #d5d4d4;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  border-radius: 20px !important;
+}
+
+::ng-deep ::-webkit-scrollbar-thumb:hover {
+  background-color: #cecccc;
+}
+
+::ng-deep ::-webkit-scrollbar-thumb:active {
+  background-color: #b1b1b1;
+}
+/*# sourceMappingURL=dashboard.component.css.map */

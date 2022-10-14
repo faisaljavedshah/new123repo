@@ -1,0 +1,33 @@
+:host {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+}
+
+mat-drawer {
+  width: 250px;
+}
+
+mat-drawer-container {
+  height: 100%;
+}
+
+@media (min-width: 1000px) and (max-width: 1300px) {
+  mat-drawer {
+    width: 228px;
+  }
+}
+
+.marginLEft {
+  margin-left: 106px !important;
+}
+
+.marginfull {
+  margin-left: 250px !important;
+}
+/*# sourceMappingURL=admin-dashboard.component.css.map */

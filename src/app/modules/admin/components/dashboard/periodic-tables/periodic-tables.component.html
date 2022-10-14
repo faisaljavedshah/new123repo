@@ -1,0 +1,96 @@
+<div *ngIf="isData" style="padding: 30px;">
+  <div style="display: flex; flex-wrap: wrap; padding-right: 100px;">
+    <div
+    *ngFor="let item of tableData; let i = index"
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px; margin-top: 20px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ item.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span [ngClass]="i%3 === 0 ? 'colorGreen': i%2 === 0 ? 'colorBlue':'colorOrange'" style="font-size: 48px; font-weight: 700; text-transform: uppercase;">
+          {{getInitails(item.indicator)}}
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9">
+          <div style="font-size: 14px; padding-top: 2px; color: #718096; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+            {{item.indicator}}
+          </div>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles">
+              <div class="main_div">
+                <div class="heading">
+                  {{item.indicator}}
+                </div>
+                <div class="heading">{{ item.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ item.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ item.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

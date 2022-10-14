@@ -1,0 +1,200 @@
+<ng-container *ngIf="redirecting">
+  <div class="main_container">
+    <div style="width: 100%;" class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <div *ngIf="checkDomain == 'callrater.com'" style="background-color: #fff; text-align: center; padding: 10px; margin-top: -20px; padding-bottom: 30px ;">
+          <a href="http://legacy.callrater.com" style="color: orange;font-size: 20px; font-weight: bold; ">Looking for legacy CallRater? </a>
+        </div>
+        <div style="text-align: center">
+
+          <div *ngIf="checkDomain == 'newdev.convirzaai.com' || checkDomain == 'callrater.com'  ">
+            <img class="logo" src="assets/logotop2.png" />
+          </div>
+          <div *ngIf="checkDomain == 'portal.convirzaai.com' || checkDomain == 'localhost'">
+            <img class="logo" src="../assets/formLogo.svg" />
+          </div>
+
+          <p
+            style="
+              font-size: 15px;
+              font-weight: 500;
+              margin-top: 10px;
+              color: #27272e;
+            "
+          >
+            Welcome back! Let's get you started!
+          </p>
+        </div>
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <form class="pt-5" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="email">
+                <label
+                  for="login"
+                  class="form-label"
+                  style="margin-bottom: 4px; font-weight: 500; color: #425466"
+                  >E-mail</label
+                ><br />
+                <input
+                  #inputmail
+                  type="text"
+                  style="color: #585556"
+                  class="InputFields"
+                  id="login"
+                  autocomplete="true"
+                  aria-describedby="emailHelp"
+                  placeholder="Type your e-mail"
+                  onfocus="this.placeholder = ''"
+                  onblur="this.placeholder = 'Type your e-mail'"
+                  formControlName="email"
+                  name="login"
+                  [ngClass]="[
+                    error === 'Email not registered' ? 'errorBorder' : ''
+                  ]"
+                  [ngClass]="[
+                    error === 'Please enter a valid e-mail address.'
+                      ? 'errorBorder'
+                      : ''
+                  ]"
+                />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">email is required</div>
+                </div>
+                <small *ngIf="isValidEmail" class="invalid"
+                  >Please enter a valid e-mail address.</small
+                >
+              </div>
+              <div class="password" style="padding-top: 15px">
+                <label
+                  for="password"
+                  class="form-label"
+                  style="
+                    margin-bottom: 4px;
+                    margin-top: 10px;
+                    font-weight: 500;
+                    color: #425466;
+                  "
+                  >Password</label
+                ><br />
+                <div
+                  class="mmm"
+                  [ngClass]="error === 'Wrong password' || lengthError || mustPassword? 'errorBorder' : ''"
+                >
+                  <div
+                    style=" position: relative;"
+                  >
+                    <div class="mb-0">
+                      <input
+                        [value]="testOriginal"
+                        (input)="testOriginal = $event.target.value"
+                        [type]="showPassword ? 'text' : 'password'"
+                        class="InputFields"
+                        autocomplete="true"
+                        onfocus="this.placeholder = ''"
+                        onblur="this.placeholder = 'Type your password'"
+                        type="text"
+                        placeholder="Type your password"
+                        name="password"
+                      />
+                    </div>
+                    <div class="bmn">
+                      <img
+                        alt="hide"
+                        src="/assets/picon.svg"
+                        class="mr-4"
+                        (click)="showPassword = !showPassword"
+                        [class.hide]="!showPassword"
+                      />
+                      <img
+                        alt="show"
+                        src="/assets/Eye.svg"
+                        class="mr-4"
+                        (click)="showPassword = !showPassword"
+                        [class.hide]="showPassword"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <small *ngIf="error === 'Wrong password'" class="invalid">Invalid Password.</small>
+                <small *ngIf="enterCredentails" class="invalid">Please enter email and password.</small>
+                <small *ngIf="error === 'Email not registered'" class="invalid">Email not registered.</small>
+                <small *ngIf="mustPassword" class="invalid">Please enter password.</small>
+                <small *ngIf="errorCredentials" class="invalid">Please enter valid credentials.</small>
+                <small *ngIf="ErrorPopup" class="invalid">Unstable internet connection error</small>
+                <small *ngIf="lengthError" class="invalid"
+                  >Invalid Password.</small
+                >
+              </div>
+              <div class="forgot-pass" style="text-align: end; padding-top: 12px;">
+                <a
+                  routerLink="/forgot-password"
+                  style="
+                  cursor: pointer;
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #2999fd;
+                    text-decoration: none;
+                  "
+                  >Forgot password?</a
+                >
+              </div>
+              <div class="checkbox form-check">
+                <input
+                  (change)="onRememberme($event.target.checked)"
+                  type="checkbox"
+                  class="form-check-input"
+                  id="exampleCheck1"
+                />
+                <label
+                  class="form-check-label"
+                  for="exampleCheck1"
+                  style="
+                    font-size: 14px;
+                    font-weight: 500;
+                    padding-left: 7px;
+                    padding-top: 4px;
+                    color: #585556;
+                  "
+                  >Remember me</label
+                >
+              </div>
+              <button
+                [class.backgroundActive]="loading"
+                [disabled]="loading"
+                class="btn"
+              >
+                <span
+                  *ngIf="loading"
+                  class="spinner-border spinner-border-sm mr-1"
+                ></span>
+                Log in
+              </button>
+
+              <!-- <a
+                class="tetsel"
+                style="text-decoration: none; font-size: 11px; color: #718096; cursor: pointer; display: none;"
+                >Don't have an account?
+                <strong
+                  style="padding-left: 5px; font-size: 13px; font-weight: 500; color: #2999fd"
+                  >Sign up</strong
+                ></a
+              > -->
+            </form>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+  <!-- <div style="position: absolute;
+  top: 10%;
+  left: 38%;"> -->
+    <!-- <div *ngIf="ErrorPopup" class="errorpop">
+      <p class="errortext">Something Went Wrong Please Try Again</p>
+      <button class="errorbut" (click)="HidePopup()">Ok</button>
+    </div> -->
+  <!-- </div> -->
+</ng-container>

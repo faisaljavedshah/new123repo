@@ -1,0 +1,96 @@
+.tooltipHover1:hover + .dis_none {
+  display: block;
+}
+.dis_none {
+  cursor: pointer;
+  display: none;
+  z-index: 999;
+  position: relative;
+}
+.tooltipDiv {
+  margin-left: 10px;
+  height: 118px;
+  width: 350px;
+  border-radius: 0px 16px 16px 16px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+  color: #585556;
+}
+.tooltipDivs {
+  position: absolute;
+  top: 0px;
+  left: 12px;
+  height: 118px;
+  width: 350px;
+  border-radius: 0px 16px 16px 16px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+  color: #585556;
+}
+.tooltipDiv_subTiles {
+  margin-left: -195px;
+  height: 124px;
+  width: 350px;
+  border-radius: 16px 0px 16px 16px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+  color: #585556;
+}
+.tooltipDiv_subTiles_last {
+  margin-left: -330px;
+  height: 118px;
+  width: 350px;
+  border-radius: 16px 0px 16px 16px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+  color: #585556;
+}
+.tooltipDiv_subTiles_last2 {
+  margin-left: -330px;
+  height: 118px;
+  width: 350px;
+  border-radius: 16px 0px 16px 16px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+  color: #585556;
+}
+.tooltipDiv_subTiles22 {
+  margin-left: -330px;
+  height: 118px;
+  width: 350px;
+  border-radius: 16px 0px 16px 16px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+  color: #585556;
+}
+.heading {
+  font-size: 14px;
+  font-weight: 600;
+}
+.heading2 {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+.mainHead {
+  font-size: 14px;
+}
+.main_div {
+  display: flex;
+  justify-content: space-between;
+}
+.colorGreen{
+  color: #1ACDA3;
+}
+.colorBlue{
+  color: #3FB5EB;
+}
+.colorOrange{
+  color: #F16063;
+}

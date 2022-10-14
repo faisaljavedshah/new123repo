@@ -1,0 +1,139 @@
+body {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  height: 100%;
+}
+.contact{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #202467;
+  font-size: 25px;
+  font-weight: 600;
+}
+#myFooter {
+  background-color: #3a3f46;
+  color: white;
+}
+#myFooter .second-bar {
+  text-align: center;
+  background-color: #33373e;
+  text-align: center;
+}
+#myFooter .row {
+  margin-bottom: 60px;
+}
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.content {
+  flex: 1 0 auto;
+  -webkit-flex: 1 0 auto;
+  min-height: 200px;
+}
+#myFooter a {
+  color: #d2d1d1;
+  text-decoration: none;
+}
+#myFooter ul {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.7;
+}
+#myFooter h5 {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  margin-top: 30px;
+}
+.navigation{
+  width: 100%;
+  height: 60px;
+  background-color: #E45A1C;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 3px;
+  line-height: 10px;
+}
+.CFA_logo{
+  margin-top: 30px;
+  padding: 10px 100px;
+}
+.gotoHome{
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gotoHome > a{
+  width: 150px;
+  height: 50px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #E45A1C;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-decoration: none;
+  font-size: 20px;
+}
+.gotoHome > a:hover{
+  transition: 0.3s;
+  height: 52px;
+  width: 154px;
+  border-radius: 8px;
+  background-color: #df6d39;
+}
+.mainContainer{
+  display: flex;
+  justify-content: center;
+}
+.policyContent{
+  width: 70%;
+  margin: 40px 20px;
+  color: #737477;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 31px; margin-bottom: 80px;
+}
+.topHead{
+  margin-bottom: 75px;
+}
+.policyList{
+  margin-top: 10px;
+}
+.policyList li{
+  list-style-type: decimal;
+  font-size: 22px;
+}
+ol{
+  margin-bottom: 5rem;
+}
+.convirzaSupport{
+  color: #3c4a5b;
+  transition:all 0.5s ;
+  text-decoration: none;
+  background-color: transparent;
+}
+.convirzaSupport:hover{
+  color: #ec7805;
+  outline: none;
+}
+.policyList > div{
+  margin-bottom:45px;
+}
+.policyList > div > span{
+  font-weight: 700;
+}

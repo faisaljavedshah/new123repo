@@ -1,0 +1,16 @@
+<!-- <div id="chartdivsss" style="width: 250px; margin: 0 auto; height: 160px"></div> -->
+<!-- <div class="guageprogress">
+  <div class="barOverflow">
+    <div *ngIf="totalscroe !== 'N/A' && totalscroe !== -1" class="bar" [ngClass]="'bar' + totalscroe"></div>
+    <div *ngIf="totalscroe === 'N/A' || totalscroe === -1" class="bar" [ngClass]="'bar' + 0"></div>
+  </div>
+</div> -->
+<div id="chart1" style="height: 93px;margin-top: -43px;">
+  <apx-chart
+    [series]="chartOptions?.series"
+    [chart]="chartOptions?.chart"
+    [plotOptions]="chartOptions?.plotOptions"
+    [labels]="chartOptions?.labels"
+    [fill]="chartOptions?.fill"
+  ></apx-chart>
+</div>

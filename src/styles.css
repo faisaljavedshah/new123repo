@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: "Inter", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Inter", sans-serif;
+}
+
+body.inheritCursors * {
+  cursor: url("./assets/grab.png"), auto !important;
+}
+/*# sourceMappingURL=styles.css.map */

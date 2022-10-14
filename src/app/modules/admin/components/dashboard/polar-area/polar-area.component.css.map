@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAC;EACL,SAAS,EAAE,KAAK;EAChB,MAAM,EAAE,QAAQ;EAChB,OAAO,EAAE,CAAC;CACX",
+    "sources": [
+        "polar-area.component.scss"
+    ],
+    "names": [],
+    "file": "polar-area.component.css"
+}

@@ -1,0 +1,225 @@
+.container {
+  overflow: hidden;
+}
+.logotp {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 13px;
+  width: 250px;
+  margin-bottom: 15px;
+}
+.btn {
+  width: 232px;
+  margin-top: 20px;
+  background: #2999fd;
+  color: #fff;
+  padding-left: 13px;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  padding: 8px 24px;
+}
+.btn:hover {
+  background-color: #54ADFD;
+  color: #fff;
+  outline: none !important;
+}
+.backgroundActive{
+background-color: #54ADFD !important;
+border: 1.5px solid #EA714A !important;
+}
+::ng-deep {
+  .otp-input:focus-visible {
+    border: 2px solid #1f95ff !important;
+    // box-shadow: 0px 0px 0px 3px rgb(41 153 253 / 30%) !important;
+    // outline-color: transparent !important ;
+    outline: 0;
+    box-shadow: 0px 0px 0px 2px rgba(41, 153, 253, 0.3) !important;
+  }
+}
+.txt {
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: rgba(39, 39, 46, 1);
+  // padding-left: 76px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  font-weight: normal;
+}
+.txtt {
+  color: rgba(66, 84, 102, 1);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 7px;
+  padding-top: 30px;
+}
+.txttt {
+  color: rgba(113, 128, 150, 1);
+  font-weight: 400;
+  margin-top: 15px;
+  font-size: 10px;
+  // text-align: left;
+}
+@media only screen and (max-width: 767px) {
+  .txt {
+    margin-left: 0px;
+    padding-left: 0px;
+  }
+  .vca {
+    width: 100%;
+  }
+  .txtt {
+    margin-left: -234px;
+    padding-left: 0px;
+    text-align: left !important;
+  }
+  .txttt {
+    width: 77%;
+    margin-left: 0px;
+    padding-left: 0px;
+    text-align: left !important;
+  }
+  .bbb {
+    padding-left: 36px;
+    width: 100% !important;
+  }
+  .btn {
+    margin-left: 0px;
+    width: 40%;
+  }
+  .logotp {
+    width: 50%;
+    margin-bottom: 15px;
+  }
+  .container {
+    text-align-last: center;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1000px) {
+  .vca {
+    width: 100%;
+  }
+  .container {
+    padding-top: 60px;
+  }
+  .bbb {
+    width: 100% !important;
+    padding-left: 36px !important;
+  }
+  .txt {
+    margin-left: 10px;
+    padding-left: 0px;
+  }
+  .txtt {
+    margin-left: -211px;
+    padding-left: 0px;
+    text-align: left !important;
+  }
+  .txttt {
+    width: 70%;
+    margin-left: 0px;
+    padding-left: 0px;
+    text-align: left;
+  }
+
+  .btn {
+    // margin-left: 0px;
+    width: 232px;
+  }
+  .logotp {
+    width: 232px;
+    margin-bottom: 15px;
+  }
+  .container {
+    text-align-last: center;
+  }
+  .bbb {
+    width: 102% !important;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .vca {
+    width: 100%;
+  }
+  .bbb {
+    width: 100% !important;
+    padding-left: 50px;
+  }
+  .txt {
+    margin-left: 10px;
+    padding-left: 0px;
+  }
+
+  .txtt {
+    margin-left: -211px;
+    padding-left: 0px;
+    text-align: left !important;
+  }
+  .txttt {
+    // text-align: left !important;
+    // width: 77%;
+    text-align-last: left;
+    margin-left: 100px;
+  }
+  .btn {
+    // margin-left: 0px;
+    width: 232px;
+  }
+  .logotp {
+    width: 232px;
+    margin-bottom: 15px;
+  }
+  .container {
+    text-align-last: center;
+    padding-top: 60px;
+  }
+  .bbb {
+    width: 100% !important;
+  }
+}
+.btn:focus {
+  box-shadow: none !important;
+}
+@media only screen and (min-width: 1400px) and (max-width: 2200px) {
+  .btn {
+    width: 232px;
+    margin-top: 20px;
+    background: #2999fd;
+    color: #fff;
+    margin-left: 14px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    padding: 8px 24px;
+  }
+  .bbb {
+    padding-left: 17px;
+  }
+  .txtt {
+    padding-left: 18px;
+  }
+  .txttt {
+    padding-left: 19px;
+  }
+}
+::selection {
+  background: none;
+}
+::-moz-selection {
+  background: none;
+}
+::-webkit-selection {
+  background: none;
+}
+::ng-deep {
+  .errorred
+  .otp-input {
+    border: 1px solid red !important;
+    // box-shadow: 0px 0px 0px 3px rgb(41 153 253 / 30%) !important;
+    // outline-color: transparent !important ;
+    outline: 0;
+    // box-shadow: 0px 0px 0px 2px rgba(41, 153, 253, 0.3) !important;
+  }
+}

@@ -1,0 +1,190 @@
+body {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  height: 100%;
+}
+.contact{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #202467;
+  font-size: 25px;
+  font-weight: 600;
+}
+#myFooter {
+  background-color: #3a3f46;
+  color: white;
+}
+#myFooter .second-bar {
+  text-align: center;
+  background-color: #33373e;
+  text-align: center;
+}
+#myFooter .row {
+  margin-bottom: 60px;
+}
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.content {
+  flex: 1 0 auto;
+  -webkit-flex: 1 0 auto;
+  min-height: 200px;
+}
+#myFooter a {
+  color: #d2d1d1;
+  text-decoration: none;
+}
+#myFooter ul {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.7;
+}
+#myFooter h5 {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  margin-top: 30px;
+}
+.navigation{
+  width: 100%;
+  height: 60px;
+  background-color: #E45A1C;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 3px;
+  line-height: 10px;
+}
+.CFA_logo{
+  margin-top: 30px;
+  padding: 10px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gotoHome{
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gotoHome > a{
+  width: 150px;
+  height: 50px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #E45A1C;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-decoration: none;
+  font-size: 20px;
+}
+.gotoHome > a:hover{
+  transition: 0.3s;
+  height: 52px;
+  width: 154px;
+  border-radius: 8px;
+  background-color: #df6d39;
+}
+.mainContainer{
+  margin: 50px 20px;
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
+}
+.formContainer{
+  width: 85%;
+  min-height: 500px;
+}
+.inputFields{
+  position: relative;
+  margin-bottom: 15px;
+}
+.inputFields > input {
+  width: 100%;
+  border-radius: 8px;
+  height: 40px;
+  padding-left: 40px;
+  border: 1px solid #939393;
+  color: #33475b;
+}
+.inputFields > textarea {
+  color: #33475b;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #939393;
+  padding: 8px;
+}
+@media(min-width:400px) {
+  .formContainer{
+    width: 75%;
+  }
+}
+@media(min-width:500px) {
+  .formContainer{
+    width: 65%;
+  }
+  @media(min-width:700px) {
+    .formContainer{
+      width: 55%;
+    }
+  }
+}
+@media(min-width:1000px) {
+  .formContainer{
+    width: 45%;
+  }
+}
+@media(min-width:1300px) {
+  .formContainer{
+    width: 38%;
+  }
+}
+.inputIcon{
+  position: absolute;
+  left: 11px;
+  top: 10px;
+}
+.submitBtn{
+  display: flex;
+  justify-content: flex-end;
+}
+.submitBtn > button{
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background-color: #E45A1C;
+  color: #fff;
+  transition: all 0.3s;
+}
+.submitBtn > button:hover{
+  background-color: #df6d39;
+}
+.submitBtn > button:active{
+  outline: 1px solid #2999FD;
+}
+.contactusText{
+  text-align: center;
+  color: #636363;
+  font-size: 16px;
+  font-weight: 600;
+  // margin-bottom: 5px;
+}
+.contactMail{
+  color: #939393;
+}

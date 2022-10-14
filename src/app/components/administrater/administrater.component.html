@@ -1,0 +1,224 @@
+<div class="mainAdmin">
+    <div style="width: 50%; margin:0 auto;">
+        <p class="access">Administrator Access</p>
+        <p class="accountadmin">
+            To access an Account, select or search for an Account/Billing Node in the
+            below field & impersonate any user. Any Account having <span style="font-weight: 600;"> Support Access</span>
+            disabled won't be accessible from here
+        </p>
+        <!-- <div style="display: flex; align-items: end; margin-left: 20px;">
+            <div style="margin-right: 22px;">
+                <label class="adminlabel">Group</label>
+                <div
+                  (clickOutside)="grouprole = false"
+                  style="position: relative; font-size: 11px"
+                >
+                  <div
+                    class="dateDropdown"
+                    style="border: 1px solid transparent;"
+                    (click)="grouprole = !grouprole"
+                    [ngClass]="{ dateDropdownactive: grouprole }"
+                  >
+                    <div
+                      style="color: #585556; font-size: 13px; font-weight: 500"
+                    >
+                      {{ currentRole }}
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                    >
+                      <path
+                        d="M5.48252 8.15869L2.18511 4.39022C1.79615 3.9457 2.11184 3.25 2.70251 3.25H9.29733C9.888 3.25 10.2037 3.9457 9.81473 4.39022L6.51732 8.15869C6.24341 8.47173 5.75643 8.47173 5.48252 8.15869Z"
+                        fill="#9B9FAE"
+                      />
+                    </svg>
+                  </div>
+                  <div class="dateDropdownList" *ngIf="grouprole">
+                    <div
+                      (click)="onChangeRole('Admin')"
+                      [ngClass]="{
+                        'Dropcol-active': currentRole == 'Admin'
+                      }"
+                      style="color: #585556; font-size: 13px; font-weight: 500;display: flex;
+                      justify-content: space-between;"
+                    >
+                    {{currentRole}}
+                      <svg
+                        style="margin-right: 20px;"
+                        *ngIf="currentRole == 'Admin'"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="11"
+                        viewBox="0 0 16 11"
+                        fill="none"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M15.7962 0.201364C16.0679 0.46985 16.0679 0.905151 15.7962 1.17364L6.05712 10.7986C5.92666 10.9276 5.74972 11 5.56522 11C5.38072 11 5.20378 10.9276 5.07332 10.7986L0.203752 5.98614C-0.0679173 5.71765 -0.0679173 5.28235 0.203752 5.01386C0.475421 4.74538 0.915884 4.74538 1.18755 5.01386L5.56522 9.34023L14.8124 0.201364C15.0841 -0.0671214 15.5246 -0.0671214 15.7962 0.201364Z"
+                          fill="#EA714A"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; margin-top: 25px;">
+                <svg style="    margin-right: -25px;
+                margin-top: 11px;
+                z-index: 999;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.74609 8.05803C1.74609 4.57205 4.57205 1.74609 8.05803 1.74609C11.544 1.74609 14.37 4.57205 14.37 8.05803C14.37 9.78989 13.6725 11.3588 12.5431 12.4993C12.5356 12.5063 12.5281 12.5134 12.5208 12.5207C12.5135 12.528 12.5064 12.5354 12.4994 12.543C11.3589 13.6724 9.78995 14.37 8.05803 14.37C4.57205 14.37 1.74609 11.544 1.74609 8.05803ZM13.0263 14.0868C11.676 15.2008 9.94519 15.87 8.05803 15.87C3.74362 15.87 0.246094 12.3725 0.246094 8.05803C0.246094 3.74362 3.74362 0.246094 8.05803 0.246094C12.3725 0.246094 15.87 3.74362 15.87 8.05803C15.87 9.94513 15.2009 11.6759 14.0869 13.0262L17.5331 16.4723C17.826 16.7652 17.826 17.2401 17.5331 17.533C17.2402 17.8259 16.7654 17.8259 16.4725 17.533L13.0263 14.0868Z" fill="#718096"/>
+                    </svg>
+                  <input class="searchadmin" type="search">
+              </div>
+        </div> -->
+        <div style="display: flex;justify-content: center; margin-top: 20px;">
+          <div (clickOutside)="adminaccount = false">
+              <label class="adminlabel">Group</label>
+              <div
+
+                style="position: relative; font-size: 11px"
+              >
+                <!-- <div
+                  class="Accountdrop"
+                  style="border: 1px solid transparent;"
+
+                  [ngClass]="{ Accountdropactive: adminaccount }"
+                >
+                  <div
+                    style="color: #585556; font-size: 13px; font-weight: 500"
+                  >
+                    {{ currentAccount }}
+                  </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                  >
+                    <path
+                      d="M5.48252 8.15869L2.18511 4.39022C1.79615 3.9457 2.11184 3.25 2.70251 3.25H9.29733C9.888 3.25 10.2037 3.9457 9.81473 4.39022L6.51732 8.15869C6.24341 8.47173 5.75643 8.47173 5.48252 8.15869Z"
+                      fill="#9B9FAE"
+                    />
+                  </svg>
+                </div> -->
+                <input #groupInput class="Accountdrop" (click)="adminaccount = !adminaccount" style="border: 1px solid transparent;" [ngClass]="{ Accountdropactive: adminaccount }" type="text" name="" id="" placeholder="Search groups" [value]="currentAccount" (input)="searchGroup($event.target.value)" >
+                <div class="AccountdropList" [class.none]="!adminaccount">
+                  <div
+                  *ngFor="let item of allAccounts"
+                    (click)="onChangeGroups(item.org_unit_name, item.org_unit_id); groupInput.value = item.org_unit_name"
+                    [ngClass]="{
+                      'Dropcol-active': currentAccount == item.org_unit_name
+                    }"
+                    style="color: #585556; font-size: 13px; font-weight: 500;display: flex;
+                    justify-content: space-between;"
+                  >
+                  {{item.org_unit_name}}
+                    <svg
+                      style="margin-right: 20px;"
+                      *ngIf="currentAccount == item.org_unit_name"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="11"
+                      viewBox="0 0 16 11"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M15.7962 0.201364C16.0679 0.46985 16.0679 0.905151 15.7962 1.17364L6.05712 10.7986C5.92666 10.9276 5.74972 11 5.56522 11C5.38072 11 5.20378 10.9276 5.07332 10.7986L0.203752 5.98614C-0.0679173 5.71765 -0.0679173 5.28235 0.203752 5.01386C0.475421 4.74538 0.915884 4.74538 1.18755 5.01386L5.56522 9.34023L14.8124 0.201364C15.0841 -0.0671214 15.5246 -0.0671214 15.7962 0.201364Z"
+                        fill="#EA714A"
+                      />
+                    </svg>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; margin-top: 20px;">
+          <div>
+            <label class="adminlabel">User</label>
+            <div
+              (clickOutside)="userAccount = false"
+              style="position: relative; font-size: 11px"
+            >
+              <!-- <div
+                class="Accountdrop"
+                style="border: 1px solid transparent;"
+                (click)="openUserList()"
+                [ngClass]="{ Accountdropactive: userAccount }"
+              >
+                <div
+                  style="color: #585556; font-size: 13px; font-weight: 500"
+                >
+                  {{ currentuser }}
+                </div>
+
+              </div> -->
+              <div style="position: relative;">
+                <input #userInput class="Accountdrop" [ngClass]="{ Accountdropactive: userAccount }" (click)="openUserList()" type="text" name="" id="" placeholder="Search users" [value]="currentuser" (input)="searchUser($event.target.value)" >
+                <div style="position: absolute; right: 10px; top: 12px;">
+                  <span
+                  *ngIf="userListLoading"
+                  class="spinner-border spinner-border-sm mr-1"
+                ></span>
+                  <!-- <svg
+                  *ngIf="!userListLoading"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                  >
+                    <path
+                      d="M5.48252 8.15869L2.18511 4.39022C1.79615 3.9457 2.11184 3.25 2.70251 3.25H9.29733C9.888 3.25 10.2037 3.9457 9.81473 4.39022L6.51732 8.15869C6.24341 8.47173 5.75643 8.47173 5.48252 8.15869Z"
+                      fill="#9B9FAE"
+                    />
+                  </svg> -->
+                </div>
+              </div>
+                <div class="AccountdropList" [class.none]="!userAccount">
+                  <div
+                  *ngFor="let item of allUsers"
+                    (click)="onChangeUser(item.first_name + ' ' + item.last_name, item.ct_user_id); userInput.value = item.first_name + ' ' + item.last_name"
+                    [ngClass]="{
+                      'Dropcol-active': item.first_name + ' ' + item.last_name == currentuser
+                    }"
+                    style="color: #585556; font-size: 13px; font-weight: 500;display: flex;
+                    justify-content: space-between;"
+                  >
+                  {{item.first_name + ' ' + item.last_name}}
+                    <svg
+                      style="margin-right: 20px;"
+                      *ngIf="item.first_name + ' ' + item.last_name == currentuser"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="11"
+                      viewBox="0 0 16 11"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M15.7962 0.201364C16.0679 0.46985 16.0679 0.905151 15.7962 1.17364L6.05712 10.7986C5.92666 10.9276 5.74972 11 5.56522 11C5.38072 11 5.20378 10.9276 5.07332 10.7986L0.203752 5.98614C-0.0679173 5.71765 -0.0679173 5.28235 0.203752 5.01386C0.475421 4.74538 0.915884 4.74538 1.18755 5.01386L5.56522 9.34023L14.8124 0.201364C15.0841 -0.0671214 15.5246 -0.0671214 15.7962 0.201364Z"
+                        fill="#EA714A"
+                      />
+                    </svg>
+                  </div>
+
+                </div>
+            </div>
+          </div>
+        </div>
+          <button [disabled]="!currentUserID || isLogingIn" class="Impersonate" (click)="onImpersonate()"><span
+            *ngIf="isLogingIn"
+            class="spinner-border color-white spinner-border-sm mr-1"
+          ></span> Impersonate</button>
+    </div>
+</div>

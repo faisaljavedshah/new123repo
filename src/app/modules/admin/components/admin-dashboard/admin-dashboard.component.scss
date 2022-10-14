@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+mat-drawer {
+  width: 250px;
+}
+mat-drawer-container {
+  height: 100%;
+}
+
+// mat-drawer {
+//   border-radius: 30px 0px 0px 30px;
+// }
+@media (min-width: 1000px) and (max-width: 1300px) {
+  mat-drawer {
+    width: 228px;
+  }
+}
+
+.marginLEft {
+  margin-left: 106px !important;
+}
+.marginfull {
+  margin-left: 250px !important;
+}
+.addScroller{
+  overflow-y: scroll;
+}

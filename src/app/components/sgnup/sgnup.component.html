@@ -1,0 +1,197 @@
+<div class="container">
+  <div class="row mrgtop">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div style="text-align: center">
+        <img class="logo" src="../assets/formLogo.svg" />
+        <p
+          style="
+            font-size: 16px;
+            font-weight: 400;
+            margin-top: 10px;
+            color: #27272e;
+          "
+        >
+        Let's get your account setup!
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <form class="pt-5" [formGroup]="SignupForm" (ngSubmit)="onSubmit()">
+            <div class="email">
+              <label
+                for="login"
+                class="form-label"
+                style="
+                  margin-bottom: 4px;
+                  font-weight: 500;
+                  font-size: 14px;
+                  color: #425466;
+                "
+                >E-mail</label
+              ><br />
+              <input
+                type="text"
+                style="color: #585556"
+                (keydown.enter)="onSubmit()"
+                class="InputFields"
+                id="login"
+                aria-describedby="emailHelp"
+                placeholder="Type here"
+                formControlName="email"
+                autocomplete="cc-name"
+                name="login"
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                [ngClass]="{'errorBorder' : isValiddEmail}"
+                [ngClass]="{'errorBorder' : alreadyTaken }"
+              />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">email is required</div>
+              </div>
+              <small *ngIf="isValiddEmail || wentWrong" class="invalid">Please enter a valid e-mail address.</small>
+              <small *ngIf="alreadyTaken" class="invalid">Email already registered!</small>
+            </div>
+            <div class="password" style="padding-top: 15px">
+              <label
+                for="password"
+                class="form-label"
+                style="
+                  margin-bottom: 4px;
+                  font-size: 14px;
+                  margin-top: 10px;
+                  font-weight: 500;
+                  color: #425466;
+                "
+                >Password</label
+              ><br />
+              <div class="mmm" [ngClass]="{'errorBorder' : bordered }">
+                <div >
+                  <div class="mb-0">
+                    <input
+                    [type]="showPassword1 ? 'text' : 'password'"
+                    (keydown.enter)="onSubmit()"
+                      autocomplete="true"
+                      style="
+                        background-color: #fff;
+                        padding-left: 10px;
+                        position: relative;
+                        color: #585556;
+                      "
+                      class="InputFields"
+                      (input)="testOriginal = $event.target.value"
+                      placeholder="Type your password"
+                      formControlName="password"
+                      autocomplete="cc-name"
+                      name="login"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.password.errors
+                      }"
+
+                    />
+                  </div>
+                  <div class="mbn">
+                    <img
+                      alt="hide"
+                      src="/assets/picon.svg"
+                      (click)="showPassword1 = !showPassword1"
+                    [class.hide]="!showPassword1"
+                    />
+                    <img
+                      alt="show"
+                      src="/assets/Eye.svg"
+                      (click)="showPassword1 = !showPassword1"
+                      [class.hide]="showPassword1"
+                    />
+                  </div>
+                </div>
+              </div>
+              <small *ngIf="isPasswordValid" class="invalid">8 characters min, one uppercase, one lowercase & one special character.</small>
+              <!-- <small *ngIf="wentWrong" class="invalid">Something going wrong.</small> -->
+            </div>
+            <div class="password" style="padding-top: 15px" >
+              <label
+                for="password"
+                class="form-label"
+                style="
+                  margin-bottom: 4px;
+                  font-size: 14px;
+                  margin-top: 10px;
+                  font-weight: 500;
+                  color: #425466;
+                "
+                >Retype password</label
+              ><br />
+              <div class="mmm" [ngClass]="{'errorBorder' : bordered }">
+                <div class="">
+                  <div class="mb-0">
+                    <input
+
+                      autocomplete="true"
+                      (keydown.enter)="onSubmit()"
+                      [type]="showPassword ? 'text' : 'password'"
+                      style="
+                        background-color: #fff;
+                        padding-left: 10px;
+                        position: relative;
+                        color: #585556;
+                      "
+                      class="InputFields"
+                      (input)="testOriginal1 = $event.target.value"
+                      placeholder="Retype your password"
+                      formControlName="password"
+                      autocomplete="cc-name"
+                      name="login"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.password.errors
+                      }"
+                    />
+                  </div>
+                  <div class="mbn">
+                    <img
+                    style="position: relative;"
+                    alt="hide"
+                    src="/assets/picon.svg"
+                    class="mr-4"
+                    (click)="showPassword = !showPassword"
+                    [class.hide]="!showPassword"
+
+                  />
+                  <img
+                  style="position: relative;"
+                    alt="show"
+                    src="/assets/Eye.svg"
+                    class="mr-4"
+                    (click)="showPassword = !showPassword"
+                    [class.hide]="showPassword"
+                  />
+                  </div>
+                </div>
+              </div>
+              <small *ngIf="!isSameePasswords" class="invalid">Password mismatch!</small>
+              <small *ngIf="isPasswordValid" class="invalid">8 characters min, one uppercase, one lowercase & one special character.</small>
+              <!-- <small *ngIf="wentWrong" class="invalid">Something going wrong.</small> -->
+            </div>
+            <button
+              [class.backgroundActive]="loading"
+              [disabled]="loading"
+              class="btn"
+              [disabled]="testOriginal1 === ''"
+            >
+              <span
+                *ngIf="loading"
+                class="spinner-border spinner-border-sm mr-1"
+              ></span>
+              Sign up
+            </button>
+            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+              {{ error }}
+            </div>
+          </form>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>

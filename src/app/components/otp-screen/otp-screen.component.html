@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row" style="margin-top: 125px">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 vca">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <img class="logotp" src="../assets/formLogo.svg" />
+          <p class="txt" style="font-weight: 500; color: #27272e">
+            Almost there!
+          </p>
+          <p class="txtt" style="color: #425466">Code</p>
+          <div class="row bbb" style="width: max-content" >
+            <ng-otp-input
+            [ngClass]="{'errorred' : isborderred }"
+              (input)="change($event.target.value)"
+              (keydown.enter)="redirect()"
+              #ngOtpInput
+              (onInputChange)="onOtpChange($event)"
+              *ngIf="showOtpComponent"
+              [config]="config"
+            ></ng-otp-input>
+          </div>
+          <p *ngIf="isWrongOPT" class="txttt" style="color: red">
+            Please enter valid OTP.
+          </p>
+          <p *ngIf="!isWrongOPT" class="txttt" style="color: #718096">
+            Please enter the code sent to {{this.forgot.email | async}}
+          </p>
+          <div class="row btt">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <button [class.backgroundActive]="isLoading" class="btn" [disabled]="otp.length < 6 || isLoading" (click)="redirect()">
+                <span
+                *ngIf="isLoading"
+                class="spinner-border spinner-border-sm mr-1"
+              ></span>
+                Next
+              </button>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>

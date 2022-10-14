@@ -1,0 +1,1779 @@
+<div *ngIf="isData" style="padding: 30px;">
+  <div style="display: flex; align-items: flex-end;">
+    <div
+      style="width: 197px; height: 197px; border-radius: 5px; background-color: #fff;padding: 12px; border: 1px solid #F0F0F0;"
+    >
+      <div>
+        <span style="font-size: 32px; font-weight: 700; color: #5A5858;">
+          {{ tableData[18]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center; padding-top: 10px;">
+        <span style="font-size: 48px; font-weight: 700;color: #3FB5EB;">
+          MO
+        </span>
+      </div>
+      <div class="row" style="margin-top: 16px;">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Missed Opportunity
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv">
+              <div class="main_div">
+                <div class="heading">
+                  Missed opportunity
+                </div>
+                <div class="heading">{{ tableData[18]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead" style="font-weight: 600;">{{ tableData[18]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Calls of missed opportunities
+                </div>
+                <div class="mainHead" style="font-weight: 600;">{{ tableData[18]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[9]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #1ACDA3;">
+          AB
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Asked for Business
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles">
+              <div class="main_div">
+                <div class="heading">
+                  Asked for business
+                </div>
+                <div class="heading">{{ tableData[9]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[9]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[9]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[8]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #F16063">
+          DN
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Determine Needs
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles">
+              <div class="main_div">
+                <div class="heading">
+                  Determine needs
+                </div>
+                <div class="heading">{{ tableData[8]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[8]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[8]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; align-items: flex-end; margin-top: 30px; ">
+    <div
+      style="width: 196px; height: 197px; border-radius: 5px; background-color: #fff;padding: 12px; border: 1px solid #F0F0F0;"
+    >
+      <div>
+        <span style="font-size: 32px; font-weight: 700; color: #5A5858;">
+          {{ tableData[20]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center; padding-top: 10px;">
+        <span style="font-size: 48px; font-weight: 700;color: #3FB5EB;">
+          LC
+        </span>
+      </div>
+      <div class="row" style="margin-top: 16px;">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Leads Conversion
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv">
+              <div class="main_div">
+                <div class="heading">
+                  Leads conversion
+                </div>
+                <div class="heading">{{ tableData[20]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[20]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Calls of Leads conversion
+                </div>
+                <div class="mainHead">{{ tableData[20]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[16]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #1ACDA3;">
+          AC
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            All Conversion
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles">
+              <div class="main_div">
+                <div class="heading">
+                  All conversion
+                </div>
+                <div class="heading">{{ tableData[16]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[16]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[16]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[8]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #F16063;">
+          DN
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Determine Needs
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles">
+              <div class="main_div">
+                <div class="heading">
+                  Determine needs
+                </div>
+                <div class="heading">{{ tableData[8]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[8]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[8]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; align-items: flex-end; margin-top: 30px; ">
+    <div
+      style="width: 196px; height: 197px; border-radius: 5px; background-color: #fff;padding: 12px; border: 1px solid #F0F0F0;"
+    >
+      <div>
+        <span style="font-size: 32px; font-weight: 700; color: #5A5858;">
+          {{ tableData[19]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center; padding-top: 10px;">
+        <span style="font-size: 48px; font-weight: 700;color: #3FB5EB;">
+          SS
+        </span>
+      </div>
+      <div class="row" style="margin-top: 16px;">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Sales Skills
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDivs">
+              <div class="main_div">
+                <div class="heading">
+                  Sales skills
+                </div>
+                <div class="heading">{{ tableData[19]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[19]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Calls of Sales skills
+                </div>
+                <div class="mainHead">{{ tableData[19]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 209px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[6]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #1ACDA3;">
+          BC
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Building credibility
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles">
+              <div class="main_div">
+                <div class="heading">
+                  Building credibility
+                </div>
+                <div class="heading">{{ tableData[6]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[6]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[6]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[11]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #F16063;">
+          AP
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Agent politeness
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles22">
+              <div class="main_div">
+                <div class="heading">
+                  Agent politeness
+                </div>
+                <div class="heading">{{ tableData[11]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[11]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[11]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[13]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #718096;">
+          ACI
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Acquired Ca...
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles_last2">
+              <div class="main_div">
+                <div class="heading">
+                  Acquired caller info
+                </div>
+                <div class="heading">{{ tableData[13]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[13]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[13]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[7]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #718096;">
+          OL
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Ownership L...
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles_last">
+              <div class="main_div">
+                <div class="heading">
+                  Ownership language
+                </div>
+                <div class="heading">{{ tableData[7]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[7]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[7]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div style="display: flex; align-items: flex-end; margin-top: 30px; ">
+    <div
+      style="width: 196px; height: 197px; border-radius: 5px; background-color: #fff;padding: 12px; border: 1px solid #F0F0F0;"
+    >
+      <div>
+        <span style="font-size: 32px; font-weight: 700; color: #5A5858;">
+          50%
+        </span>
+      </div>
+      <div style="text-align: center; padding-top: 10px;">
+        <span style="font-size: 48px; font-weight: 700;color: #3FB5EB;">
+          CC
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Coachable Calls
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv">
+              <div class="main_div">
+                <div class="heading">
+                  Coachable calls
+                </div>
+                <div class="heading">50%</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">50%</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Calls of Coachable calls
+                </div>
+                <div class="mainHead">50</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[19]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #1ACDA3">
+          SS
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Sales Skills
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles">
+              <div class="main_div">
+                <div class="heading">
+                  Sales skills
+                </div>
+                <div class="heading">{{ tableData[19]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[19]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[19]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[18]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #F16063;">
+          MO
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Missed Opportunity
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles">
+              <div class="main_div">
+                <div class="heading">
+                  Missed opportunity
+                </div>
+                <div class="heading">{{ tableData[18]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[18]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[18]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[20]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #718096;">
+          LS
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Lead Score
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles">
+              <div class="main_div">
+                <div class="heading">
+                  Lead score
+                </div>
+                <div class="heading">{{ tableData[20]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[20]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[20]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- <div style="display: flex; align-items: flex-end; margin-top: 30px; ">
+    <div
+      style="width: 196px; height: 197px; border-radius: 5px; background-color: #fff;padding: 12px; border: 1px solid #F0F0F0;"
+    >
+      <div>
+        <span style="font-size: 32px; font-weight: 700; color: #5A5858;">
+          50%
+        </span>
+      </div>
+      <div style="text-align: center; padding-top: 10px;">
+        <span style="font-size: 48px; font-weight: 700;color: #3FB5EB;">
+          CC
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Champion Calls
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv">
+              <div class="main_div">
+                <div class="heading">
+                  Champion calls
+                </div>
+                <div class="heading">50%</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">50</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Calls of Champion calls
+                </div>
+                <div class="mainHead">50</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[19]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #1ACDA3;">
+          SS
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Sales Skills
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles">
+              <div class="main_div">
+                <div class="heading">
+                  Sales skills
+                </div>
+                <div class="heading">{{ tableData[19]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[19]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[19]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[16]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #F16063;">
+          AC
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            All Conversion
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles">
+              <div class="main_div">
+                <div class="heading">
+                  All conversion
+                </div>
+                <div class="heading">{{ tableData[16]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[16]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[16]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 196px; height: 155px; border-radius: 5px; background-color: #fff;padding: 8px; border: 1px solid #F0F0F0;margin-left: 5px;"
+    >
+      <div>
+        <span style="font-size: 24px; font-weight: 700; color: #5A5858;">
+          {{ tableData[20]?.percent }}
+        </span>
+      </div>
+      <div style="text-align: center">
+        <span style="font-size: 48px; font-weight: 700;color: #718096;">
+          LS
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-9" style="white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">
+          <span style="font-size: 14px; padding-top: 2px; color: #718096;">
+            Lead Score
+          </span>
+        </div>
+        <div class="col-3">
+          <svg
+            class="tooltipHover1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+          >
+            <circle
+              cx="13.0001"
+              cy="13.0003"
+              r="9.00375"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9998 16.5017H14.3101"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1593 16.5018V12.25H12.0088"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.1002 9.24581C13.1002 9.38394 12.9882 9.49592 12.8501 9.49592C12.7119 9.49592 12.6 9.38394 12.6 9.24581C12.6 9.10769 12.7119 8.99571 12.8501 8.99571"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.85 8.99576C12.9881 8.99576 13.1001 9.10774 13.1001 9.24587"
+              stroke="#718096"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <div class="dis_none">
+            <div class="tooltipDiv_subTiles">
+              <div class="main_div">
+                <div class="heading">
+                  Lead score
+                </div>
+                <div class="heading">{{ tableData[20]?.percent }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Total calls
+                </div>
+                <div class="mainHead">{{ tableData[20]?.total }}</div>
+              </div>
+              <div class="heading2">
+                <div class="mainHead">
+                  Detected calls
+                </div>
+                <div class="mainHead">{{ tableData[20]?.value }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>

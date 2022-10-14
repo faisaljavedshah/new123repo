@@ -1,0 +1,1928 @@
+<div *ngIf="isLoading" class="loader-bg">
+  <div class="loader">
+    <span></span>
+  </div>
+</div>
+
+<!--  New Screen  -->
+<div id="main_page">
+  <div (clickOutside)="isSearching = false" class="firrew">
+    <div *ngIf="checkDomain == 'callrater.com'" style="background-color: #fff; padding: 10px;padding-bottom: 0px">
+      <a href="http://legacy.callrater.com" style="color: orange;font-size: 13px; font-weight: bold; ">Looking for
+        legacy CallRater? </a>
+    </div>
+ <!-- <app-bread-crumbs (newItemEvent)="onApplyFilterList()"></app-bread-crumbs> -->
+    <mat-toolbar  *ngIf="!isLoading" [class.none]="isSearching" class="pt-2 pb-2 height_top">
+      <mat-toolbar-row class="justify-content-between matToolbar">
+        <h4 style="font-size: 17px; color: #425466; font-weight: 600">
+          <svg style="margin-right: 10px; cursor: pointer; outline: none" (click)="goToRecordings()"
+            xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 12 20" fill="none">
+            <path d="M10.5 1L1.5 10.002L10.495 19" stroke="#707070" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+          {{ RECORDINGSDETAIL?.name }}
+        </h4>
+
+
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="searchContainer" [class.none]="!isSearching">
+      <div class="absolute mainDiv">
+        <div class="inputContainer">
+          <div class="flex" style="width: 100%;">
+            <span *ngIf="searchingKeyword" class="spinner-border spinner-border-sm mr-1"></span>
+            <svg *ngIf="!searchingKeyword" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
+              fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M1.74658 8.05901C1.74658 4.57302 4.57253 1.74707 8.05852 1.74707C11.5445 1.74707 14.3705 4.57302 14.3705 8.05901C14.3705 9.79087 13.673 11.3598 12.5436 12.5003C12.536 12.5072 12.5286 12.5144 12.5213 12.5217C12.514 12.529 12.5069 12.5364 12.4999 12.544C11.3594 13.6734 9.79044 14.371 8.05852 14.371C4.57253 14.371 1.74658 11.545 1.74658 8.05901ZM13.0268 14.0878C11.6765 15.2018 9.94568 15.871 8.05852 15.871C3.74411 15.871 0.246582 12.3734 0.246582 8.05901C0.246582 3.7446 3.74411 0.24707 8.05852 0.24707C12.3729 0.24707 15.8705 3.7446 15.8705 8.05901C15.8705 9.9461 15.2013 11.6769 14.0874 13.0271L17.5336 16.4733C17.8265 16.7662 17.8265 17.2411 17.5336 17.534C17.2407 17.8269 16.7658 17.8269 16.473 17.534L13.0268 14.0878Z"
+                fill="#707070" />
+            </svg>
+            <input #seachInput class="search" type="text" (input)="
+                searchingFor === 'recordings'
+                  ? searchRecordings($event.target.value)
+                  : searchUsers($event.target.value);
+                this.focusList = -1
+              " placeholder="Search" (keydown)="onUpDown($event)" [value]="searchValue" />
+          </div>
+          <div class="flex item-center">
+            <span class="clearText pointer" (click)="clearFilterList()">Clear</span>
+            <div class="verticalLine"></div>
+            <span style="
+                height: 80%;
+                background-color: #425466;
+                width: 1px;
+                margin: 0 8px;
+              "></span>
+            <svg (click)="isSearching = !isSearching" class="pointer" xmlns="http://www.w3.org/2000/svg" width="10"
+              height="10" viewBox="0 0 10 10" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M1.53033 0.46967C1.23744 0.176777 0.762563 0.176777 0.46967 0.46967C0.176777 0.762563 0.176777 1.23744 0.46967 1.53033L3.93934 5L0.46967 8.46967C0.176777 8.76256 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23744 9.82322 1.53033 9.53033L5 6.06066L8.46967 9.53033C8.76256 9.82322 9.23744 9.82322 9.53033 9.53033C9.82322 9.23744 9.82322 8.76256 9.53033 8.46967L6.06066 5L9.53033 1.53033C9.82322 1.23744 9.82322 0.762563 9.53033 0.46967C9.23744 0.176777 8.76256 0.176777 8.46967 0.46967L5 3.93934L1.53033 0.46967Z"
+                fill="#585556" />
+            </svg>
+          </div>
+        </div>
+
+        <div *ngIf="!isListOpen" class="lookingFor">
+          <div class="lookingText">I'm looking for</div>
+          <div class="buttons flex">
+            <button (click)="searchingFor = 'people'" [ngClass]="{ activeButton: searchingFor === 'people' }"
+              class="flex">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="19" viewBox="0 0 22 19">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M8 1.75C6.20507 1.75 4.75 3.20507 4.75 5C4.75 6.79493 6.20507 8.25 8 8.25C9.79493 8.25 11.25 6.79493 11.25 5C11.25 3.20507 9.79493 1.75 8 1.75ZM3.25 5C3.25 2.37665 5.37665 0.25 8 0.25C10.6234 0.25 12.75 2.37665 12.75 5C12.75 7.62335 10.6234 9.75 8 9.75C5.37665 9.75 3.25 7.62335 3.25 5ZM0.25 17C0.25 14.3766 2.37665 12.25 5 12.25H11C13.6234 12.25 15.75 14.3766 15.75 17V18C15.75 18.4142 15.4142 18.75 15 18.75C14.5858 18.75 14.25 18.4142 14.25 18V17C14.25 15.2051 12.7949 13.75 11 13.75H5C3.20507 13.75 1.75 15.2051 1.75 17V18C1.75 18.4142 1.41421 18.75 1 18.75C0.585786 18.75 0.25 18.4142 0.25 18V17ZM13.25 1C13.25 0.585786 13.5858 0.25 14 0.25C16.6234 0.25 18.75 2.37665 18.75 5C18.75 7.62335 16.6234 9.75 14 9.75C13.5858 9.75 13.25 9.41421 13.25 9C13.25 8.58579 13.5858 8.25 14 8.25C15.7949 8.25 17.25 6.79493 17.25 5C17.25 3.20507 15.7949 1.75 14 1.75C13.5858 1.75 13.25 1.41421 13.25 1ZM16.25 13C16.25 12.5858 16.5858 12.25 17 12.25C19.6234 12.25 21.75 14.3766 21.75 17V18C21.75 18.4142 21.4142 18.75 21 18.75C20.5858 18.75 20.25 18.4142 20.25 18V17C20.25 15.2051 18.7949 13.75 17 13.75C16.5858 13.75 16.25 13.4142 16.25 13Z" />
+              </svg>
+              People
+            </button>
+            <button (click)="
+                searchingFor = 'recordings';
+                listOfRecording.searchedFor = 'recordings'
+              " [ngClass]="{ activeButton: searchingFor === 'recordings' }" class="flex">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path
+                  d="M10 5.25C10.4142 5.25 10.75 5.58579 10.75 6V14C10.75 14.4142 10.4142 14.75 10 14.75C9.58579 14.75 9.25 14.4142 9.25 14V6C9.25 5.58579 9.58579 5.25 10 5.25Z" />
+                <path
+                  d="M7.75 7.33301C7.75 6.91879 7.41421 6.58301 7 6.58301C6.58579 6.58301 6.25 6.91879 6.25 7.33301V12.666C6.25 13.0802 6.58579 13.416 7 13.416C7.41421 13.416 7.75 13.0802 7.75 12.666V7.33301Z" />
+                <path
+                  d="M4.75 9.11084C4.75 8.69663 4.41421 8.36084 4 8.36084C3.58579 8.36084 3.25 8.69663 3.25 9.11084V10.8888C3.25 11.3031 3.58579 11.6388 4 11.6388C4.41421 11.6388 4.75 11.3031 4.75 10.8888V9.11084Z" />
+                <path
+                  d="M13.75 7.33301C13.75 6.91879 13.4142 6.58301 13 6.58301C12.5858 6.58301 12.25 6.91879 12.25 7.33301V12.666C12.25 13.0802 12.5858 13.416 13 13.416C13.4142 13.416 13.75 13.0802 13.75 12.666V7.33301Z" />
+                <path
+                  d="M16 8.36084C16.4142 8.36084 16.75 8.69663 16.75 9.11084V10.8888C16.75 11.3031 16.4142 11.6388 16 11.6388C15.5858 11.6388 15.25 11.3031 15.25 10.8888V9.11084C15.25 8.69663 15.5858 8.36084 16 8.36084Z" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M16.8943 16.8943C20.7019 13.0867 20.7019 6.91332 16.8943 3.10571C13.0867 -0.701905 6.91332 -0.701902 3.10571 3.10571C-0.701905 6.9133 -0.701902 13.0867 3.10571 16.8943C6.9133 20.7019 13.0867 20.7019 16.8943 16.8943ZM4.16637 4.16637C7.3882 0.944543 12.6118 0.944545 15.8336 4.16637C19.0551 7.38823 19.0553 12.6119 15.8336 15.8336C12.6118 19.0554 7.38818 19.0554 4.16637 15.8336C0.944543 12.6118 0.944546 7.38818 4.16637 4.16637Z" />
+              </svg>Recordings
+            </button>
+            <button (click)="
+                searchingFor = 'tags'; listOfRecording.searchedFor = 'tags'
+              " [ngClass]="{
+                'activeButton activeStroke': searchingFor === 'tags'
+              }" class="flex tagStroke">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                class="tagStroke">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M6.48989 6.5382L3.41889 10.8382C2.92189 11.5332 2.92189 12.4682 3.41889 13.1632L6.48989 17.4632C6.86489 17.9882 7.47089 18.3002 8.11689 18.3002H18.9999C20.1049 18.3002 20.9999 17.4052 20.9999 16.3002V7.7002C20.9999 6.5952 20.1049 5.7002 18.9999 5.7002H8.11689C7.47089 5.7002 6.86489 6.0122 6.48989 6.5382Z"
+                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                  d="M10.5728 10.7274C11.2757 11.4303 11.2757 12.57 10.5728 13.273C9.86984 13.9759 8.73015 13.9759 8.02721 13.273C7.32426 12.57 7.32426 11.4303 8.02721 10.7274C8.73015 10.0245 9.86985 10.0245 10.5728 10.7274"
+                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>Tags
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="false" #listContainer class="listContainer">
+          <ng-container *ngIf="searchingFor === 'people'">
+            <div class="userList flex pointer" [id]="'people_' + i" [ngClass]="focusList === i ? 'focusOnList' : ''"
+              *ngFor="let item of searchedArr; let i = index"
+              (click)="agentSelected(item); filterRecordigns(item.name)">
+              <div class="userName">{{ item.name }}</div>
+              <div *ngIf="item.email" class="userMail">{{ item.email }}</div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="searchingFor === 'tags'">
+            <div class="userList flex pointer" [id]="'tags_' + i" [ngClass]="focusList === i ? 'focusOnList' : ''"
+              *ngFor="let item of tagsArr; let i = index" (click)="seachInput.value = item; filterRecordigns(item)">
+              <div class="userName">{{ item }}</div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="searchingFor === 'recordings'">
+            <div class="userList flex pointer" [id]="'recordings_' + i" [ngClass]="focusList === i ? 'focusOnList' : ''"
+              *ngFor="let item of recordingList; let i = index"
+              (click)="seachInput.value = item; filterRecordigns(item)">
+              <div class="userName">{{ item }}</div>
+            </div>
+          </ng-container>
+        </div>
+        <div *ngIf="isListOpen" class="resultFound">
+          <div class="resultCount">
+            {{ searchingFor === "people" ? searchedArr.length : "" }}
+            {{ searchingFor === "tags" ? tagsArr.length : "" }}
+            {{ searchingFor === "recordings" ? recordingList.length : "" }}
+            results found for "{{ searchValue }}":
+          </div>
+          <!-- <div class="resultList">
+              <div class="resultItem">
+                <div class="recName"> 522 765-1029 </div>
+                <div class="resName">Anna Black</div>
+              </div>
+              <div class="resultItem">
+                <div class="recName"> 522 765-1029 </div>
+                <div class="resName">Anna Black</div>
+              </div>
+              <div class="resultItem">
+                <div class="recName"> 522 765-1029 </div>
+                <div class="resName">Anna Black</div>
+              </div>
+              <div class="resultItem">
+                <div class="recName"> 522 765-1029 </div>
+                <div class="resName">Anna Black</div>
+              </div>
+              <div class="resultItem">
+                <div class="recName"> 522 765-1029 </div>
+                <div class="resName">Anna Black</div>
+              </div>
+              <div class="resultItem">
+                <div class="recName"> 522 765-1029 </div>
+                <div class="resName">Anna Black</div>
+              </div>
+              <div class="resultItem">
+                <div class="recName"> 522 765-1029 </div>
+                <div class="resName">Anna Black</div>
+              </div>
+              <div class="resultItem">
+                <div class="recName"> 522 765-1029 </div>
+                <div class="resName">Anna Black</div>
+              </div>
+              <div class="resultItem">
+                <div class="recName"> 522 765-1029 </div>
+                <div class="resName">Anna Black</div>
+              </div>
+              <div class="resultItem">
+                <div class="recName"> 522 765-1029 </div>
+                <div class="resName">Anna Black</div>
+              </div>
+          </div> -->
+          <div class="resultList">
+            <ng-container *ngIf="searchingFor === 'people'">
+              <div class="userList flex pointer" [id]="'people_' + i" [ngClass]="focusList === i ? 'focusOnList' : ''"
+                *ngFor="let item of searchedArr; let i = index"
+                (click)="agentSelected(item); filterRecordigns(item.name)">
+                <div class="userName">{{ item.name }}</div>
+                <div *ngIf="item.email" class="userMail">{{ item.email }}</div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="searchingFor === 'tags'">
+              <div class="userList flex pointer" [id]="'tags_' + i" [ngClass]="focusList === i ? 'focusOnList' : ''"
+                *ngFor="let item of tagsArr; let i = index" (click)="seachInput.value = item; filterRecordigns(item)">
+                <div class="userName">{{ item }}</div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="searchingFor === 'recordings'">
+              <div class="userList flex pointer" [id]="'recordings_' + i"
+                [ngClass]="focusList === i ? 'focusOnList' : ''" *ngFor="let item of recordingList; let i = index"
+                (click)="seachInput.value = item; filterRecordigns(item)">
+                <div class="userName">{{ item }}</div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="mainBody recordingDetailsTabs">
+    <!-- Left Section -->
+    <div class="Right_dev">
+      <ng-container *ngIf="!isIndicatorsTab">
+        <mat-tab-group [disableRipple]="true" mat-align-tabs="start"
+          class="example-stretched-tabs set_heigth displayyy">
+          <!-- <mat-tab label="Indicators" style="font-size: 16px; font-weight: 600">
+          <div style="margin-top: 1.7rem !important;" class="row p-0 m-0">
+            <div
+              *ngFor="let i of RECORDINGSDETAIL?.custom_indicators | keyvalue"
+              class="col-md-4 mb-3"
+              style="padding-left: 0;"
+            >
+              <div class="row" style="padding-left: 0;">
+                <div class="col-12 analysisTicks" style="padding-left: 12px;">
+                  <div class="ticks">
+                    <svg
+                    *ngIf="i.value > 49"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="18"
+                    viewBox="0 0 25 18"
+                    fill="none"
+                    [ngClass]="i.value > 49 ? 'greenTick':'whiteTick'"
+                  >
+                    <path
+                      d="M3.06066 7.93934C2.47487 7.35355 1.52513 7.35355 0.93934 7.93934C0.353553 8.52513 0.353553 9.47487 0.93934 10.0607L3.06066 7.93934ZM24.0607 3.06066C24.6464 2.47487 24.6464 1.52513 24.0607 0.93934C23.4749 0.353553 22.5251 0.353553 21.9393 0.93934L24.0607 3.06066ZM8.43431 15.4343L9.49498 14.3737L8.43431 15.4343ZM8.84549 15.7684L9.30902 14.3418L8.84549 15.7684ZM9.56569 15.4343L8.50503 14.3737L9.56569 15.4343ZM9.15451 15.7684L9.61803 17.195L9.15451 15.7684ZM0.93934 10.0607L7.37365 16.495L9.49498 14.3737L3.06066 7.93934L0.93934 10.0607ZM10.6263 16.495L24.0607 3.06066L21.9393 0.93934L8.50503 14.3737L10.6263 16.495ZM7.37365 16.495C7.45516 16.5765 7.57925 16.7022 7.70058 16.8052C7.8353 16.9196 8.06156 17.0909 8.38197 17.195L9.30902 14.3418C9.51526 14.4088 9.63493 14.5121 9.64211 14.5182C9.6464 14.5218 9.63865 14.5155 9.6099 14.4876C9.58119 14.4598 9.5469 14.4256 9.49498 14.3737L7.37365 16.495ZM8.50503 14.3737C8.4531 14.4256 8.41881 14.4598 8.3901 14.4876C8.36135 14.5155 8.3536 14.5218 8.35789 14.5182C8.36507 14.5121 8.48474 14.4089 8.69098 14.3418L9.61803 17.195C9.93844 17.0909 10.1647 16.9196 10.2994 16.8052C10.4208 16.7022 10.5448 16.5765 10.6263 16.495L8.50503 14.3737ZM8.38197 17.195C8.78365 17.3255 9.21635 17.3255 9.61803 17.195L8.69098 14.3418C8.89183 14.2766 9.10817 14.2766 9.30902 14.3418L8.38197 17.195Z"
+
+                    />
+                  </svg>
+                  <svg *ngIf="i.value < 50" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="#000" class="pointer"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.53033 0.46967C1.23744 0.176777 0.762563 0.176777 0.46967 0.46967C0.176777 0.762563 0.176777 1.23744 0.46967 1.53033L3.93934 5L0.46967 8.46967C0.176777 8.76256 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23744 9.82322 1.53033 9.53033L5 6.06066L8.46967 9.53033C8.76256 9.82322 9.23744 9.82322 9.53033 9.53033C9.82322 9.23744 9.82322 8.76256 9.53033 8.46967L6.06066 5L9.53033 1.53033C9.82322 1.23744 9.82322 0.762563 9.53033 0.46967C9.23744 0.176777 8.76256 0.176777 8.46967 0.46967L5 3.93934L1.53033 0.46967Z" fill="#585556"></path></svg>
+                  </div>
+                  <div
+                    [ngClass]="i.value !== 'N/A' ? 'black_color' : 'gray_color'"
+                  >
+                    {{ i.key }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </mat-tab> -->
+          <mat-tab label="Analysis" style="font-size: 16px; font-weight: 600">
+            <div style="margin-top: 20px">
+              <div style="display: flex; justify-content: center ">
+                <!-- <span style="font-size: 16px; font-weight: 500; color: #425466">Total Score</span> -->
+              </div>
+              <div class="pt-2 pb-4" style=" margin-bottom:25px;display: flex; justify-content: center;">
+                <!-- <img src="/assets/scoreGraph.png" /> -->
+                <!-- <app-guage-chart [totalScore]="RECORDINGSDETAIL?.total_score"></app-guage-chart> -->
+                <div class="guageprogress">
+                  <div class="barOverflow">
+                    <div *ngIf="RECORDINGSDETAIL?.total_score !== 'N/A' && RECORDINGSDETAIL?.total_score !== -1"
+                      class="bar" [ngClass]="'bar' + RECORDINGSDETAIL?.total_score"></div>
+                    <div *ngIf="RECORDINGSDETAIL?.total_score === 'N/A' || RECORDINGSDETAIL?.total_score === -1"
+                      class="bar" [ngClass]="'barNA'"></div>
+                  </div>
+                </div>
+
+                <span style="
+                    position: absolute;
+                    top: 46px;
+                    font-size: 11px;
+                    text-align: center;
+                    font-weight: 400;
+                    text-transform: lowercase;
+                  " [class.padtopMa]="RECORDINGSDETAIL?.total_score === 'N/A'"
+                  [class.colorText]="RECORDINGSDETAIL?.total_score === 'N/A' || RECORDINGSDETAIL?.total_score === -1"
+                  [class.colorTextO]="RECORDINGSDETAIL?.total_score !== 'N/A' && RECORDINGSDETAIL?.total_score !== -1">
+                  <span class="pl-3" style="
+                      font-size: 33px;
+                      font-weight: 700;
+                      text-transform: uppercase;
+                    "
+                    [class.colorText]="RECORDINGSDETAIL?.total_score === 'N/A' || RECORDINGSDETAIL?.total_score === -1">{{
+                    RECORDINGSDETAIL?.total_score
+                    }}</span><br />
+                  {{ RECORDINGSDETAIL?.total_score === 'N/A' ? '' : 'Points'}}</span>
+              </div>
+              <div class="hover_class" style="width: 100%">
+                <div class="fourTabs row" style="margin:0;
+               display: flex; justify-content: space-between;">
+
+                  <div class="borderBottom"></div>
+                  <ng-container  *ngFor="let i of fourTabs | keyvalue; let k = index">
+                    <div class="col-4" (click)="changeTabs(k, i.key)" style="text-align: center;min-width: 135px;box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05);padding:26px"
+                      [class.cursor-pointer]="k === 0 || k === 1"
+                      [ngClass]="topSkill === k && (k === 0 || k === 1) ? 'selected':''"
+                      >
+                      <!-- <img src="/assets/circle.png" /> -->
+                      <div class="progress-circle " [ngClass]="[
+                          TransformVal(i.value),
+                          i.value > 49 ? 'over50' : ''
+                        ]"
+
+                        >
+                        <span style="font-size: 14px; font-weight: 600; color: #425466;">
+                          {{
+                          i.value == "N/A"
+                          ? i.value
+                          : i.value
+                          ? i.value + "%"
+                          : "N/A"
+                          }}
+                        </span>
+                        <div class="left-half-clipper">
+                          <div class="first50-bar" [ngClass]="i.value > 49 ? 'greenbg' : 'redbg'"></div>
+                          <div class="value-bar" [ngClass]="i.value > 49 ? 'greenbg' : 'redbg'"></div>
+                        </div>
+                      </div>
+                      <p style="
+                          font-size: 14px;
+                          font-weight: 500;
+                          min-width: 108px;
+                        " class="pt-0" [class.defaultCursor]="k=== 2 || k === 3" [ngClass]="
+                          topSkill === k && (k === 0 || k === 1)
+                            ? 'activeTab'
+                            : 'inactiveTab'
+                        ">
+                        {{ i.key | slice: 1:25 }}
+                      </p>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div style="padding-top: 1.7rem !important; padding: 24px !important;background-color: white;" class="row p-0 m-0">
+                <div *ngFor="let i of selectedTabData | keyvalue" class="col-md-4 mb-3" style="padding-left: 0;">
+                  <div class="row" style="padding-left: 0;">
+                    <div class="col-12 analysisTicks" style="padding-left: 12px;">
+                      <div class="ticks">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 25 18" fill="none"
+                          [ngClass]="i.value > 49 ? 'greenTick':'whiteTick'">
+                          <path
+                            d="M3.06066 7.93934C2.47487 7.35355 1.52513 7.35355 0.93934 7.93934C0.353553 8.52513 0.353553 9.47487 0.93934 10.0607L3.06066 7.93934ZM24.0607 3.06066C24.6464 2.47487 24.6464 1.52513 24.0607 0.93934C23.4749 0.353553 22.5251 0.353553 21.9393 0.93934L24.0607 3.06066ZM8.43431 15.4343L9.49498 14.3737L8.43431 15.4343ZM8.84549 15.7684L9.30902 14.3418L8.84549 15.7684ZM9.56569 15.4343L8.50503 14.3737L9.56569 15.4343ZM9.15451 15.7684L9.61803 17.195L9.15451 15.7684ZM0.93934 10.0607L7.37365 16.495L9.49498 14.3737L3.06066 7.93934L0.93934 10.0607ZM10.6263 16.495L24.0607 3.06066L21.9393 0.93934L8.50503 14.3737L10.6263 16.495ZM7.37365 16.495C7.45516 16.5765 7.57925 16.7022 7.70058 16.8052C7.8353 16.9196 8.06156 17.0909 8.38197 17.195L9.30902 14.3418C9.51526 14.4088 9.63493 14.5121 9.64211 14.5182C9.6464 14.5218 9.63865 14.5155 9.6099 14.4876C9.58119 14.4598 9.5469 14.4256 9.49498 14.3737L7.37365 16.495ZM8.50503 14.3737C8.4531 14.4256 8.41881 14.4598 8.3901 14.4876C8.36135 14.5155 8.3536 14.5218 8.35789 14.5182C8.36507 14.5121 8.48474 14.4089 8.69098 14.3418L9.61803 17.195C9.93844 17.0909 10.1647 16.9196 10.2994 16.8052C10.4208 16.7022 10.5448 16.5765 10.6263 16.495L8.50503 14.3737ZM8.38197 17.195C8.78365 17.3255 9.21635 17.3255 9.61803 17.195L8.69098 14.3418C8.89183 14.2766 9.10817 14.2766 9.30902 14.3418L8.38197 17.195Z" />
+                        </svg>
+                      </div>
+                      <div [ngClass]="i.value > 49 ? 'black_color' : 'gray_color'">
+                        {{ i.key }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div *ngIf="RECORDINGSDETAIL?.custom_indicators_1 || RECORDINGSDETAIL?.custom_indicators_2" style="padding: 0 1px;">
+              <div class="Scoring_History">
+                  <div>
+                    <div class="scoringTop">
+                      <div class="historyText">
+                        Scoring History (2)
+                      </div>
+                      <div class="flex item-center">
+                        <div style="position: relative;">
+                          <div
+                            (clickOutside)="isDropDownActive4 = false"
+                          >
+                            <button
+                              (click)="isDropDownActive4 = !isDropDownActive4"
+                              class="flex item-center downloadBtn btnHover"
+                              [ngClass]="isDropDownActive4 ? 'blueBackGround' : ''"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                style="width: 18px; height: 18px; fill: #707070"
+                              >
+                                <path
+                                  _ngcontent-ldp-c299=""
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+                                ></path>
+                              </svg>
+                              <span style="margin-left: 5px; margin-right: 10px;font-size: 14px;"
+                                >Download</span
+                              >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="14"
+                                height="8"
+                                viewBox="0 0 14 8"
+                                fill="none"
+                              >
+                                <path
+                                  d="M13 1L7 7L1 1"
+                                  stroke="#585556"
+                                  stroke-width="1.5"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                />
+                              </svg>
+                            </button>
+                            <div
+                              *ngIf="isDropDownActive4"
+                              class="dropdownn"
+                              style="margin-bottom: 10px;"
+                            >
+                              <div class="checkboxess flex item-center">
+                                <mat-checkbox
+                                  [checked]="false"
+                                  (change)="showOptionsKeywords($event, 'PDF')"
+                                  >PDF</mat-checkbox
+                                >
+                              </div>
+                              <div class="checkboxess flex item-center">
+                                <mat-checkbox
+                                  [checked]="false"
+                                  (change)="showOptionsKeywords($event, 'CSV')"
+                                  >CSV</mat-checkbox
+                                >
+                              </div>
+                              <button
+                                (click)="onDownload(); isDropDownActive4 = false"
+                                class="dropdownDownloadBtn flex item-center"
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 24 24"
+                                  style="width: 18px; height: 18px; fill: #fff;
+                                margin-left: -2px;"
+                                >
+                                  <path
+                                    _ngcontent-ldp-c299=""
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+                                  ></path>
+                                </svg>
+                                <span style="font-size: 14px; font-weight: 600;">Download</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div  style="margin-left: 30px; margin-right: 20px;">
+                          <svg [class.rotate180]="!isScoringOpen" (click)="isScoringOpen = !isScoringOpen" xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none" class="cursor-pointer" style="transition: 0.3s all;"><path d="M13 7L6.99267 1L1 7" stroke="#707070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </div>
+                      </div>
+                    </div>
+                    <ng-container *ngIf="isScoringOpen">
+                      <div class="tableHeader">
+                        <div [class.width-50]="!RECORDINGSDETAIL?.custom_indicators_2">INDICATORS <span><svg style="margin-left: 8px;" fill="#C9CED6" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 19" class="ng-star-inserted"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.996094 0.24707C0.58188 0.24707 0.246094 0.582857 0.246094 0.99707C0.246094 1.41128 0.58188 1.74707 0.996094 1.74707H9.99984C10.4141 1.74707 10.7498 1.41128 10.7498 0.99707C10.7498 0.582857 10.4141 0.24707 9.99984 0.24707H0.996094ZM2.99683 4.24878C2.58261 4.24878 2.24683 4.58457 2.24683 4.99878C2.24683 5.41299 2.58261 5.74878 2.99683 5.74878H9.99974C10.414 5.74878 10.7497 5.41299 10.7497 4.99878C10.7497 4.58457 10.414 4.24878 9.99974 4.24878H2.99683ZM4.2478 9.00037C4.2478 8.58615 4.58359 8.25037 4.9978 8.25037H9.99989C10.4141 8.25037 10.7499 8.58615 10.7499 9.00037C10.7499 9.41458 10.4141 9.75037 9.99989 9.75037H4.9978C4.58359 9.75037 4.2478 9.41458 4.2478 9.00037ZM6.39844 12.2521C5.98422 12.2521 5.64844 12.5879 5.64844 13.0021C5.64844 13.4163 5.98422 13.7521 6.39844 13.7521H9.99994C10.4142 13.7521 10.7499 13.4163 10.7499 13.0021C10.7499 12.5879 10.4142 12.2521 9.99994 12.2521H6.39844Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M16.0022 0.24707C16.4164 0.24707 16.7522 0.582857 16.7522 0.99707V16.1935L17.9729 14.9727C18.2658 14.6798 18.7407 14.6798 19.0336 14.9727C19.3265 15.2656 19.3265 15.7405 19.0336 16.0334L16.5361 18.5309C16.5214 18.5458 16.5061 18.56 16.4902 18.5737C16.4426 18.6145 16.3911 18.6484 16.3371 18.6754C16.2363 18.7258 16.1225 18.7542 16.0022 18.7542C15.8999 18.7542 15.8025 18.7337 15.7136 18.6967C15.6257 18.6601 15.5432 18.606 15.4717 18.5344L12.9706 16.0334C12.6778 15.7405 12.6778 15.2656 12.9706 14.9727C13.2635 14.6798 13.7384 14.6798 14.0313 14.9727L15.2522 16.1936V0.99707C15.2522 0.582857 15.5879 0.24707 16.0022 0.24707Z"></path></svg></span></div>
+                        <div [class.width-50]="!RECORDINGSDETAIL?.custom_indicators_2">VERSION 1 <span><svg style="margin-left: 8px;" fill="#C9CED6" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 19" class="ng-star-inserted"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.996094 0.24707C0.58188 0.24707 0.246094 0.582857 0.246094 0.99707C0.246094 1.41128 0.58188 1.74707 0.996094 1.74707H9.99984C10.4141 1.74707 10.7498 1.41128 10.7498 0.99707C10.7498 0.582857 10.4141 0.24707 9.99984 0.24707H0.996094ZM2.99683 4.24878C2.58261 4.24878 2.24683 4.58457 2.24683 4.99878C2.24683 5.41299 2.58261 5.74878 2.99683 5.74878H9.99974C10.414 5.74878 10.7497 5.41299 10.7497 4.99878C10.7497 4.58457 10.414 4.24878 9.99974 4.24878H2.99683ZM4.2478 9.00037C4.2478 8.58615 4.58359 8.25037 4.9978 8.25037H9.99989C10.4141 8.25037 10.7499 8.58615 10.7499 9.00037C10.7499 9.41458 10.4141 9.75037 9.99989 9.75037H4.9978C4.58359 9.75037 4.2478 9.41458 4.2478 9.00037ZM6.39844 12.2521C5.98422 12.2521 5.64844 12.5879 5.64844 13.0021C5.64844 13.4163 5.98422 13.7521 6.39844 13.7521H9.99994C10.4142 13.7521 10.7499 13.4163 10.7499 13.0021C10.7499 12.5879 10.4142 12.2521 9.99994 12.2521H6.39844Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M16.0022 0.24707C16.4164 0.24707 16.7522 0.582857 16.7522 0.99707V16.1935L17.9729 14.9727C18.2658 14.6798 18.7407 14.6798 19.0336 14.9727C19.3265 15.2656 19.3265 15.7405 19.0336 16.0334L16.5361 18.5309C16.5214 18.5458 16.5061 18.56 16.4902 18.5737C16.4426 18.6145 16.3911 18.6484 16.3371 18.6754C16.2363 18.7258 16.1225 18.7542 16.0022 18.7542C15.8999 18.7542 15.8025 18.7337 15.7136 18.6967C15.6257 18.6601 15.5432 18.606 15.4717 18.5344L12.9706 16.0334C12.6778 15.7405 12.6778 15.2656 12.9706 14.9727C13.2635 14.6798 13.7384 14.6798 14.0313 14.9727L15.2522 16.1936V0.99707C15.2522 0.582857 15.5879 0.24707 16.0022 0.24707Z"></path></svg></span></div>
+                        <div *ngIf="true" >VERSION 2 <span><svg style="margin-left: 8px;" fill="#C9CED6" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 19" class="ng-star-inserted"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.996094 0.24707C0.58188 0.24707 0.246094 0.582857 0.246094 0.99707C0.246094 1.41128 0.58188 1.74707 0.996094 1.74707H9.99984C10.4141 1.74707 10.7498 1.41128 10.7498 0.99707C10.7498 0.582857 10.4141 0.24707 9.99984 0.24707H0.996094ZM2.99683 4.24878C2.58261 4.24878 2.24683 4.58457 2.24683 4.99878C2.24683 5.41299 2.58261 5.74878 2.99683 5.74878H9.99974C10.414 5.74878 10.7497 5.41299 10.7497 4.99878C10.7497 4.58457 10.414 4.24878 9.99974 4.24878H2.99683ZM4.2478 9.00037C4.2478 8.58615 4.58359 8.25037 4.9978 8.25037H9.99989C10.4141 8.25037 10.7499 8.58615 10.7499 9.00037C10.7499 9.41458 10.4141 9.75037 9.99989 9.75037H4.9978C4.58359 9.75037 4.2478 9.41458 4.2478 9.00037ZM6.39844 12.2521C5.98422 12.2521 5.64844 12.5879 5.64844 13.0021C5.64844 13.4163 5.98422 13.7521 6.39844 13.7521H9.99994C10.4142 13.7521 10.7499 13.4163 10.7499 13.0021C10.7499 12.5879 10.4142 12.2521 9.99994 12.2521H6.39844Z"></path><path _ngcontent-kwx-c409="" fill-rule="evenodd" clip-rule="evenodd" d="M16.0022 0.24707C16.4164 0.24707 16.7522 0.582857 16.7522 0.99707V16.1935L17.9729 14.9727C18.2658 14.6798 18.7407 14.6798 19.0336 14.9727C19.3265 15.2656 19.3265 15.7405 19.0336 16.0334L16.5361 18.5309C16.5214 18.5458 16.5061 18.56 16.4902 18.5737C16.4426 18.6145 16.3911 18.6484 16.3371 18.6754C16.2363 18.7258 16.1225 18.7542 16.0022 18.7542C15.8999 18.7542 15.8025 18.7337 15.7136 18.6967C15.6257 18.6601 15.5432 18.606 15.4717 18.5344L12.9706 16.0334C12.6778 15.7405 12.6778 15.2656 12.9706 14.9727C13.2635 14.6798 13.7384 14.6798 14.0313 14.9727L15.2522 16.1936V0.99707C15.2522 0.582857 15.5879 0.24707 16.0022 0.24707Z"></path></svg></span></div>
+                      </div>
+
+                      <ng-container *ngFor="let item of customIndicators">
+                        <div class="tableHeader" (click)="item.isExpand = !item.isExpand" style="background-color: #fff;" >
+                          <div [class.width-50]="!RECORDINGSDETAIL?.custom_indicators_2" class="flex item-center justify-center indicatorText"><div style="width: 130px;">{{item.name | slice:0:30}}</div>  <div *ngIf="item.childs.length > 0"><svg [class.rotate180]="item.isExpand" style="margin-left: 20px;" xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none"><path _ngcontent-kwx-c394="" d="M13 1L7 7L1 1" stroke="#585556" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div></div>
+
+                          <div [class.width-50]="!RECORDINGSDETAIL?.custom_indicators_2" class="v1"> {{item.score1}}</div>
+                          <div *ngIf="true" class="flex justify-center v1"><span>{{item.score2}}</span>   <div *ngIf="false" class="score_incease"><span><svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none">
+                            <path d="M7.8002 1.7002L1.2002 8.30019" stroke="#66CB9F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3.16699 1.66699L7.80032 1.69966L7.83366 6.33366" stroke="#66CB9F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg></span> 15</div></div>
+                        </div>
+                        <ng-container *ngIf="item.childs.length > 0 && item.isExpand">
+                          <div *ngFor="let child of item.childs" class="tableHeader" style="background-color: #fff;">
+                            <div class="v1" style="color: #718096;">{{child.name}} </div>
+                            <div class="v1"><svg *ngIf="child.score1 < 50" xmlns="http://www.w3.org/2000/svg" width="19" height="14" viewBox="0 0 19 14" fill="none">
+                              <path d="M2.56066 5.93934C1.97487 5.35355 1.02513 5.35355 0.43934 5.93934C-0.146447 6.52513 -0.146447 7.47487 0.43934 8.06066L2.56066 5.93934ZM18.3107 2.81066C18.8964 2.22487 18.8964 1.27513 18.3107 0.68934C17.7249 0.103553 16.7751 0.103553 16.1893 0.68934L18.3107 2.81066ZM6.18431 11.6843L5.12365 12.745L6.18431 11.6843ZM6.59549 12.0184L7.05902 10.5918L6.59549 12.0184ZM7.31569 11.6843L6.25503 10.6237L7.31569 11.6843ZM6.90451 12.0184L7.36803 13.445L6.90451 12.0184ZM0.43934 8.06066L5.12365 12.745L7.24497 10.6237L2.56066 5.93934L0.43934 8.06066ZM8.37635 12.745L18.3107 2.81066L16.1893 0.68934L6.25503 10.6237L8.37635 12.745ZM5.12365 12.745C5.20516 12.8265 5.32925 12.9522 5.45058 13.0552C5.5853 13.1696 5.81156 13.3409 6.13197 13.445L7.05902 10.5918C7.26526 10.6589 7.38493 10.7621 7.39211 10.7682C7.3964 10.7718 7.38865 10.7655 7.3599 10.7376C7.33119 10.7098 7.2969 10.6756 7.24497 10.6237L5.12365 12.745ZM6.25503 10.6237C6.2031 10.6756 6.16881 10.7098 6.1401 10.7376C6.11135 10.7655 6.1036 10.7718 6.10789 10.7682C6.11507 10.7621 6.23474 10.6589 6.44098 10.5918L7.36803 13.445C7.68844 13.3409 7.9147 13.1696 8.04942 13.0552C8.17075 12.9522 8.29484 12.8265 8.37635 12.745L6.25503 10.6237ZM6.13197 13.445C6.53365 13.5755 6.96635 13.5755 7.36803 13.445L6.44098 10.5918C6.64183 10.5266 6.85817 10.5266 7.05902 10.5918L6.13197 13.445Z" fill="#66CB9F"/>
+                              </svg>
+                              <svg *ngIf="child.score1 > 49" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M18.3642 5.63574L5.63623 18.3637L18.3642 5.63574Z" stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3V3C7.029 3 3 7.029 3 12V12C3 16.971 7.029 21 12 21V21C16.971 21 21 16.971 21 12V12C21 7.029 16.971 3 12 3Z" stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg></div>
+                            <div *ngIf="child.score2 <50" class="flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="14" viewBox="0 0 19 14" fill="none">
+                              <path d="M2.56066 5.93934C1.97487 5.35355 1.02513 5.35355 0.43934 5.93934C-0.146447 6.52513 -0.146447 7.47487 0.43934 8.06066L2.56066 5.93934ZM18.3107 2.81066C18.8964 2.22487 18.8964 1.27513 18.3107 0.68934C17.7249 0.103553 16.7751 0.103553 16.1893 0.68934L18.3107 2.81066ZM6.18431 11.6843L5.12365 12.745L6.18431 11.6843ZM6.59549 12.0184L7.05902 10.5918L6.59549 12.0184ZM7.31569 11.6843L6.25503 10.6237L7.31569 11.6843ZM6.90451 12.0184L7.36803 13.445L6.90451 12.0184ZM0.43934 8.06066L5.12365 12.745L7.24497 10.6237L2.56066 5.93934L0.43934 8.06066ZM8.37635 12.745L18.3107 2.81066L16.1893 0.68934L6.25503 10.6237L8.37635 12.745ZM5.12365 12.745C5.20516 12.8265 5.32925 12.9522 5.45058 13.0552C5.5853 13.1696 5.81156 13.3409 6.13197 13.445L7.05902 10.5918C7.26526 10.6589 7.38493 10.7621 7.39211 10.7682C7.3964 10.7718 7.38865 10.7655 7.3599 10.7376C7.33119 10.7098 7.2969 10.6756 7.24497 10.6237L5.12365 12.745ZM6.25503 10.6237C6.2031 10.6756 6.16881 10.7098 6.1401 10.7376C6.11135 10.7655 6.1036 10.7718 6.10789 10.7682C6.11507 10.7621 6.23474 10.6589 6.44098 10.5918L7.36803 13.445C7.68844 13.3409 7.9147 13.1696 8.04942 13.0552C8.17075 12.9522 8.29484 12.8265 8.37635 12.745L6.25503 10.6237ZM6.13197 13.445C6.53365 13.5755 6.96635 13.5755 7.36803 13.445L6.44098 10.5918C6.64183 10.5266 6.85817 10.5266 7.05902 10.5918L6.13197 13.445Z" fill="#66CB9F"/>
+                              </svg>
+                              <svg *ngIf="child.score2 > 49" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M18.3642 5.63574L5.63623 18.3637L18.3642 5.63574Z" stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3V3C7.029 3 3 7.029 3 12V12C3 16.971 7.029 21 12 21V21C16.971 21 21 16.971 21 12V12C21 7.029 16.971 3 12 3Z" stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg></div>
+                          </div>
+                        </ng-container>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+              </div>
+            </div> -->
+          </mat-tab>
+          <mat-tab label="Transcription" style="font-size: 13px; font-weight: 600">
+            <div class="for_scroll">
+              <div class="userChat">
+                <div class="" *ngFor="let i of RECORDINGSDETAIL?.transcription" [ngClass]="
+                    i.channel.slice(0, 8) === 'Customer' ? 'customer' : 'agent'
+                  ">
+                  <div style="width: 33px; height: 33px; margin-top: 10px">
+                    <svg *ngIf="i.channel.slice(0, 8) === 'Customer'" style="width: 33px; height: 33px;"
+                      xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                      class="imgSize">
+                      <circle cx="16" cy="16" r="16" fill="#8CD5FF"></circle>
+                      <mask id="mask0_7014_117062" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32"
+                        style="mask-type: alpha;">
+                        <circle cx="16" cy="16" r="16" fill="#C4C4C4"></circle>
+                      </mask>
+                      <g mask="url(#mask0_7014_117062)">
+                        <ellipse cx="16" cy="28.1601" rx="12.16" ry="7.04" fill="#002E99"></ellipse>
+                      </g>
+                      <circle cx="16" cy="13.5998" r="5.76" fill="#002E99"></circle>
+                    </svg>
+                    <svg *ngIf="i.channel.slice(0, 8) !== 'Customer'" style="width: 33px; height: 33px;"
+                      xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                      class="imgSize">
+                      <circle cx="16" cy="16" r="16" fill="#FFC27D"></circle>
+                      <mask id="mask0_7014_117008" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32"
+                        style="mask-type: alpha;">
+                        <circle cx="16" cy="16" r="16" fill="#C4C4C4"></circle>
+                      </mask>
+                      <g mask="url(#mask0_7014_117008)">
+                        <ellipse cx="16" cy="28.1601" rx="12.16" ry="7.04" fill="#A62100"></ellipse>
+                      </g>
+                      <ellipse cx="16" cy="13.5998" rx="5.76" ry="5.76" fill="#A62100"></ellipse>
+                    </svg>
+                  </div>
+                  <div [ngClass]="
+                      i.channel.slice(0, 8) === 'Customer'
+                        ? 'textStart'
+                        : 'textEnd'
+                    ">
+                    <div style="font-size: 12px; color: #425466">
+                      {{ i.channel }}
+                    </div>
+                    <div class="chatMsg" [ngClass]=" i.channel.slice(0, 8) === 'Customer'
+                      ? ''
+                      : 'float-right'">
+                      {{ i.text }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Keywords">
+            <div style="background-color: white; padding: 24px;margin-top: 24px;">
+            <div *ngIf="isDropdownShown" class="keywordContainer">
+              <div class="sortHead" >Sorting</div>
+              <div>
+                <div (clickOutside)="iskeywordDropdown1 = false"
+                  style="position: relative; font-size: 11px; width: 250px;">
+                  <div [class.dateDropdownactive]="iskeywordDropdown1" class="keyword"
+                    (click)="iskeywordDropdown1 = !iskeywordDropdown1">
+                    <div style="font-size: 13px; font-weight: 500; color: #585556">
+                      {{ currentTab }}
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M5.48252 8.15869L2.18511 4.39022C1.79615 3.9457 2.11184 3.25 2.70251 3.25H9.29733C9.888 3.25 10.2037 3.9457 9.81473 4.39022L6.51732 8.15869C6.24341 8.47173 5.75643 8.47173 5.48252 8.15869Z"
+                        fill="#B2B1B1" />
+                    </svg>
+                  </div>
+                  <div class="keywordList" *ngIf="iskeywordDropdown1">
+                    <div [ngClass]="tab === 1 ? 'tabColor' : ''" (click)="onKeyword('By Frequency'); tab = 1">
+                      By Frequency
+                      <svg *ngIf="tab === 1" xmlns="http://www.w3.org/2000/svg" width="16" height="11"
+                        viewBox="0 0 16 11" fill="none" style="margin-right: 5px;" class="ng-star-inserted">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M15.7962 0.201364C16.0679 0.46985 16.0679 0.905151 15.7962 1.17364L6.05712 10.7986C5.92666 10.9276 5.74972 11 5.56522 11C5.38072 11 5.20378 10.9276 5.07332 10.7986L0.203752 5.98614C-0.0679173 5.71765 -0.0679173 5.28235 0.203752 5.01386C0.475421 4.74538 0.915884 4.74538 1.18755 5.01386L5.56522 9.34023L14.8124 0.201364C15.0841 -0.0671214 15.5246 -0.0671214 15.7962 0.201364Z"
+                          fill="#EA714A"></path>
+                      </svg>
+                    </div>
+                    <div [ngClass]="tab === 2 ? 'tabColor' : ''" (click)="onKeyword('Alphabetically'); tab = 2">
+                      Alphabetically
+                      <svg *ngIf="tab === 2" xmlns="http://www.w3.org/2000/svg" width="16" height="11"
+                        viewBox="0 0 16 11" fill="none" style="margin-right: 5px;" class="ng-star-inserted">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M15.7962 0.201364C16.0679 0.46985 16.0679 0.905151 15.7962 1.17364L6.05712 10.7986C5.92666 10.9276 5.74972 11 5.56522 11C5.38072 11 5.20378 10.9276 5.07332 10.7986L0.203752 5.98614C-0.0679173 5.71765 -0.0679173 5.28235 0.203752 5.01386C0.475421 4.74538 0.915884 4.74538 1.18755 5.01386L5.56522 9.34023L14.8124 0.201364C15.0841 -0.0671214 15.5246 -0.0671214 15.7962 0.201364Z"
+                          fill="#EA714A"></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="currentTab === 'By Frequency'" class="rowList">
+              <div class="row m-0 p-0">
+                <div class="col-md-4 py-1" *ngFor="let i of RECORDINGSDETAIL?.keywordsbylength">
+                  <div class="flex item-center noramlKeywords">
+                    <div class="keyText">{{ i.keyword }}</div>
+                    <span>{{ i.length.count }}</span>
+                  </div>
+                </div>
+                <!-- <div class=" col-md-4 py-1">
+                      <div class="flex item-center redKeywords">
+                        Compatitor's name <span>1</span>
+                      </div>
+                    </div> -->
+              </div>
+            </div>
+            <div *ngIf="currentTab === 'Alphabetically'" class="rowList">
+              <div id="parent" class="">
+                <div class=" py-1" *ngFor="let i of RECORDINGSDETAIL?.keywords | keyvalue">
+                  <div class="flex item-center noramlKeywords">
+                    <div class="keyText">{{ i.key }}</div>
+                    <span>{{ i.value.count }}</span>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="wrapper">
+                <div
+                class=""
+                *ngFor="let i of RECORDINGSDETAIL?.keywords | keyvalue"
+              >
+                <div class="flex item-center noramlKeywords">
+                  <div class="keyText">{{ i.key }}</div>
+                  <span>{{ i.value.count }}</span>
+                </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          </mat-tab>
+        </mat-tab-group>
+      </ng-container>
+      <ng-container *ngIf="isIndicatorsTab">
+        <mat-tab-group [disableRipple]="true" mat-align-tabs="start"
+          class="example-stretched-tabs set_heigth displayyy">
+          <mat-tab label="Indicators" style="font-size: 16px; font-weight: 600">
+            <div style="display: flex; justify-content: center; margin-top: 20px;">
+              <!-- <span style="font-size: 16px; font-weight: 500; color: #425466">Total Score</span> -->
+            </div>
+            <div class="pt-2 pb-4" style=" margin-bottom:10px;display: flex; justify-content: center;">
+              <!-- <img src="/assets/scoreGraph.png" /> -->
+              <!-- <app-guage-chart [totalScore]="RECORDINGSDETAIL?.total_score"></app-guage-chart> -->
+              <div class="guageprogress">
+                <div class="barOverflow">
+                  <div *ngIf="RECORDINGSDETAIL?.total_score !== 'N/A' && RECORDINGSDETAIL?.total_score !== -1"
+                    class="bar" [ngClass]="'bar' + RECORDINGSDETAIL?.total_score"></div>
+                  <div *ngIf="RECORDINGSDETAIL?.total_score === 'N/A' || RECORDINGSDETAIL?.total_score === -1"
+                    class="bar" [ngClass]="'barNA'"></div>
+                </div>
+              </div>
+
+              <span style="
+                  position: absolute;
+                  top: 46px;
+                  font-size: 11px;
+                  text-align: center;
+                  font-weight: 400;
+                  text-transform: lowercase;
+                "
+                [class.padtopMa]="RECORDINGSDETAIL?.total_score === 'N/A'"
+                [class.colorText]="RECORDINGSDETAIL?.total_score === 'N/A' || RECORDINGSDETAIL?.total_score === -1"
+                [class.colorTextO]="RECORDINGSDETAIL?.total_score !== 'N/A' && RECORDINGSDETAIL?.total_score !== -1">
+                <span class="pl-3" style="
+                    font-size: 33px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                  "
+                  [class.colorText]="RECORDINGSDETAIL?.total_score === 'N/A' || RECORDINGSDETAIL?.total_score === -1">{{
+                  RECORDINGSDETAIL?.total_score
+                  }}</span><br />
+                {{ RECORDINGSDETAIL?.total_score === 'N/A' ? '' : 'Points'}}</span>
+            </div>
+            <div style="display: flex; justify-content: center">
+              <!-- <span  *ngIf="inditotal !== -1" style="font-size: 16px; margin-top: 10px; font-weight: 500; color: #425466">{{inditotal}}</span> -->
+              <span *ngIf="inditotal === -1"
+                style="font-size: 16px; margin-top: -15px; font-weight: 500; color: #425466">Not Scored Yet</span>
+            </div>
+            <div style="margin-top: 1rem !important; background-color: white;" class="row p-0 m-0" *ngIf="inditotal !== -1">
+              <div class="col-md-4" style="text-align: center;min-width: 135px;border:1px solid lightgray ;padding:26px"
+                *ngFor="let i of RECORDINGSDETAIL?.score_history;let k = index">
+                <div style="text-align: center;min-width: 135px;">
+                  <!-- <img src="/assets/circle.png" /> -->
+                  <div>
+                  <div class="progress-circle" [ngClass]="[
+                            TransformVal(i.score),
+                            i.score > 49 ? 'over50' : ''
+                          ]">
+                    <span *ngIf="i.score != '-1'" style="font-size: 14px; font-weight: 500; color: #425466;">
+                      {{
+                      i.score == 'N/A' ? i.score : i.score + '%'
+                      }}
+                    </span>
+                    <div class="left-half-clipper">
+                      <div class="first50-bar" [ngClass]="i.score > 49 ? 'greenbg' : 'redbg'"></div>
+                      <div class="value-bar" [ngClass]="i.score > 49 ? 'greenbg' : 'redbg'"></div>
+                    </div>
+                  </div>
+                  </div>
+                  <p data-toggle="tooltip" data-placement="top" [title]="i.name" style="
+                            min-width: 108px;
+                            text-overflow: ellipsis;
+
+                            overflow: hidden;
+                            text-align: center;
+
+                          " class="pt-0" [ngClass]="i.score != '-1' ? 'indicatorsList':'disabledIndicators'">
+                    {{ i.name}}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="customIndicators && isScoring" style="padding: 0 1px; margin-bottom: 135px;">
+              <div class="Scoring_History">
+                <div>
+                  <div class="scoringTop">
+                    <div class="historyText">
+                      Scoring History ({{customIndicators[0].score2 !== undefined ? '2': '1'}})
+                    </div>
+                    <div class="flex item-center">
+                      <div *ngIf="isScoringOpen" style="position: relative;">
+                        <div (clickOutside)="isDropDownActive4 = false">
+                          <button (click)="isDropDownActive4 = !isDropDownActive4"
+                            class="flex item-center downloadBtn btnHover"
+                            [ngClass]="isDropDownActive4 ? 'blueBackGround' : ''">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                              style="width: 18px; height: 18px; fill: #707070">
+                              <path _ngcontent-ldp-c299="" fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z">
+                              </path>
+                            </svg>
+                            <span style="margin-left: 5px; margin-right: 10px;font-size: 14px;">Download</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"
+                              fill="none">
+                              <path d="M13 1L7 7L1 1" stroke="#585556" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            </svg>
+                          </button>
+                          <div *ngIf="isDropDownActive4" class="dropdownn" style="margin-bottom: 10px;">
+                            <div class="checkboxess flex item-center">
+                              <mat-checkbox [checked]="isPDF" (change)="showOptionsKeywords($event, 'PDF')">PDF
+                              </mat-checkbox>
+                            </div>
+                            <div class="checkboxess flex item-center">
+                              <mat-checkbox [checked]="isCSV" (change)="showOptionsKeywords($event, 'CSV')">CSV
+                              </mat-checkbox>
+                            </div>
+                            <button [disabled]="isPDFDownloading" (click)="onDownload(); "
+                              class="dropdownDownloadBtn flex item-center" style="font-size: 14px; font-weight: 600;">
+                              <ng-container *ngIf="isPDFDownloading">
+                                <span class="spinner-border spinner-border-sm mr-1 loaderColor"></span>
+                              </ng-container>
+                              <ng-container *ngIf="!isPDFDownloading">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: #fff;
+                                margin-left: -2px;">
+                                  <path _ngcontent-ldp-c299="" fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z">
+                                  </path>
+                                </svg>
+                                Download
+                              </ng-container>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-left: 30px; margin-right: 20px;margin-top: -0.2rem;">
+                        <svg [class.rotate180]="!isScoringOpen" (click)="isScoringOpen = !isScoringOpen"
+                          xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none"
+                          class="cursor-pointer" style="transition: 0.3s all;">
+                          <path d="M13 7L6.99267 1L1 7" stroke="#707070" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <ng-container *ngIf="isScoringOpen">
+                    <div id="ScroringHistory">
+
+
+                      <div class="tableHeader">
+                        <div style="cursor: pointer; width: 50%;" (click)="onIndicatorsSort()"
+                          [class.width-50]="customIndicators[0].score2 === undefined || customIndicators[0].score2 === null">
+                          INDICATORS
+                          <span style="margin-left: 8px;">
+                            <svg *ngIf="IndicatorSort === 'none'" fill="#718096" xmlns="http://www.w3.org/2000/svg"
+                              width="14" height="14" viewBox="0 0 20 19">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0.996094 0.24707C0.58188 0.24707 0.246094 0.582857 0.246094 0.99707C0.246094 1.41128 0.58188 1.74707 0.996094 1.74707H9.99984C10.4141 1.74707 10.7498 1.41128 10.7498 0.99707C10.7498 0.582857 10.4141 0.24707 9.99984 0.24707H0.996094ZM2.99683 4.24878C2.58261 4.24878 2.24683 4.58457 2.24683 4.99878C2.24683 5.41299 2.58261 5.74878 2.99683 5.74878H9.99974C10.414 5.74878 10.7497 5.41299 10.7497 4.99878C10.7497 4.58457 10.414 4.24878 9.99974 4.24878H2.99683ZM4.2478 9.00037C4.2478 8.58615 4.58359 8.25037 4.9978 8.25037H9.99989C10.4141 8.25037 10.7499 8.58615 10.7499 9.00037C10.7499 9.41458 10.4141 9.75037 9.99989 9.75037H4.9978C4.58359 9.75037 4.2478 9.41458 4.2478 9.00037ZM6.39844 12.2521C5.98422 12.2521 5.64844 12.5879 5.64844 13.0021C5.64844 13.4163 5.98422 13.7521 6.39844 13.7521H9.99994C10.4142 13.7521 10.7499 13.4163 10.7499 13.0021C10.7499 12.5879 10.4142 12.2521 9.99994 12.2521H6.39844Z" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.0022 0.24707C16.4164 0.24707 16.7522 0.582857 16.7522 0.99707V16.1935L17.9729 14.9727C18.2658 14.6798 18.7407 14.6798 19.0336 14.9727C19.3265 15.2656 19.3265 15.7405 19.0336 16.0334L16.5361 18.5309C16.5214 18.5458 16.5061 18.56 16.4902 18.5737C16.4426 18.6145 16.3911 18.6484 16.3371 18.6754C16.2363 18.7258 16.1225 18.7542 16.0022 18.7542C15.8999 18.7542 15.8025 18.7337 15.7136 18.6967C15.6257 18.6601 15.5432 18.606 15.4717 18.5344L12.9706 16.0334C12.6778 15.7405 12.6778 15.2656 12.9706 14.9727C13.2635 14.6798 13.7384 14.6798 14.0313 14.9727L15.2522 16.1936V0.99707C15.2522 0.582857 15.5879 0.24707 16.0022 0.24707Z" />
+                            </svg>
+                            <svg *ngIf="IndicatorSort === 'acs'" fill="#ea714a" xmlns="http://www.w3.org/2000/svg"
+                              width="14" height="14" viewBox="0 0 20 19">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0.996094 0.24707C0.58188 0.24707 0.246094 0.582857 0.246094 0.99707C0.246094 1.41128 0.58188 1.74707 0.996094 1.74707H9.99984C10.4141 1.74707 10.7498 1.41128 10.7498 0.99707C10.7498 0.582857 10.4141 0.24707 9.99984 0.24707H0.996094ZM2.99683 4.24878C2.58261 4.24878 2.24683 4.58457 2.24683 4.99878C2.24683 5.41299 2.58261 5.74878 2.99683 5.74878H9.99974C10.414 5.74878 10.7497 5.41299 10.7497 4.99878C10.7497 4.58457 10.414 4.24878 9.99974 4.24878H2.99683ZM4.2478 9.00037C4.2478 8.58615 4.58359 8.25037 4.9978 8.25037H9.99989C10.4141 8.25037 10.7499 8.58615 10.7499 9.00037C10.7499 9.41458 10.4141 9.75037 9.99989 9.75037H4.9978C4.58359 9.75037 4.2478 9.41458 4.2478 9.00037ZM6.39844 12.2521C5.98422 12.2521 5.64844 12.5879 5.64844 13.0021C5.64844 13.4163 5.98422 13.7521 6.39844 13.7521H9.99994C10.4142 13.7521 10.7499 13.4163 10.7499 13.0021C10.7499 12.5879 10.4142 12.2521 9.99994 12.2521H6.39844Z" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.0022 0.24707C16.4164 0.24707 16.7522 0.582857 16.7522 0.99707V16.1935L17.9729 14.9727C18.2658 14.6798 18.7407 14.6798 19.0336 14.9727C19.3265 15.2656 19.3265 15.7405 19.0336 16.0334L16.5361 18.5309C16.5214 18.5458 16.5061 18.56 16.4902 18.5737C16.4426 18.6145 16.3911 18.6484 16.3371 18.6754C16.2363 18.7258 16.1225 18.7542 16.0022 18.7542C15.8999 18.7542 15.8025 18.7337 15.7136 18.6967C15.6257 18.6601 15.5432 18.606 15.4717 18.5344L12.9706 16.0334C12.6778 15.7405 12.6778 15.2656 12.9706 14.9727C13.2635 14.6798 13.7384 14.6798 14.0313 14.9727L15.2522 16.1936V0.99707C15.2522 0.582857 15.5879 0.24707 16.0022 0.24707Z" />
+                            </svg>
+                            <svg *ngIf="IndicatorSort === 'dcs'" fill="#ea714a" xmlns="http://www.w3.org/2000/svg"
+                              width="14" height="14" viewBox="0 0 20 19">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M6.39844 5.24805C5.98422 5.24805 5.64844 5.58383 5.64844 5.99805C5.64844 6.41226 5.98422 6.74805 6.39844 6.74805H9.99994C10.4142 6.74805 10.7499 6.41226 10.7499 5.99805C10.7499 5.58383 10.4142 5.24805 9.99994 5.24805H6.39844ZM4.2478 9.99976C4.2478 9.58554 4.58359 9.24976 4.9978 9.24976H9.99989C10.4141 9.24976 10.7499 9.58554 10.7499 9.99976C10.7499 10.414 10.4141 10.7498 9.99989 10.7498H4.9978C4.58359 10.7498 4.2478 10.414 4.2478 9.99976ZM2.99683 13.2515C2.58261 13.2515 2.24683 13.5873 2.24683 14.0015C2.24683 14.4157 2.58261 14.7515 2.99683 14.7515H9.99974C10.414 14.7515 10.7497 14.4157 10.7497 14.0015C10.7497 13.5873 10.414 13.2515 9.99974 13.2515H2.99683ZM0.996094 17.2531C0.58188 17.2531 0.246094 17.5888 0.246094 18.0031C0.246094 18.4173 0.58188 18.7531 0.996094 18.7531H9.99984C10.4141 18.7531 10.7498 18.4173 10.7498 18.0031C10.7498 17.5888 10.4141 17.2531 9.99984 17.2531H0.996094Z" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.5412 0.474573C16.4048 0.333682 16.2137 0.246094 16.0022 0.246094C15.9222 0.246094 15.8452 0.258602 15.7729 0.281769C15.6628 0.317003 15.5591 0.378335 15.4717 0.465764L12.9706 2.96681C12.6778 3.2597 12.6778 3.73457 12.9706 4.02747C13.2635 4.32036 13.7384 4.32036 14.0313 4.02747L15.2522 2.80661V18.0032C15.2522 18.4174 15.5879 18.7532 16.0022 18.7532C16.4164 18.7532 16.7522 18.4174 16.7522 18.0032V2.8069L17.9727 4.02747C18.2656 4.32036 18.7405 4.32036 19.0334 4.02747C19.3263 3.73457 19.3263 3.2597 19.0334 2.96681L16.5412 0.474573Z" />
+                            </svg>
+                          </span>
+                        </div>
+
+                        <div style="cursor: pointer;width: 25%;" (click)="onVersion1Sort()"
+                          [class.width-50]="customIndicators[0].score2 === undefined || customIndicators[0].score2 === null">
+                          VERSION 1
+                          <span style="margin-left: 8px;">
+                            <svg *ngIf="Version1Sort === 'none'" fill="#718096" xmlns="http://www.w3.org/2000/svg"
+                              width="14" height="14" viewBox="0 0 20 19">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0.996094 0.24707C0.58188 0.24707 0.246094 0.582857 0.246094 0.99707C0.246094 1.41128 0.58188 1.74707 0.996094 1.74707H9.99984C10.4141 1.74707 10.7498 1.41128 10.7498 0.99707C10.7498 0.582857 10.4141 0.24707 9.99984 0.24707H0.996094ZM2.99683 4.24878C2.58261 4.24878 2.24683 4.58457 2.24683 4.99878C2.24683 5.41299 2.58261 5.74878 2.99683 5.74878H9.99974C10.414 5.74878 10.7497 5.41299 10.7497 4.99878C10.7497 4.58457 10.414 4.24878 9.99974 4.24878H2.99683ZM4.2478 9.00037C4.2478 8.58615 4.58359 8.25037 4.9978 8.25037H9.99989C10.4141 8.25037 10.7499 8.58615 10.7499 9.00037C10.7499 9.41458 10.4141 9.75037 9.99989 9.75037H4.9978C4.58359 9.75037 4.2478 9.41458 4.2478 9.00037ZM6.39844 12.2521C5.98422 12.2521 5.64844 12.5879 5.64844 13.0021C5.64844 13.4163 5.98422 13.7521 6.39844 13.7521H9.99994C10.4142 13.7521 10.7499 13.4163 10.7499 13.0021C10.7499 12.5879 10.4142 12.2521 9.99994 12.2521H6.39844Z" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.0022 0.24707C16.4164 0.24707 16.7522 0.582857 16.7522 0.99707V16.1935L17.9729 14.9727C18.2658 14.6798 18.7407 14.6798 19.0336 14.9727C19.3265 15.2656 19.3265 15.7405 19.0336 16.0334L16.5361 18.5309C16.5214 18.5458 16.5061 18.56 16.4902 18.5737C16.4426 18.6145 16.3911 18.6484 16.3371 18.6754C16.2363 18.7258 16.1225 18.7542 16.0022 18.7542C15.8999 18.7542 15.8025 18.7337 15.7136 18.6967C15.6257 18.6601 15.5432 18.606 15.4717 18.5344L12.9706 16.0334C12.6778 15.7405 12.6778 15.2656 12.9706 14.9727C13.2635 14.6798 13.7384 14.6798 14.0313 14.9727L15.2522 16.1936V0.99707C15.2522 0.582857 15.5879 0.24707 16.0022 0.24707Z" />
+                            </svg>
+                            <svg *ngIf="Version1Sort === 'acs'" fill="#ea714a" xmlns="http://www.w3.org/2000/svg"
+                              width="14" height="14" viewBox="0 0 20 19">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0.996094 0.24707C0.58188 0.24707 0.246094 0.582857 0.246094 0.99707C0.246094 1.41128 0.58188 1.74707 0.996094 1.74707H9.99984C10.4141 1.74707 10.7498 1.41128 10.7498 0.99707C10.7498 0.582857 10.4141 0.24707 9.99984 0.24707H0.996094ZM2.99683 4.24878C2.58261 4.24878 2.24683 4.58457 2.24683 4.99878C2.24683 5.41299 2.58261 5.74878 2.99683 5.74878H9.99974C10.414 5.74878 10.7497 5.41299 10.7497 4.99878C10.7497 4.58457 10.414 4.24878 9.99974 4.24878H2.99683ZM4.2478 9.00037C4.2478 8.58615 4.58359 8.25037 4.9978 8.25037H9.99989C10.4141 8.25037 10.7499 8.58615 10.7499 9.00037C10.7499 9.41458 10.4141 9.75037 9.99989 9.75037H4.9978C4.58359 9.75037 4.2478 9.41458 4.2478 9.00037ZM6.39844 12.2521C5.98422 12.2521 5.64844 12.5879 5.64844 13.0021C5.64844 13.4163 5.98422 13.7521 6.39844 13.7521H9.99994C10.4142 13.7521 10.7499 13.4163 10.7499 13.0021C10.7499 12.5879 10.4142 12.2521 9.99994 12.2521H6.39844Z" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.0022 0.24707C16.4164 0.24707 16.7522 0.582857 16.7522 0.99707V16.1935L17.9729 14.9727C18.2658 14.6798 18.7407 14.6798 19.0336 14.9727C19.3265 15.2656 19.3265 15.7405 19.0336 16.0334L16.5361 18.5309C16.5214 18.5458 16.5061 18.56 16.4902 18.5737C16.4426 18.6145 16.3911 18.6484 16.3371 18.6754C16.2363 18.7258 16.1225 18.7542 16.0022 18.7542C15.8999 18.7542 15.8025 18.7337 15.7136 18.6967C15.6257 18.6601 15.5432 18.606 15.4717 18.5344L12.9706 16.0334C12.6778 15.7405 12.6778 15.2656 12.9706 14.9727C13.2635 14.6798 13.7384 14.6798 14.0313 14.9727L15.2522 16.1936V0.99707C15.2522 0.582857 15.5879 0.24707 16.0022 0.24707Z" />
+                            </svg>
+                            <svg *ngIf="Version1Sort === 'dcs'" fill="#ea714a" xmlns="http://www.w3.org/2000/svg"
+                              width="14" height="14" viewBox="0 0 20 19">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M6.39844 5.24805C5.98422 5.24805 5.64844 5.58383 5.64844 5.99805C5.64844 6.41226 5.98422 6.74805 6.39844 6.74805H9.99994C10.4142 6.74805 10.7499 6.41226 10.7499 5.99805C10.7499 5.58383 10.4142 5.24805 9.99994 5.24805H6.39844ZM4.2478 9.99976C4.2478 9.58554 4.58359 9.24976 4.9978 9.24976H9.99989C10.4141 9.24976 10.7499 9.58554 10.7499 9.99976C10.7499 10.414 10.4141 10.7498 9.99989 10.7498H4.9978C4.58359 10.7498 4.2478 10.414 4.2478 9.99976ZM2.99683 13.2515C2.58261 13.2515 2.24683 13.5873 2.24683 14.0015C2.24683 14.4157 2.58261 14.7515 2.99683 14.7515H9.99974C10.414 14.7515 10.7497 14.4157 10.7497 14.0015C10.7497 13.5873 10.414 13.2515 9.99974 13.2515H2.99683ZM0.996094 17.2531C0.58188 17.2531 0.246094 17.5888 0.246094 18.0031C0.246094 18.4173 0.58188 18.7531 0.996094 18.7531H9.99984C10.4141 18.7531 10.7498 18.4173 10.7498 18.0031C10.7498 17.5888 10.4141 17.2531 9.99984 17.2531H0.996094Z" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.5412 0.474573C16.4048 0.333682 16.2137 0.246094 16.0022 0.246094C15.9222 0.246094 15.8452 0.258602 15.7729 0.281769C15.6628 0.317003 15.5591 0.378335 15.4717 0.465764L12.9706 2.96681C12.6778 3.2597 12.6778 3.73457 12.9706 4.02747C13.2635 4.32036 13.7384 4.32036 14.0313 4.02747L15.2522 2.80661V18.0032C15.2522 18.4174 15.5879 18.7532 16.0022 18.7532C16.4164 18.7532 16.7522 18.4174 16.7522 18.0032V2.8069L17.9727 4.02747C18.2656 4.32036 18.7405 4.32036 19.0334 4.02747C19.3263 3.73457 19.3263 3.2597 19.0334 2.96681L16.5412 0.474573Z" />
+                            </svg>
+                          </span>
+                        </div>
+
+
+
+                        <div style="cursor: pointer;width: 25%;" (click)="onVersion2Sort()"
+                          *ngIf="customIndicators[0].score2 !== undefined">VERSION 2
+                          <span style="margin-left: 8px;">
+                            <svg *ngIf="Version2Sort === 'none'" fill="#718096" xmlns="http://www.w3.org/2000/svg"
+                              width="14" height="14" viewBox="0 0 20 19">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0.996094 0.24707C0.58188 0.24707 0.246094 0.582857 0.246094 0.99707C0.246094 1.41128 0.58188 1.74707 0.996094 1.74707H9.99984C10.4141 1.74707 10.7498 1.41128 10.7498 0.99707C10.7498 0.582857 10.4141 0.24707 9.99984 0.24707H0.996094ZM2.99683 4.24878C2.58261 4.24878 2.24683 4.58457 2.24683 4.99878C2.24683 5.41299 2.58261 5.74878 2.99683 5.74878H9.99974C10.414 5.74878 10.7497 5.41299 10.7497 4.99878C10.7497 4.58457 10.414 4.24878 9.99974 4.24878H2.99683ZM4.2478 9.00037C4.2478 8.58615 4.58359 8.25037 4.9978 8.25037H9.99989C10.4141 8.25037 10.7499 8.58615 10.7499 9.00037C10.7499 9.41458 10.4141 9.75037 9.99989 9.75037H4.9978C4.58359 9.75037 4.2478 9.41458 4.2478 9.00037ZM6.39844 12.2521C5.98422 12.2521 5.64844 12.5879 5.64844 13.0021C5.64844 13.4163 5.98422 13.7521 6.39844 13.7521H9.99994C10.4142 13.7521 10.7499 13.4163 10.7499 13.0021C10.7499 12.5879 10.4142 12.2521 9.99994 12.2521H6.39844Z" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.0022 0.24707C16.4164 0.24707 16.7522 0.582857 16.7522 0.99707V16.1935L17.9729 14.9727C18.2658 14.6798 18.7407 14.6798 19.0336 14.9727C19.3265 15.2656 19.3265 15.7405 19.0336 16.0334L16.5361 18.5309C16.5214 18.5458 16.5061 18.56 16.4902 18.5737C16.4426 18.6145 16.3911 18.6484 16.3371 18.6754C16.2363 18.7258 16.1225 18.7542 16.0022 18.7542C15.8999 18.7542 15.8025 18.7337 15.7136 18.6967C15.6257 18.6601 15.5432 18.606 15.4717 18.5344L12.9706 16.0334C12.6778 15.7405 12.6778 15.2656 12.9706 14.9727C13.2635 14.6798 13.7384 14.6798 14.0313 14.9727L15.2522 16.1936V0.99707C15.2522 0.582857 15.5879 0.24707 16.0022 0.24707Z" />
+                            </svg>
+                            <svg *ngIf="Version2Sort === 'acs'" fill="#ea714a" xmlns="http://www.w3.org/2000/svg"
+                              width="14" height="14" viewBox="0 0 20 19">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0.996094 0.24707C0.58188 0.24707 0.246094 0.582857 0.246094 0.99707C0.246094 1.41128 0.58188 1.74707 0.996094 1.74707H9.99984C10.4141 1.74707 10.7498 1.41128 10.7498 0.99707C10.7498 0.582857 10.4141 0.24707 9.99984 0.24707H0.996094ZM2.99683 4.24878C2.58261 4.24878 2.24683 4.58457 2.24683 4.99878C2.24683 5.41299 2.58261 5.74878 2.99683 5.74878H9.99974C10.414 5.74878 10.7497 5.41299 10.7497 4.99878C10.7497 4.58457 10.414 4.24878 9.99974 4.24878H2.99683ZM4.2478 9.00037C4.2478 8.58615 4.58359 8.25037 4.9978 8.25037H9.99989C10.4141 8.25037 10.7499 8.58615 10.7499 9.00037C10.7499 9.41458 10.4141 9.75037 9.99989 9.75037H4.9978C4.58359 9.75037 4.2478 9.41458 4.2478 9.00037ZM6.39844 12.2521C5.98422 12.2521 5.64844 12.5879 5.64844 13.0021C5.64844 13.4163 5.98422 13.7521 6.39844 13.7521H9.99994C10.4142 13.7521 10.7499 13.4163 10.7499 13.0021C10.7499 12.5879 10.4142 12.2521 9.99994 12.2521H6.39844Z" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.0022 0.24707C16.4164 0.24707 16.7522 0.582857 16.7522 0.99707V16.1935L17.9729 14.9727C18.2658 14.6798 18.7407 14.6798 19.0336 14.9727C19.3265 15.2656 19.3265 15.7405 19.0336 16.0334L16.5361 18.5309C16.5214 18.5458 16.5061 18.56 16.4902 18.5737C16.4426 18.6145 16.3911 18.6484 16.3371 18.6754C16.2363 18.7258 16.1225 18.7542 16.0022 18.7542C15.8999 18.7542 15.8025 18.7337 15.7136 18.6967C15.6257 18.6601 15.5432 18.606 15.4717 18.5344L12.9706 16.0334C12.6778 15.7405 12.6778 15.2656 12.9706 14.9727C13.2635 14.6798 13.7384 14.6798 14.0313 14.9727L15.2522 16.1936V0.99707C15.2522 0.582857 15.5879 0.24707 16.0022 0.24707Z" />
+                            </svg>
+                            <svg *ngIf="Version2Sort === 'dcs'" fill="#ea714a" xmlns="http://www.w3.org/2000/svg"
+                              width="14" height="14" viewBox="0 0 20 19">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M6.39844 5.24805C5.98422 5.24805 5.64844 5.58383 5.64844 5.99805C5.64844 6.41226 5.98422 6.74805 6.39844 6.74805H9.99994C10.4142 6.74805 10.7499 6.41226 10.7499 5.99805C10.7499 5.58383 10.4142 5.24805 9.99994 5.24805H6.39844ZM4.2478 9.99976C4.2478 9.58554 4.58359 9.24976 4.9978 9.24976H9.99989C10.4141 9.24976 10.7499 9.58554 10.7499 9.99976C10.7499 10.414 10.4141 10.7498 9.99989 10.7498H4.9978C4.58359 10.7498 4.2478 10.414 4.2478 9.99976ZM2.99683 13.2515C2.58261 13.2515 2.24683 13.5873 2.24683 14.0015C2.24683 14.4157 2.58261 14.7515 2.99683 14.7515H9.99974C10.414 14.7515 10.7497 14.4157 10.7497 14.0015C10.7497 13.5873 10.414 13.2515 9.99974 13.2515H2.99683ZM0.996094 17.2531C0.58188 17.2531 0.246094 17.5888 0.246094 18.0031C0.246094 18.4173 0.58188 18.7531 0.996094 18.7531H9.99984C10.4141 18.7531 10.7498 18.4173 10.7498 18.0031C10.7498 17.5888 10.4141 17.2531 9.99984 17.2531H0.996094Z" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.5412 0.474573C16.4048 0.333682 16.2137 0.246094 16.0022 0.246094C15.9222 0.246094 15.8452 0.258602 15.7729 0.281769C15.6628 0.317003 15.5591 0.378335 15.4717 0.465764L12.9706 2.96681C12.6778 3.2597 12.6778 3.73457 12.9706 4.02747C13.2635 4.32036 13.7384 4.32036 14.0313 4.02747L15.2522 2.80661V18.0032C15.2522 18.4174 15.5879 18.7532 16.0022 18.7532C16.4164 18.7532 16.7522 18.4174 16.7522 18.0032V2.8069L17.9727 4.02747C18.2656 4.32036 18.7405 4.32036 19.0334 4.02747C19.3263 3.73457 19.3263 3.2597 19.0334 2.96681L16.5412 0.474573Z" />
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="tableHeader" style="background-color: #fff;">
+                        <div style="width: 50%; white-space: nowrap;"
+                          [class.width-50]="customIndicators[0].score2 === undefined || customIndicators[0].score2 === null"
+                          class="flex item-center justify-start indicatorText">
+                          <div>Overall Score</div>
+                        </div>
+                        <!-- <div  class="indicatorText">{{item.name | slice:0:30}} </div> -->
+                        <div style="width: 25%;"
+                          [class.width-50]="customIndicators[0].score2 === undefined || customIndicators[0].score2 === null"
+                          class="v1"> {{RECORDINGSDETAIL?.indicator_total1}} </div>
+                        <div style="width: 25%;" *ngIf="customIndicators[0].score2 !== undefined"
+                          class="flex justify-center v1"><span>{{RECORDINGSDETAIL?.indicator_total2}}</span>
+                          <div
+                            *ngIf="RECORDINGSDETAIL?.total_trend && RECORDINGSDETAIL?.indicator_total2 != RECORDINGSDETAIL?.indicator_total1"
+                            [ngClass]="RECORDINGSDETAIL?.total_trend === 'increase' ? 'score_incease' :'score_decrease'">
+                            <span>
+                              <svg *ngIf="RECORDINGSDETAIL?.total_trend === 'increase'" style="margin-right: 5px;"
+                                xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none">
+                                <path d="M7.8002 1.7002L1.2002 8.30019" stroke="#66CB9F" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3.16699 1.66699L7.80032 1.69966L7.83366 6.33366" stroke="#66CB9F"
+                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              </svg>
+                              <svg *ngIf="RECORDINGSDETAIL?.total_trend !== 'increase'" style="margin-right: 5px;"
+                                xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"
+                                fill="none">
+                                <path d="M8.3002 8.29922L1.7002 1.69922" stroke="#F16063" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M8.3006 3.58398V8.29932L3.58594 8.29865" stroke="#F16063" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round" />
+                              </svg>
+                            </span> {{RECORDINGSDETAIL?.total_value}}
+                          </div>
+                        </div>
+                      </div>
+
+                      <ng-container *ngFor="let item of customIndicators">
+                        <div class="tableHeader" (click)="item.isExpand = !item.isExpand"
+                          style="background-color: #fff;">
+                          <div style="width: 50%; white-space: nowrap;"
+                            [class.width-50]="customIndicators[0].score2 === undefined || customIndicators[0].score2 === null"
+                            class="flex item-center justify-start indicatorText">
+                            <div>{{item.name | slice:0:30}}</div>
+                            <div *ngIf="item.childs.length > 0"><svg [class.rotate180]="item.isExpand"
+                                style="margin-left: 20px; cursor: pointer;" xmlns="http://www.w3.org/2000/svg"
+                                width="14" height="8" viewBox="0 0 14 8" fill="none">
+                                <path _ngcontent-kwx-c394="" d="M13 1L7 7L1 1" stroke="#585556" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                              </svg></div>
+                          </div>
+                          <!-- <div  class="indicatorText">{{item.name | slice:0:30}} </div> -->
+                          <div style="width: 25%;"
+                            [class.width-50]="customIndicators[0].score2 === undefined || customIndicators[0].score2 === null"
+                            class="v1"> {{item.score1}}</div>
+                          <div style="width: 25%;" *ngIf="customIndicators[0].score2 !== undefined"
+                            class="flex justify-center v1">
+                            <span>{{item.score2}}</span>
+                            <div *ngIf="item.trend2 && item.score1 != item.score2"
+                              [ngClass]="item.trend2 === 'increase' ? 'score_incease' :'score_decrease'"><span>
+                                <svg *ngIf="item.trend2 === 'increase'" style="margin-right: 5px;"
+                                  xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10"
+                                  fill="none">
+                                  <path d="M7.8002 1.7002L1.2002 8.30019" stroke="#66CB9F" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                  <path d="M3.16699 1.66699L7.80032 1.69966L7.83366 6.33366" stroke="#66CB9F"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <svg *ngIf="item.trend2 !== 'increase'" style="margin-right: 5px;"
+                                  xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"
+                                  fill="none">
+                                  <path d="M8.3002 8.29922L1.7002 1.69922" stroke="#F16063" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                  <path d="M8.3006 3.58398V8.29932L3.58594 8.29865" stroke="#F16063" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                              </span> {{item.value2}}</div>
+                          </div>
+                        </div>
+                        <ng-container *ngIf="item.childs.length > 0 && item.isExpand">
+                          <div *ngFor="let child of item.childs" class="tableHeader" style="background-color: #fff;">
+                            <div class="v1"
+                              style="color: #718096; text-align: start; margin-left: 10px;width: 50%; white-space: nowrap;">
+                              {{child.name}} </div>
+                            <div style="width: 25%;"
+                              [class.width-50]="customIndicators[0].score2 === undefined || customIndicators[0].score2 === null"
+                              class="v1">
+
+                              <svg *ngIf="child.score1 > 49" xmlns="http://www.w3.org/2000/svg" width="19" height="14"
+                                viewBox="0 0 19 14" fill="none">
+                                <path
+                                  d="M2.56066 5.93934C1.97487 5.35355 1.02513 5.35355 0.43934 5.93934C-0.146447 6.52513 -0.146447 7.47487 0.43934 8.06066L2.56066 5.93934ZM18.3107 2.81066C18.8964 2.22487 18.8964 1.27513 18.3107 0.68934C17.7249 0.103553 16.7751 0.103553 16.1893 0.68934L18.3107 2.81066ZM6.18431 11.6843L5.12365 12.745L6.18431 11.6843ZM6.59549 12.0184L7.05902 10.5918L6.59549 12.0184ZM7.31569 11.6843L6.25503 10.6237L7.31569 11.6843ZM6.90451 12.0184L7.36803 13.445L6.90451 12.0184ZM0.43934 8.06066L5.12365 12.745L7.24497 10.6237L2.56066 5.93934L0.43934 8.06066ZM8.37635 12.745L18.3107 2.81066L16.1893 0.68934L6.25503 10.6237L8.37635 12.745ZM5.12365 12.745C5.20516 12.8265 5.32925 12.9522 5.45058 13.0552C5.5853 13.1696 5.81156 13.3409 6.13197 13.445L7.05902 10.5918C7.26526 10.6589 7.38493 10.7621 7.39211 10.7682C7.3964 10.7718 7.38865 10.7655 7.3599 10.7376C7.33119 10.7098 7.2969 10.6756 7.24497 10.6237L5.12365 12.745ZM6.25503 10.6237C6.2031 10.6756 6.16881 10.7098 6.1401 10.7376C6.11135 10.7655 6.1036 10.7718 6.10789 10.7682C6.11507 10.7621 6.23474 10.6589 6.44098 10.5918L7.36803 13.445C7.68844 13.3409 7.9147 13.1696 8.04942 13.0552C8.17075 12.9522 8.29484 12.8265 8.37635 12.745L6.25503 10.6237ZM6.13197 13.445C6.53365 13.5755 6.96635 13.5755 7.36803 13.445L6.44098 10.5918C6.64183 10.5266 6.85817 10.5266 7.05902 10.5918L6.13197 13.445Z"
+                                  fill="#66CB9F" />
+                              </svg>
+
+                              <svg *ngIf="child.score1 < 50" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M18.3642 5.63574L5.63623 18.3637L18.3642 5.63574Z" stroke="#718096"
+                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M12 3V3C7.029 3 3 7.029 3 12V12C3 16.971 7.029 21 12 21V21C16.971 21 21 16.971 21 12V12C21 7.029 16.971 3 12 3Z"
+                                  stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              </svg>
+                            </div>
+
+                            <div *ngIf="customIndicators[0].score2 !== undefined" style="width: 25%;"
+                              class="flex justify-center">
+
+                              <svg *ngIf="child.score2 > 49" xmlns="http://www.w3.org/2000/svg" width="19" height="14"
+                                viewBox="0 0 19 14" fill="none">
+                                <path
+                                  d="M2.56066 5.93934C1.97487 5.35355 1.02513 5.35355 0.43934 5.93934C-0.146447 6.52513 -0.146447 7.47487 0.43934 8.06066L2.56066 5.93934ZM18.3107 2.81066C18.8964 2.22487 18.8964 1.27513 18.3107 0.68934C17.7249 0.103553 16.7751 0.103553 16.1893 0.68934L18.3107 2.81066ZM6.18431 11.6843L5.12365 12.745L6.18431 11.6843ZM6.59549 12.0184L7.05902 10.5918L6.59549 12.0184ZM7.31569 11.6843L6.25503 10.6237L7.31569 11.6843ZM6.90451 12.0184L7.36803 13.445L6.90451 12.0184ZM0.43934 8.06066L5.12365 12.745L7.24497 10.6237L2.56066 5.93934L0.43934 8.06066ZM8.37635 12.745L18.3107 2.81066L16.1893 0.68934L6.25503 10.6237L8.37635 12.745ZM5.12365 12.745C5.20516 12.8265 5.32925 12.9522 5.45058 13.0552C5.5853 13.1696 5.81156 13.3409 6.13197 13.445L7.05902 10.5918C7.26526 10.6589 7.38493 10.7621 7.39211 10.7682C7.3964 10.7718 7.38865 10.7655 7.3599 10.7376C7.33119 10.7098 7.2969 10.6756 7.24497 10.6237L5.12365 12.745ZM6.25503 10.6237C6.2031 10.6756 6.16881 10.7098 6.1401 10.7376C6.11135 10.7655 6.1036 10.7718 6.10789 10.7682C6.11507 10.7621 6.23474 10.6589 6.44098 10.5918L7.36803 13.445C7.68844 13.3409 7.9147 13.1696 8.04942 13.0552C8.17075 12.9522 8.29484 12.8265 8.37635 12.745L6.25503 10.6237ZM6.13197 13.445C6.53365 13.5755 6.96635 13.5755 7.36803 13.445L6.44098 10.5918C6.64183 10.5266 6.85817 10.5266 7.05902 10.5918L6.13197 13.445Z"
+                                  fill="#66CB9F" />
+                              </svg>
+
+                              <svg *ngIf="child.score2 < 50" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M18.3642 5.63574L5.63623 18.3637L18.3642 5.63574Z" stroke="#718096"
+                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M12 3V3C7.029 3 3 7.029 3 12V12C3 16.971 7.029 21 12 21V21C16.971 21 21 16.971 21 12V12C21 7.029 16.971 3 12 3Z"
+                                  stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                              </svg>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </ng-container>
+
+                      <!-- <div class="tableHeader" style="background-color: #fff;">
+                        <div class="flex item-center justify-center indicatorText"><div style="width: 130px;">Recommending</div>  <div><svg style="margin-left: 20px;" xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none"><path _ngcontent-kwx-c394="" d="M13 1L7 7L1 1" stroke="#585556" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div></div>
+                        <div class="v1"> 86% </div>
+                        <div class="flex justify-center v1"> 86%</div>
+                      </div>
+
+                      <div class="tableHeader" style="background-color: #fff;">
+                        <div class="flex item-center justify-center indicatorText"><div style="width: 130px;">Gretting</div>  <div><svg style="margin-left: 20px;" xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none" class="ng-star-inserted"><path _ngcontent-yus-c485="" d="M13 7L6.99267 1L1 7" stroke="#707070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div></div>
+                        <div class="v1">86% </div>
+                        <div class="flex justify-center v1"><span>93%</span>   <div class="score_decrease"><span><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                          <path d="M8.3002 8.3002L1.7002 1.7002" stroke="#F16063" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M8.30012 3.58496V8.30029L3.58545 8.29963" stroke="#F16063" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg></span> 15%</div></div>
+                      </div>
+
+                      <div class="tableHeader" style="background-color: #fff;">
+                        <div class="v1" style="color: #718096;">End with thank you </div>
+                        <div class="v1"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="14" viewBox="0 0 19 14" fill="none">
+                          <path d="M2.56066 5.93934C1.97487 5.35355 1.02513 5.35355 0.43934 5.93934C-0.146447 6.52513 -0.146447 7.47487 0.43934 8.06066L2.56066 5.93934ZM18.3107 2.81066C18.8964 2.22487 18.8964 1.27513 18.3107 0.68934C17.7249 0.103553 16.7751 0.103553 16.1893 0.68934L18.3107 2.81066ZM6.18431 11.6843L5.12365 12.745L6.18431 11.6843ZM6.59549 12.0184L7.05902 10.5918L6.59549 12.0184ZM7.31569 11.6843L6.25503 10.6237L7.31569 11.6843ZM6.90451 12.0184L7.36803 13.445L6.90451 12.0184ZM0.43934 8.06066L5.12365 12.745L7.24497 10.6237L2.56066 5.93934L0.43934 8.06066ZM8.37635 12.745L18.3107 2.81066L16.1893 0.68934L6.25503 10.6237L8.37635 12.745ZM5.12365 12.745C5.20516 12.8265 5.32925 12.9522 5.45058 13.0552C5.5853 13.1696 5.81156 13.3409 6.13197 13.445L7.05902 10.5918C7.26526 10.6589 7.38493 10.7621 7.39211 10.7682C7.3964 10.7718 7.38865 10.7655 7.3599 10.7376C7.33119 10.7098 7.2969 10.6756 7.24497 10.6237L5.12365 12.745ZM6.25503 10.6237C6.2031 10.6756 6.16881 10.7098 6.1401 10.7376C6.11135 10.7655 6.1036 10.7718 6.10789 10.7682C6.11507 10.7621 6.23474 10.6589 6.44098 10.5918L7.36803 13.445C7.68844 13.3409 7.9147 13.1696 8.04942 13.0552C8.17075 12.9522 8.29484 12.8265 8.37635 12.745L6.25503 10.6237ZM6.13197 13.445C6.53365 13.5755 6.96635 13.5755 7.36803 13.445L6.44098 10.5918C6.64183 10.5266 6.85817 10.5266 7.05902 10.5918L6.13197 13.445Z" fill="#66CB9F"/>
+                          </svg></div>
+                        <div class="flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="14" viewBox="0 0 19 14" fill="none">
+                          <path d="M2.56066 5.93934C1.97487 5.35355 1.02513 5.35355 0.43934 5.93934C-0.146447 6.52513 -0.146447 7.47487 0.43934 8.06066L2.56066 5.93934ZM18.3107 2.81066C18.8964 2.22487 18.8964 1.27513 18.3107 0.68934C17.7249 0.103553 16.7751 0.103553 16.1893 0.68934L18.3107 2.81066ZM6.18431 11.6843L5.12365 12.745L6.18431 11.6843ZM6.59549 12.0184L7.05902 10.5918L6.59549 12.0184ZM7.31569 11.6843L6.25503 10.6237L7.31569 11.6843ZM6.90451 12.0184L7.36803 13.445L6.90451 12.0184ZM0.43934 8.06066L5.12365 12.745L7.24497 10.6237L2.56066 5.93934L0.43934 8.06066ZM8.37635 12.745L18.3107 2.81066L16.1893 0.68934L6.25503 10.6237L8.37635 12.745ZM5.12365 12.745C5.20516 12.8265 5.32925 12.9522 5.45058 13.0552C5.5853 13.1696 5.81156 13.3409 6.13197 13.445L7.05902 10.5918C7.26526 10.6589 7.38493 10.7621 7.39211 10.7682C7.3964 10.7718 7.38865 10.7655 7.3599 10.7376C7.33119 10.7098 7.2969 10.6756 7.24497 10.6237L5.12365 12.745ZM6.25503 10.6237C6.2031 10.6756 6.16881 10.7098 6.1401 10.7376C6.11135 10.7655 6.1036 10.7718 6.10789 10.7682C6.11507 10.7621 6.23474 10.6589 6.44098 10.5918L7.36803 13.445C7.68844 13.3409 7.9147 13.1696 8.04942 13.0552C8.17075 12.9522 8.29484 12.8265 8.37635 12.745L6.25503 10.6237ZM6.13197 13.445C6.53365 13.5755 6.96635 13.5755 7.36803 13.445L6.44098 10.5918C6.64183 10.5266 6.85817 10.5266 7.05902 10.5918L6.13197 13.445Z" fill="#66CB9F"/>
+                          </svg></div>
+                      </div>
+
+                      <div class="tableHeader" style="background-color: #fff;">
+                        <div class="v1" style="color: #718096;">Agent name </div>
+                        <div class="v1"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="14" viewBox="0 0 19 14" fill="none">
+                          <path d="M2.56066 5.93934C1.97487 5.35355 1.02513 5.35355 0.43934 5.93934C-0.146447 6.52513 -0.146447 7.47487 0.43934 8.06066L2.56066 5.93934ZM18.3107 2.81066C18.8964 2.22487 18.8964 1.27513 18.3107 0.68934C17.7249 0.103553 16.7751 0.103553 16.1893 0.68934L18.3107 2.81066ZM6.18431 11.6843L5.12365 12.745L6.18431 11.6843ZM6.59549 12.0184L7.05902 10.5918L6.59549 12.0184ZM7.31569 11.6843L6.25503 10.6237L7.31569 11.6843ZM6.90451 12.0184L7.36803 13.445L6.90451 12.0184ZM0.43934 8.06066L5.12365 12.745L7.24497 10.6237L2.56066 5.93934L0.43934 8.06066ZM8.37635 12.745L18.3107 2.81066L16.1893 0.68934L6.25503 10.6237L8.37635 12.745ZM5.12365 12.745C5.20516 12.8265 5.32925 12.9522 5.45058 13.0552C5.5853 13.1696 5.81156 13.3409 6.13197 13.445L7.05902 10.5918C7.26526 10.6589 7.38493 10.7621 7.39211 10.7682C7.3964 10.7718 7.38865 10.7655 7.3599 10.7376C7.33119 10.7098 7.2969 10.6756 7.24497 10.6237L5.12365 12.745ZM6.25503 10.6237C6.2031 10.6756 6.16881 10.7098 6.1401 10.7376C6.11135 10.7655 6.1036 10.7718 6.10789 10.7682C6.11507 10.7621 6.23474 10.6589 6.44098 10.5918L7.36803 13.445C7.68844 13.3409 7.9147 13.1696 8.04942 13.0552C8.17075 12.9522 8.29484 12.8265 8.37635 12.745L6.25503 10.6237ZM6.13197 13.445C6.53365 13.5755 6.96635 13.5755 7.36803 13.445L6.44098 10.5918C6.64183 10.5266 6.85817 10.5266 7.05902 10.5918L6.13197 13.445Z" fill="#66CB9F"/>
+                          </svg></div>
+                        <div class="flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M18.3642 5.63574L5.63623 18.3637L18.3642 5.63574Z" stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3V3C7.029 3 3 7.029 3 12V12C3 16.971 7.029 21 12 21V21C16.971 21 21 16.971 21 12V12C21 7.029 16.971 3 12 3Z" stroke="#718096" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg></div>
+                      </div>
+
+                      <div class="tableHeader" style="background-color: #fff;">
+                        <div class="flex item-center justify-center indicatorText"><div style="width: 130px;">Recommending</div>  <div><svg style="margin-left: 20px;" xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none"><path _ngcontent-kwx-c394="" d="M13 1L7 7L1 1" stroke="#585556" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div></div>
+                        <div class="v1"> 86% </div>
+                        <div class="flex justify-center v1"><span>93%</span>   <div class="score_incease"><span><svg xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none">
+                          <path d="M7.8002 1.7002L1.2002 8.30019" stroke="#66CB9F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M3.16699 1.66699L7.80032 1.69966L7.83366 6.33366" stroke="#66CB9F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg></span> 100%</div></div>
+                      </div> -->
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Analysis" style="font-size: 16px; font-weight: 600">
+            <div style="margin-top: 20px">
+              <div style="display: flex; justify-content: center ">
+                <!-- <span style="font-size: 16px; font-weight: 500; color: #425466">Total Score</span> -->
+              </div>
+              <div class="pt-2 pb-4" style=" margin-bottom:25px;display: flex; justify-content: center;">
+                <!-- <img src="/assets/scoreGraph.png" /> -->
+                <!-- <app-guage-chart [totalScore]="RECORDINGSDETAIL?.total_score"></app-guage-chart> -->
+                <div class="guageprogress">
+                  <div class="barOverflow">
+                    <div *ngIf="RECORDINGSDETAIL?.total_score !== 'N/A' && RECORDINGSDETAIL?.total_score !== -1"
+                      class="bar" [ngClass]="'bar' + RECORDINGSDETAIL?.total_score"></div>
+                    <div *ngIf="RECORDINGSDETAIL?.total_score === 'N/A' || RECORDINGSDETAIL?.total_score === -1"
+                      class="bar" [ngClass]="'barNA'"></div>
+                  </div>
+                </div>
+
+                <span style="
+                    position: absolute;
+                    top: 46px;
+                    font-size: 11px;
+                    text-align: center;
+                    font-weight: 400;
+                    text-transform: lowercase;
+                  "
+                  [class.padtopMa]="RECORDINGSDETAIL?.total_score === 'N/A'"
+                  [class.colorText]="RECORDINGSDETAIL?.total_score === 'N/A' || RECORDINGSDETAIL?.total_score === -1"
+                  [class.colorTextO]="RECORDINGSDETAIL?.total_score !== 'N/A' && RECORDINGSDETAIL?.total_score !== -1">
+                  <span class="pl-3" style="
+                      font-size: 33px;
+                      font-weight: 700;
+                      text-transform: uppercase;
+                    "
+                    [class.colorText]="RECORDINGSDETAIL?.total_score === 'N/A' || RECORDINGSDETAIL?.total_score === -1">{{
+                    RECORDINGSDETAIL?.total_score
+                    }}</span><br />
+                  {{ RECORDINGSDETAIL?.total_score === 'N/A' ? '' : 'Points'}}</span>
+              </div>
+              <div class="hover_class" style="width: 100%">
+                <div class="fourTabs row" style="margin:0;
+              display: flex; justify-content: space-between;">
+
+                  <div class="borderBottom"></div>
+                  <ng-container  *ngFor="let i of fourTabs | keyvalue; let k = index">
+                    <div class="col-4" (click)="changeTabs(k, i.key)" style="text-align: center;min-width: 135px;box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05);padding:26px"
+                      [class.cursor-pointer]="k === 0 || k === 1"
+                      [ngClass]="topSkill === k && (k === 0 || k === 1) ? 'selected':''"
+                      >
+                      <!-- <img src="/assets/circle.png" /> -->
+                      <div class="progress-circle" [ngClass]="[
+                          TransformVal(i.value),
+                          i.value > 49 ? 'over50' : ''
+                        ]">
+                        <span style="font-size: 14px; font-weight: 600; color: #425466;">
+                          {{
+                          i.value == "N/A"
+                          ? i.value
+                          : i.value
+                          ? i.value + "%"
+                          : "N/A"
+                          }}
+                        </span>
+                        <div class="left-half-clipper">
+                          <div class="first50-bar" [ngClass]="i.value > 49 ? 'greenbg' : 'redbg'"></div>
+                          <div class="value-bar" [ngClass]="i.value > 49 ? 'greenbg' : 'redbg'"></div>
+                        </div>
+                      </div>
+                      <p style="
+                          font-size: 14px;
+                          font-weight: 500;
+                          min-width: 108px;
+                        " class="pt-0" [class.defaultCursor]="k=== 2 || k === 3" [ngClass]="
+                          topSkill === k && (k === 0 || k === 1)
+                            ? 'activeTab'
+                            : 'inactiveTab'
+                        ">
+                        {{ i.key | slice: 1:25 }}
+                      </p>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div style="padding-top: 1.7rem !important; padding: 24px !important; background-color: white;" class="row p-0 m-0">
+                <div *ngFor="let i of selectedTabData | keyvalue" class="col-md-4 mb-3" style="padding-left: 0;">
+                  <div class="row" style="padding-left: 0;">
+                    <div class="col-12 analysisTicks" style="padding-left: 12px;">
+                      <div class="ticks">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 25 18" fill="none"
+                          [ngClass]="i.value > 49 ? 'greenTick':'whiteTick'">
+                          <path
+                            d="M3.06066 7.93934C2.47487 7.35355 1.52513 7.35355 0.93934 7.93934C0.353553 8.52513 0.353553 9.47487 0.93934 10.0607L3.06066 7.93934ZM24.0607 3.06066C24.6464 2.47487 24.6464 1.52513 24.0607 0.93934C23.4749 0.353553 22.5251 0.353553 21.9393 0.93934L24.0607 3.06066ZM8.43431 15.4343L9.49498 14.3737L8.43431 15.4343ZM8.84549 15.7684L9.30902 14.3418L8.84549 15.7684ZM9.56569 15.4343L8.50503 14.3737L9.56569 15.4343ZM9.15451 15.7684L9.61803 17.195L9.15451 15.7684ZM0.93934 10.0607L7.37365 16.495L9.49498 14.3737L3.06066 7.93934L0.93934 10.0607ZM10.6263 16.495L24.0607 3.06066L21.9393 0.93934L8.50503 14.3737L10.6263 16.495ZM7.37365 16.495C7.45516 16.5765 7.57925 16.7022 7.70058 16.8052C7.8353 16.9196 8.06156 17.0909 8.38197 17.195L9.30902 14.3418C9.51526 14.4088 9.63493 14.5121 9.64211 14.5182C9.6464 14.5218 9.63865 14.5155 9.6099 14.4876C9.58119 14.4598 9.5469 14.4256 9.49498 14.3737L7.37365 16.495ZM8.50503 14.3737C8.4531 14.4256 8.41881 14.4598 8.3901 14.4876C8.36135 14.5155 8.3536 14.5218 8.35789 14.5182C8.36507 14.5121 8.48474 14.4089 8.69098 14.3418L9.61803 17.195C9.93844 17.0909 10.1647 16.9196 10.2994 16.8052C10.4208 16.7022 10.5448 16.5765 10.6263 16.495L8.50503 14.3737ZM8.38197 17.195C8.78365 17.3255 9.21635 17.3255 9.61803 17.195L8.69098 14.3418C8.89183 14.2766 9.10817 14.2766 9.30902 14.3418L8.38197 17.195Z" />
+                        </svg>
+                      </div>
+                      <div [ngClass]="i.value > 49 ? 'black_color' : 'gray_color'">
+                        {{ i.key }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Transcription" style="font-size: 13px; font-weight: 600">
+            <div class="for_scroll">
+              <div class="userChat">
+                <div class="" *ngFor="let i of RECORDINGSDETAIL?.transcription" [ngClass]="
+                    i.channel.slice(0, 8) === 'Customer' ? 'customer' : 'agent'
+                  ">
+                  <div style="width: 33px; height: 33px; margin-top: 10px">
+                    <svg *ngIf="i.channel.slice(0, 8) === 'Customer'" style="width: 33px; height: 33px;"
+                      xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                      class="imgSize">
+                      <circle cx="16" cy="16" r="16" fill="#8CD5FF"></circle>
+                      <mask id="mask0_7014_117062" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32"
+                        style="mask-type: alpha;">
+                        <circle cx="16" cy="16" r="16" fill="#C4C4C4"></circle>
+                      </mask>
+                      <g mask="url(#mask0_7014_117062)">
+                        <ellipse cx="16" cy="28.1601" rx="12.16" ry="7.04" fill="#002E99"></ellipse>
+                      </g>
+                      <circle cx="16" cy="13.5998" r="5.76" fill="#002E99"></circle>
+                    </svg>
+                    <svg *ngIf="i.channel.slice(0, 8) !== 'Customer'" style="width: 33px; height: 33px;"
+                      xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                      class="imgSize">
+                      <circle cx="16" cy="16" r="16" fill="#FFC27D"></circle>
+                      <mask id="mask0_7014_117008" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32"
+                        style="mask-type: alpha;">
+                        <circle cx="16" cy="16" r="16" fill="#C4C4C4"></circle>
+                      </mask>
+                      <g mask="url(#mask0_7014_117008)">
+                        <ellipse cx="16" cy="28.1601" rx="12.16" ry="7.04" fill="#A62100"></ellipse>
+                      </g>
+                      <ellipse cx="16" cy="13.5998" rx="5.76" ry="5.76" fill="#A62100"></ellipse>
+                    </svg>
+                  </div>
+                  <div [ngClass]="
+                      i.channel.slice(0, 8) === 'Customer'
+                        ? 'textStart'
+                        : 'textEnd'
+                    ">
+                    <div style="font-size: 12px; color: #425466">
+                      {{ i.channel }}
+                    </div>
+                    <div class="chatMsg" [ngClass]=" i.channel.slice(0, 8) === 'Customer'
+                      ? ''
+                      : 'float-right'">
+                      {{ i.text }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Keywords">
+            <div style="background-color: white; padding: 24px;margin-top: 24px;">
+
+            <div *ngIf="isDropdownShown" class="keywordContainer">
+              <div class="sortHead">Sorting</div>
+              <div>
+                <div (clickOutside)="iskeywordDropdown1 = false"
+                  style="position: relative; font-size: 11px; width: 250px;">
+                  <div [class.dateDropdownactive]="iskeywordDropdown1" class="keyword"
+                    (click)="iskeywordDropdown1 = !iskeywordDropdown1">
+                    <div style="font-size: 13px; font-weight: 500; color: #585556">
+                      {{ currentTab }}
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M5.48252 8.15869L2.18511 4.39022C1.79615 3.9457 2.11184 3.25 2.70251 3.25H9.29733C9.888 3.25 10.2037 3.9457 9.81473 4.39022L6.51732 8.15869C6.24341 8.47173 5.75643 8.47173 5.48252 8.15869Z"
+                        fill="#B2B1B1" />
+                    </svg>
+                  </div>
+                  <div class="keywordList" *ngIf="iskeywordDropdown1">
+                    <div [ngClass]="tab === 1 ? 'tabColor' : ''" (click)="onKeyword('By Frequency'); tab = 1">
+                      By Frequency
+                      <svg *ngIf="tab === 1" xmlns="http://www.w3.org/2000/svg" width="16" height="11"
+                        viewBox="0 0 16 11" fill="none" style="margin-right: 5px;" class="ng-star-inserted">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M15.7962 0.201364C16.0679 0.46985 16.0679 0.905151 15.7962 1.17364L6.05712 10.7986C5.92666 10.9276 5.74972 11 5.56522 11C5.38072 11 5.20378 10.9276 5.07332 10.7986L0.203752 5.98614C-0.0679173 5.71765 -0.0679173 5.28235 0.203752 5.01386C0.475421 4.74538 0.915884 4.74538 1.18755 5.01386L5.56522 9.34023L14.8124 0.201364C15.0841 -0.0671214 15.5246 -0.0671214 15.7962 0.201364Z"
+                          fill="#EA714A"></path>
+                      </svg>
+                    </div>
+                    <div [ngClass]="tab === 2 ? 'tabColor' : ''" (click)="onKeyword('Alphabetically'); tab = 2">
+                      Alphabetically
+                      <svg *ngIf="tab === 2" xmlns="http://www.w3.org/2000/svg" width="16" height="11"
+                        viewBox="0 0 16 11" fill="none" style="margin-right: 5px;" class="ng-star-inserted">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M15.7962 0.201364C16.0679 0.46985 16.0679 0.905151 15.7962 1.17364L6.05712 10.7986C5.92666 10.9276 5.74972 11 5.56522 11C5.38072 11 5.20378 10.9276 5.07332 10.7986L0.203752 5.98614C-0.0679173 5.71765 -0.0679173 5.28235 0.203752 5.01386C0.475421 4.74538 0.915884 4.74538 1.18755 5.01386L5.56522 9.34023L14.8124 0.201364C15.0841 -0.0671214 15.5246 -0.0671214 15.7962 0.201364Z"
+                          fill="#EA714A"></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="currentTab === 'By Frequency'" class="rowList">
+              <div class="row m-0 p-0">
+                <div class="col-md-4 py-1" *ngFor="let i of RECORDINGSDETAIL?.keywordsbylength">
+                  <div class="flex item-center noramlKeywords">
+                    <div class="keyText">{{ i.keyword }}</div>
+                    <span>{{ i.length.count }}</span>
+                  </div>
+                </div>
+                <!-- <div class=" col-md-4 py-1">
+                      <div class="flex item-center redKeywords">
+                        Compatitor's name <span>1</span>
+                      </div>
+                    </div> -->
+              </div>
+            </div>
+            <div *ngIf="currentTab === 'Alphabetically'" class="rowList">
+              <div id="parent" class="">
+                <div class=" py-1" *ngFor="let i of RECORDINGSDETAIL?.keywords | keyvalue">
+                  <div class="flex item-center noramlKeywords">
+                    <div class="keyText">{{ i.key }}</div>
+                    <span>{{ i.value.count }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </ng-container>
+    </div>
+
+    <!-- Right Section -->
+    <div class="summary">
+      <div class="sumBackground">
+        <div class="sumHeader">Call information <span><svg (click)="downloadPagePDF()"
+              xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"
+              style="margin-left: 25px; cursor: pointer;">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M1.75 10C1.75 5.69604 5.04473 2.16256 9.249 1.78364V11.0083L7.53033 9.28962C7.23744 8.99672 6.76256 8.99672 6.46967 9.28962C6.17678 9.58251 6.17678 10.0574 6.46967 10.3503L9.40385 13.2845C9.54095 13.4629 9.75654 13.578 9.999 13.578C10.2373 13.578 10.4497 13.4669 10.587 13.2936L13.5303 10.3503C13.8232 10.0574 13.8232 9.58251 13.5303 9.28962C13.2374 8.99672 12.7626 8.99672 12.4697 9.28962L10.749 11.0103V1C10.749 0.585786 10.4132 0.25 9.999 0.25C4.61473 0.25 0.25 4.61484 0.25 10C0.25 15.3852 4.61479 19.75 10 19.75C15.3852 19.75 19.75 15.3852 19.75 10C19.75 6.17092 17.5376 2.86972 14.3332 1.27459C13.9624 1.09 13.5122 1.24096 13.3276 1.61177C13.143 1.98258 13.294 2.43282 13.6648 2.61741C16.3824 3.97028 18.25 6.76508 18.25 10C18.25 14.5568 14.5568 18.25 10 18.25C5.44321 18.25 1.75 14.5568 1.75 10Z"
+                fill="#718096"></path>
+            </svg></span></div>
+        <div
+          *ngIf="RECORDINGSDETAIL?.scoreStatus !== 'Not Scored' && userRole !== 2 && userRole !== 3 && userRole !== 8"
+          style="margin-bottom: 15px; display: flex; justify-content:center; align-items: center; ">
+          <button *ngIf="RECORDINGSDETAIL?.scoreStatus !== 'Reviewed'" class="markreview" (click)=" markAsReview()">
+            <span *ngIf="isMarkLoading" class="spinner-border spinner-border-sm mr-1 markedSpinner"></span>
+            Mark call as Reviewed</button>
+          <button *ngIf="RECORDINGSDETAIL?.scoreStatus === 'Reviewed'" class="markviewed"><svg
+              style="margin-right: 20px;" xmlns="http://www.w3.org/2000/svg" width="16" height="11" viewBox="0 0 16 11"
+              fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M15.7962 0.201364C16.0679 0.46985 16.0679 0.905151 15.7962 1.17364L6.05712 10.7986C5.92666 10.9276 5.74972 11 5.56522 11C5.38072 11 5.20378 10.9276 5.07332 10.7986L0.203752 5.98614C-0.0679173 5.71765 -0.0679173 5.28235 0.203752 5.01386C0.475421 4.74538 0.915884 4.74538 1.18755 5.01386L5.56522 9.34023L14.8124 0.201364C15.0841 -0.0671214 15.5246 -0.0671214 15.7962 0.201364Z"
+                fill="#429E55" />
+            </svg> Reviewed</button>
+          <button
+            [class.rescsoreReq]="RECORDINGSDETAIL?.scoreStatus === 'Rescore Request 1' || RECORDINGSDETAIL?.scoreStatus === 'Rescore Request 2'"
+            class="reqrescore"
+            *ngIf="RECORDINGSDETAIL?.scoreStatus !== 'Reviewed' && RECORDINGSDETAIL?.scoreStatus !== 'Scored 2' && userRole !== 2 && userRole !== 3"
+            (click)="triggerModal(rescore)">
+            <svg
+              *ngIf="RECORDINGSDETAIL?.scoreStatus === 'Rescore Request 1' || RECORDINGSDETAIL?.scoreStatus === 'Rescore Request 2'"
+              xmlns="http://www.w3.org/2000/svg" width="16" height="11" viewBox="0 0 16 11" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M15.7962 0.201364C16.0679 0.46985 16.0679 0.905151 15.7962 1.17364L6.05712 10.7986C5.92666 10.9276 5.74972 11 5.56522 11C5.38072 11 5.20378 10.9276 5.07332 10.7986L0.203752 5.98614C-0.0679173 5.71765 -0.0679173 5.28235 0.203752 5.01386C0.475421 4.74538 0.915884 4.74538 1.18755 5.01386L5.56522 9.34023L14.8124 0.201364C15.0841 -0.0671214 15.5246 -0.0671214 15.7962 0.201364Z"
+                fill="#429E55" />
+            </svg>
+            <ng-container *ngIf="!isReportingIssues">
+              {{ RECORDINGSDETAIL?.scoreStatus === 'Rescore Request 1' || RECORDINGSDETAIL?.scoreStatus === 'Rescore
+              Request 2' ? 'Rescore Requested' :'Request Rescore' }}
+            </ng-container>
+            <span *ngIf="isReportingIssues" class="spinner-border spinner-border-sm mr-1"></span>
+          </button>
+        </div>
+        <!-- Summary Card -->
+        <div class="sumCard" *ngIf="RECORDINGSDETAIL?.summary">
+          <div
+            style="color: #425466; font-weight: 600; font-size: 14px; margin-top: 6px; margin-bottom: 12px; margin-left: 11px;">
+            Call summary
+          </div>
+
+          <div class="details">
+            <div *ngIf="RECORDINGSDETAIL?.summary" style="margin-right: 5px">
+              &#9679;
+            </div>
+            {{ RECORDINGSDETAIL?.summary }}
+          </div>
+        </div>
+        <!-- Audio Player -->
+        <div class="audioCard">
+          <div class="audioTime">
+            <div>
+              <span>{{ readCurrentTime }} </span>/ <span>{{ readDuration }}</span>
+            </div>
+            <a *ngIf="isAudioAccess" [href]="RECORDINGSDETAIL?.recording" target="_blank" style="margin: 0 20px">
+              <svg xmlns="http://www.w3.org/2000/svg" class="svgSize" viewBox="0 0 24 24" width="18" height="18"
+                fill="#718096">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z" />
+              </svg>
+            </a>
+          </div>
+          <div class="flex item-center playerControlls">
+            <div style="width: 100%">
+              <div style="width: 100%">
+                <div class="matslider">
+                  <mat-slider class="w-100" #seek (input)="setSeek(seek.value)" [value]="currentTime" min="0"
+                    [max]="duration" step="0.01"></mat-slider>
+                </div>
+              </div>
+            </div>
+            <div class="flex item-center PlayerBtns">
+              <span (click)="previous()" style="margin-right: 3px; cursor: pointer;"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
+                  <path d="M8.09928 3.69702L10.0001 5.59781L7.86719 3.46592L10.0001 1.33203" stroke="#707070"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path
+                    d="M8.09922 3.69704C11.6303 2.89262 15.2841 4.40796 17.2095 7.47532C19.1349 10.5427 18.9112 14.4919 16.6517 17.3222C14.3922 20.1525 10.5907 21.2455 7.17299 20.0475C3.75533 18.8494 1.46824 15.6221 1.47046 12.0005C1.47563 10.1588 2.08191 8.36905 3.19718 6.90337"
+                    stroke="#707070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M6.09131 14.5017H8.77243" stroke="#707070" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M7.43204 14.5016V9.49951L5.97144 10.8201" stroke="#707070" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                  <rect x="10.8875" y="9.37451" width="2.84118" height="5.25219" rx="1" stroke="#707070"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span class="playnPause cursor-pointer">
+                <svg (click)="pause()" *ngIf="isPlay" xmlns="http://www.w3.org/2000/svg" width="7.17" height="10"
+                  viewBox="0 0 8 10" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M1.9165 0.75C1.9165 0.335786 1.58072 0 1.1665 0C0.75229 0 0.416504 0.335786 0.416504 0.75V9.25C0.416504 9.66421 0.75229 10 1.1665 10C1.58072 10 1.9165 9.66421 1.9165 9.25V0.75ZM7.58319 0.75C7.58319 0.335786 7.2474 0 6.83319 0C6.41898 0 6.08319 0.335786 6.08319 0.75V9.25C6.08319 9.66421 6.41898 10 6.83319 10C7.2474 10 7.58319 9.66421 7.58319 9.25V0.75Z"
+                    fill="#707070" />
+                </svg>
+                <svg style="margin-left: 2px; cursor: pointer;" (click)="isAudioAccess ?  play() : ''" *ngIf="!isPlay"
+                  xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 10 12" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M2.50015 1.83233L7.99965 5.08499C8.69523 5.49583 8.69523 6.50308 7.99965 6.91391L2.50015 10.1666C1.79182 10.5859 0.896484 10.0745 0.896484 9.25141V2.74749C0.896484 1.92441 1.79182 1.41299 2.50015 1.83233V1.83233Z"
+                    stroke="#707070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span (click)="next()" style="margin-left: 3px; cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M9.45365 0.801577C9.16069 1.0944 9.16057 1.56928 9.4534 1.86224L10.3303 2.73959C7.06564 2.61962 3.92173 4.23672 2.13931 7.07635C0.0444847 10.4137 0.287895 14.7105 2.74622 17.7899C5.20455 20.8693 9.3407 22.0585 13.0592 20.755C16.7776 19.4515 19.266 15.9401 19.2636 11.9998L19.2636 11.9981C19.258 9.99306 18.5979 8.04463 17.3837 6.44897C17.1329 6.11933 16.6623 6.05544 16.3327 6.30627C16.0031 6.5571 15.9392 7.02765 16.19 7.35729C17.2062 8.69276 17.7587 10.3234 17.7636 12.0015C17.7653 15.304 15.6796 18.2469 12.563 19.3395C9.44608 20.4321 5.97909 19.4353 3.91849 16.8541C1.85788 14.2729 1.65385 10.6712 3.40977 7.87381C4.905 5.49171 7.54325 4.13597 10.2821 4.23891L9.45365 5.06735L9.45352 5.06748C9.16066 5.36035 9.16063 5.83517 9.45346 6.12808C9.7463 6.42098 10.2211 6.42106 10.5141 6.12826L10.5142 6.12814L12.6469 3.99637C12.7876 3.85576 12.8667 3.66501 12.8667 3.4661C12.8668 3.26718 12.7878 3.0764 12.6472 2.93571L10.5143 0.801826C10.2215 0.508864 9.74661 0.508752 9.45365 0.801577ZM10.1374 10.3745C10.1374 9.40802 10.9209 8.62451 11.8874 8.62451H12.7286C13.6951 8.62451 14.4786 9.40801 14.4786 10.3745V13.6267C14.4786 14.5932 13.6951 15.3767 12.7286 15.3767H11.8874C10.9209 15.3767 10.1374 14.5932 10.1374 13.6267V10.3745ZM11.8874 10.1245C11.7493 10.1245 11.6374 10.2364 11.6374 10.3745V13.6267C11.6374 13.7648 11.7493 13.8767 11.8874 13.8767H12.7286C12.8666 13.8767 12.9786 13.7648 12.9786 13.6267V10.3745C12.9786 10.2364 12.8666 10.1245 12.7286 10.1245H11.8874ZM8.18197 9.49953C8.18197 9.20303 8.00731 8.93437 7.73633 8.81406C7.46534 8.69374 7.14892 8.74435 6.92899 8.94319L5.46838 10.2637C5.16112 10.5415 5.13724 11.0158 5.41503 11.3231C5.69282 11.6303 6.1671 11.6542 6.47435 11.3764L6.68197 11.1887V13.7517H6.09124C5.67702 13.7517 5.34124 14.0875 5.34124 14.5017C5.34124 14.9159 5.67702 15.2517 6.09124 15.2517H8.77235C9.18657 15.2517 9.52235 14.9159 9.52235 14.5017C9.52235 14.0875 9.18657 13.7517 8.77235 13.7517H8.18197V9.49953Z"
+                    fill="#707070" />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="volSlider">
+            <div class="" style="display: flex; margin-top: 5px; align-items: center;">
+              <span class="speed">
+                <label cl for="speed">Speed</label>
+                <div (clickOutside)="isDurationDropdown1 = false" style="position: relative">
+                  <div class="durationDropdown" (click)="isDurationDropdown1 = !isDurationDropdown1">
+                    <div>{{ currentSpeed }}x</div>
+                    <svg style="margin: 0 5px" xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                      viewBox="0 0 12 12" fill="none">
+                      <path
+                        d="M5.48252 8.15869L2.18511 4.39022C1.79615 3.9457 2.11184 3.25 2.70251 3.25H9.29733C9.888 3.25 10.2037 3.9457 9.81473 4.39022L6.51732 8.15869C6.24341 8.47173 5.75643 8.47173 5.48252 8.15869Z"
+                        fill="#707070" />
+                    </svg>
+                  </div>
+                  <div class="durationDropdownList" *ngIf="isDurationDropdown1">
+                    <div [class.seletedOpt]="currentSpeed == '0.5'" (click)="playBackSpeed('0.5')">
+                      0.5x
+                    </div>
+                    <div [class.seletedOpt]="currentSpeed == '1'" (click)="playBackSpeed('1')">
+                      1x
+                    </div>
+                    <div [class.seletedOpt]="currentSpeed == '2'" (click)="playBackSpeed('2')">
+                      2x
+                    </div>
+                    <div [class.seletedOpt]="currentSpeed == '3'" (click)="playBackSpeed('3')">
+                      3x
+                    </div>
+                  </div>
+                </div>
+              </span>
+              <div style="width: 15px; margin-left: 20px">
+                <svg style="margin-right: 5px" *ngIf="muted === 'medium'" (click)="mute()"
+                  xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 18 16" fill="none"
+                  class="cursor-pointer">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M4.875 4.62498H2.5C1.948 4.62498 1.5 5.07298 1.5 5.62498V10.375C1.5 10.927 1.948 11.375 2.5 11.375H4.875L8.854 14.746C9.504 15.297 10.5 14.835 10.5 13.983V2.01698C10.5 1.16498 9.503 0.702982 8.854 1.25398L4.875 4.62498Z"
+                    stroke="#707070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path
+                    d="M14.5391 11.978C15.7011 11.256 16.5021 9.75397 16.5021 8.00497C16.5021 6.25597 15.7011 4.75297 14.5391 4.02197"
+                    stroke="#707070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <svg style="margin-right: 6px" *ngIf="muted === 'mute'" (click)="Unmute()"
+                  xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 21 16" fill="none"
+                  class="cursor-pointer">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M4.875 4.62486H2.5C1.948 4.62486 1.5 5.07286 1.5 5.62486V10.3749C1.5 10.9269 1.948 11.3749 2.5 11.3749H4.875L8.854 14.7459C9.504 15.2969 10.5 14.8349 10.5 13.9829V2.01686C10.5 1.16486 9.503 0.70286 8.854 1.25386L4.875 4.62486Z"
+                    stroke="#707070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M20.1104 6.21978C20.4033 5.92689 20.4033 5.45202 20.1104 5.15912C19.8175 4.86623 19.3426 4.86623 19.0497 5.15912L17.3301 6.87879L15.6104 5.15912C15.3175 4.86623 14.8426 4.86623 14.5497 5.15912C14.2569 5.45202 14.2569 5.92689 14.5497 6.21978L16.2694 7.93945L14.5497 9.65912C14.2569 9.95202 14.2569 10.4269 14.5497 10.7198C14.8426 11.0127 15.3175 11.0127 15.6104 10.7198L17.3301 9.00011L19.0497 10.7198C19.3426 11.0127 19.8175 11.0127 20.1104 10.7198C20.4033 10.4269 20.4033 9.95202 20.1104 9.65912L18.3907 7.93945L20.1104 6.21978Z"
+                    fill="#707070" />
+                </svg>
+                <svg (click)="mute()" *ngIf="muted === 'full'" fullVolume xmlns="http://www.w3.org/2000/svg" width="17"
+                  height="14" viewBox="0 0 22 16" fill="none" class="cursor-pointer">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M4.875 4.62486H2.5C1.948 4.62486 1.5 5.07286 1.5 5.62486V10.3749C1.5 10.9269 1.948 11.3749 2.5 11.3749H4.875L8.854 14.7459C9.504 15.2969 10.5 14.8349 10.5 13.9829V2.01686C10.5 1.16486 9.503 0.70286 8.854 1.25386L4.875 4.62486Z"
+                    stroke="#707070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M17.9885 0.366384C17.6742 0.096646 17.2007 0.132809 16.9309 0.447156C16.6612 0.761504 16.6974 1.235 17.0117 1.50474C18.6393 2.90139 19.7501 5.26646 19.7501 8.00256C19.7501 10.7347 18.6413 13.0981 17.0161 14.4959C16.702 14.766 16.6664 15.2396 16.9365 15.5536C17.2066 15.8677 17.6801 15.9033 17.9942 15.6332C19.9849 13.921 21.2501 11.1244 21.2501 8.00256C21.2501 4.87666 19.9829 2.07773 17.9885 0.366384ZM14.9366 3.38673C14.586 3.16617 14.1229 3.27159 13.9024 3.6222C13.6818 3.9728 13.7872 4.43583 14.1378 4.65639C15.0462 5.22784 15.7502 6.46857 15.7502 8.00456C15.7502 9.54155 15.0458 10.7786 14.1414 11.3405C13.7896 11.5591 13.6816 12.0216 13.9002 12.3734C14.1188 12.7252 14.5812 12.8332 14.933 12.6146C16.3527 11.7325 17.2502 9.96557 17.2502 8.00456C17.2502 6.04255 16.3522 4.27728 14.9366 3.38673Z"
+                    fill="#707070" />
+                </svg>
+                <svg (click)="mute()" *ngIf="muted === 'low'" leastVolume xmlns="http://www.w3.org/2000/svg" width="15"
+                  height="14" viewBox="0 0 17 16" fill="none" class="cursor-pointer">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M4.875 4.62486H2.5C1.948 4.62486 1.5 5.07286 1.5 5.62486V10.3749C1.5 10.9269 1.948 11.3749 2.5 11.3749H4.875L8.854 14.7459C9.504 15.2969 10.5 14.8349 10.5 13.9829V2.01686C10.5 1.16486 9.503 0.70286 8.854 1.25386L4.875 4.62486Z"
+                    stroke="#707070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M14.9602 5.50351C14.6331 5.24936 14.162 5.30848 13.9078 5.63555C13.6537 5.96263 13.7128 6.43381 14.0398 6.68796C14.4593 7.01388 14.704 7.52831 14.707 8.06473C14.704 8.60116 14.4593 9.11559 14.0398 9.44151C13.7128 9.69566 13.6537 10.1668 13.9078 10.4939C14.162 10.821 14.6331 10.8801 14.9602 10.626C15.7595 10.0049 16.2026 9.04743 16.207 8.06958C16.207 8.06895 16.207 8.06833 16.207 8.0677C16.207 8.06671 16.207 8.06572 16.207 8.06473C16.207 8.06375 16.207 8.06276 16.207 8.06177C16.207 8.06114 16.207 8.06051 16.207 8.05989C16.2026 7.08204 15.7595 6.12459 14.9602 5.50351Z"
+                    fill="#707070" />
+                </svg>
+              </div>
+              <div class="volSlider" style="margin-left: 5px">
+                <mat-slider class="w-100" min="0" max="1" step="0.01" #vol (input)="setVolume(vol.value)"
+                  [value]="valume"></mat-slider>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- User Dropdown -->
+        <div class="userDropdowns">
+          <div style="width: 100%;">
+            <div (click)="isShow = !isShow" class="flex item-center space-between cursor-pointer">
+              <div class="flex item-center">
+                <div style="margin-right: 8px">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="16" fill="#FFC27D" />
+                    <mask id="mask0_7014_117008" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+                      width="32" height="32">
+                      <circle cx="16" cy="16" r="16" fill="#C4C4C4" />
+                    </mask>
+                    <g mask="url(#mask0_7014_117008)">
+                      <ellipse cx="16" cy="28.1601" rx="12.16" ry="7.04" fill="#A62100" />
+                    </g>
+                    <ellipse cx="16" cy="13.5998" rx="5.76" ry="5.76" fill="#A62100" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="forbigscreen" style="font-size: 14px; font-weight: 600; color: #425466">
+                    {{
+                    RECORDINGSDETAIL?.agent == "Unassign"
+                    ? "No Agent"
+                    : RECORDINGSDETAIL?.agent
+                    }}
+                  </div>
+                  <!-- <div
+                  *ngIf="RECORDINGSDETAIL?.total_score !== 'N/A' && inditotal === -1"
+                  style="
+                      font-size: 14px;
+                      font-weight: 400;
+                      color: #718096;
+                      margin-top: -2px;
+                    ">
+                    {{ RECORDINGSDETAIL?.total_score }} points
+                  </div> -->
+                  <div *ngIf="inditotal !== -1" style="
+                      font-size: 14px;
+                      font-weight: 400;
+                      color: #718096;
+                      margin-top: -2px;
+                    ">
+                    {{ inditotal }} points
+                  </div>
+                  <!-- <div
+                  *ngIf="RECORDINGSDETAIL?.total_score !== 'N/A' && inditotal !== -1"
+                  style="
+                      font-size: 14px;
+                      font-weight: 400;
+                      color: #718096;
+                      margin-top: -2px;
+                    ">
+                    {{ inditotal }} points
+                  </div> -->
+                  <div *ngIf="inditotal === -1" style="
+                  font-size: 14px;
+                  font-weight: 400;
+                  color: #718096;
+                  margin-top: -2px;
+                ">
+                    Not Scored Yet
+                  </div>
+                </div>
+              </div>
+              <div class="flex item-center" style="margin-bottom: 4px;margin-right: 12px;">
+                <span class="recordet" style="
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #425466;
+                    margin-right: 20px;
+                    line-height: 15px;
+                    text-align: end;
+                    margin-top: -15px;
+                  ">
+                  Call details</span>
+                <svg style="margin-top: -13px;" *ngIf="!isShow" xmlns="http://www.w3.org/2000/svg" width="14" height="8"
+                  viewBox="0 0 14 8" fill="none">
+                  <path d="M13 1L7 7L1 1" stroke="#707070" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+
+                <svg style="margin-top: -12px" *ngIf="isShow" xmlns="http://www.w3.org/2000/svg" width="14" height="8"
+                  viewBox="0 0 14 8" fill="none">
+                  <path d="M13 7L6.99267 1L1 7" stroke="#707070" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+            <div *ngIf="isShow" class="mt-3">
+              <div style="font-weight: 500; font-size: 14px; color: #425466">
+                Conversation Highlights
+              </div>
+              <div style="
+                  font-size: 12px;
+                  font-weight: 400;
+                  color: #585556;
+                  line-height: 20px;
+                ">
+                {{ RECORDINGSDETAIL.conversationHighlights }}
+              </div>
+              <div style="
+                  font-size: 14px;
+                  font-weight: 500;
+                  padding-top: 20px;
+                  color: #425466;
+                ">
+                Date
+                <span style="
+                    font-size: 12px;
+                    font-weight: 400;
+                    padding-left: 5px;
+                    color: #585556;
+                  ">{{ RECORDINGSDETAIL?.date }}</span>
+              </div>
+              <div style="display: flex">
+                <div class="pt-4" style="font-size: 14px; font-weight: 500; color: #425466">
+                  Direction
+                </div>
+                <div style="padding-top: 18px; padding-left: 5px">
+                  <svg *ngIf="RECORDINGSDETAIL?.direction === 'incoming'" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M10.131 13.869C8.96102 12.699 8.07902 11.389 7.49302 10.06C7.37002 9.77897 7.44202 9.44997 7.65902 9.23297L8.47802 8.41397C9.14902 7.74297 9.14902 6.79397 8.56302 6.20797L7.39002 5.03497C6.60902 4.25397 5.34302 4.25397 4.56202 5.03497L3.91002 5.68597C3.16902 6.42697 2.86002 7.49597 3.06002 8.55597C3.55402 11.169 5.07202 14.03 7.52102 16.479C9.97002 18.928 12.831 20.446 15.444 20.94C16.504 21.14 17.573 20.831 18.314 20.09L18.965 19.439C19.746 18.658 19.746 17.392 18.965 16.611L17.792 15.438C17.206 14.852 16.256 14.852 15.671 15.438L14.768 16.342C14.551 16.559 14.222 16.632 13.941 16.508C12.612 15.921 11.301 15.038 10.131 13.869Z"
+                      stroke="#2CAE5F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M15 3V9H21" stroke="#2CAE5F" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M21 3L15 9" stroke="#2CAE5F" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+
+                  <svg *ngIf="RECORDINGSDETAIL?.direction === 'outcoming'" xmlns="http://www.w3.org/2000/svg" width="20"
+                    height="20" viewBox="0 0 20 20" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M8.13054 11.869C6.96054 10.699 6.07854 9.38897 5.49254 8.05997C5.36954 7.77897 5.44154 7.44997 5.65854 7.23297L6.47754 6.41397C7.14854 5.74297 7.14854 4.79397 6.56254 4.20797L5.38954 3.03497C4.60854 2.25397 3.34254 2.25397 2.56154 3.03497L1.90954 3.68597C1.16854 4.42697 0.859536 5.49597 1.05954 6.55597C1.55354 9.16897 3.07154 12.03 5.52054 14.479C7.96954 16.928 10.8305 18.446 13.4435 18.94C14.5035 19.14 15.5725 18.831 16.3135 18.09L16.9645 17.439C17.7455 16.658 17.7455 15.392 16.9645 14.611L15.7915 13.438C15.2055 12.852 14.2555 12.852 13.6705 13.438L12.7675 14.342C12.5505 14.559 12.2215 14.632 11.9405 14.508C10.6115 13.921 9.30054 13.038 8.13054 11.869Z"
+                      stroke="#2CAE5F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M18.9995 7V1H12.9995" stroke="#2CAE5F" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M12.9995 7L18.9995 1" stroke="#2CAE5F" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                  <svg *ngIf="RECORDINGSDETAIL?.direction === 'missed'" xmlns="http://www.w3.org/2000/svg" width="20"
+                    height="20" viewBox="0 0 20 20" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M8.13054 11.869C6.96054 10.699 6.07854 9.38897 5.49254 8.05997C5.36954 7.77897 5.44154 7.44997 5.65854 7.23297L6.47754 6.41397C7.14854 5.74297 7.14854 4.79397 6.56254 4.20797L5.38954 3.03497C4.60854 2.25397 3.34254 2.25397 2.56154 3.03497L1.90954 3.68597C1.16854 4.42697 0.859536 5.49597 1.05954 6.55597C1.55354 9.16897 3.07154 12.03 5.52054 14.479C7.96954 16.928 10.8305 18.446 13.4435 18.94C14.5035 19.14 15.5725 18.831 16.3135 18.09L16.9645 17.439C17.7455 16.658 17.7455 15.392 16.9645 14.611L15.7915 13.438C15.2055 12.852 14.2555 12.852 13.6705 13.438L12.7675 14.342C12.5505 14.559 12.2215 14.632 11.9405 14.508C10.6115 13.921 9.30054 13.038 8.13054 11.869Z"
+                      stroke="#FF3443" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M18.9995 1L12.9995 7" stroke="#FF3443" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M18.9995 7L12.9995 1" stroke="#FF3443" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+              </div>
+              <div style="display: flex; position: relative;">
+                <div class="pt-4"
+                  style="font-size: 14px; font-weight: 500; color: #425466; margin-right: -27px !important;">
+                  Score
+                </div>
+                <div style="position: relative;" *ngIf="inditotal !== -1">
+                  <div id="chart"
+                    *ngIf="RECORDINGSDETAIL.total_score !== 'N/A' && inditotal === -1 && !isIndicatorsTab">
+                    <apx-chart [series]="chartOptions?.series" [chart]="chartOptions?.chart"
+                      [plotOptions]="chartOptions?.plotOptions" [labels]="chartOptions?.labels"
+                      [colors]="chartOptions?.colors"></apx-chart>
+                  </div>
+                  <div *ngIf="RECORDINGSDETAIL.total_score !== 'N/A' && inditotal === -1 && !isIndicatorsTab"
+                    [class.NA]="RECORDINGSDETAIL.total_score === 'N/A'"
+                    [class.morethan0]="RECORDINGSDETAIL.total_score > 0" [class.fullPoints]="inditotal == 100"
+                    class="percentageText">
+                    {{ RECORDINGSDETAIL.total_score }}
+                  </div>
+
+                  <div id="chart" *ngIf="inditotal !== -1">
+                    <apx-chart [series]="chartOptions?.series" [chart]="chartOptions?.chart"
+                      [plotOptions]="chartOptions?.plotOptions" [labels]="chartOptions?.labels"
+                      [colors]="chartOptions?.colors"></apx-chart>
+                  </div>
+                  <div *ngIf="inditotal !== -1" [class.NA]="inditotal !== -1" [class.morethan0]="inditotal > 0"
+                    [class.fullPoints]="inditotal == 100" class="percentageText">
+                    {{ inditotal }}
+                  </div>
+                  <div id="chart"
+                    *ngIf="RECORDINGSDETAIL.total_score !== 'N/A' && inditotal === -1 && !isIndicatorsTab">
+                    <apx-chart [series]="chartOptions?.series" [chart]="chartOptions?.chart"
+                      [plotOptions]="chartOptions?.plotOptions" [labels]="chartOptions?.labels"
+                      [colors]="chartOptions?.colors"></apx-chart>
+                  </div>
+                  <div *ngIf="RECORDINGSDETAIL.total_score !== 'N/A' && inditotal === -1 && !isIndicatorsTab"
+                    [class.NA]="inditotal !== -1 && RECORDINGSDETAIL.total_score === 'N/A'"
+                    [class.morethan0]="inditotal > 0" [class.fullPoints]="inditotal === 100" class="percentageText">
+                    {{ inditotal }}
+                  </div>
+                </div>
+                <div *ngIf="inditotal === -1">
+                  <div class="ppercentageText">
+                    Not Scored Yet
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; margin-top: 15px;
+              margin-bottom: 15px;">
+                <div style="font-size: 14px; font-weight: 500; color: #425466; white-space: nowrap;">
+                  Group name
+                </div>
+                <div
+                  style="font-size: 12px; font-weight: 500; color: #425466; margin-top: 3px; margin-left: 10px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                  {{ groupName }}
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; margin-top: 10px">
+                <div style="font-size: 14px; font-weight: 500; color: #425466">
+                  Status
+                </div>
+                <div class="userStatus">
+                  {{ RECORDINGSDETAIL?.status }}
+                </div>
+              </div>
+              <div class="pt-4" style="
+                  font-size: 14px;
+                  font-weight: 500;
+                  padding-top: 20px;
+                  color: #425466;
+                ">
+                Word count
+                <span style="
+                    font-size: 12px;
+                    font-weight: 400;
+                    padding-left: 5px;
+                    color: #585556;
+                  ">{{ RECORDINGSDETAIL.wordCount }}</span>
+              </div>
+              <div class="pt-4" style="
+                  font-size: 14px;
+                  font-weight: 500;
+                  padding-top: 20px;
+                  color: #425466;
+                ">
+                Call Classification
+                <span style="
+                    font-size: 12px;
+                    font-weight: 400;
+                    padding-left: 5px;
+                    color: #585556;
+                  ">{{ RECORDINGSDETAIL.classification }}</span>
+              </div>
+              <div class="pt-4" style="
+                  font-size: 14px;
+                  font-weight: 500;
+                  padding-top: 20px;
+                  color: #425466;
+                ">
+                Call ID
+                <span style="
+                    font-size: 12px;
+                    font-weight: 400;
+                    padding-left: 5px;
+                    color: #585556;
+                  ">{{ RECORDINGSDETAIL.callId }}</span>
+              </div>
+              <div class="tagsDiv">
+                <div class="tagBtn" style="cursor: pointer">
+                  <span (click)="
+                      updateContent.length < 20 ? (texttag = !texttag) : ''
+                    ">
+                    Add a tag
+                  </span>
+                </div>
+                <div style="display: flex; flex-flow: wrap; margin-right: 8px">
+                  <div style="margin-right: 8px; margin-top: 8px" *ngFor="let i of updateContent; let k = index"
+                    class="userTags">
+                    <div>#{{ i }}</div>
+
+                    <div style="cursor: pointer" (click)="deleteTag(k); saveTag()">
+                      <svg style="margin-left: 10px" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        viewBox="0 0 18 18" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M9 1.5C4.8525 1.5 1.5 4.8525 1.5 9C1.5 13.1475 4.8525 16.5 9 16.5C13.1475 16.5 16.5 13.1475 16.5 9C16.5 4.8525 13.1475 1.5 9 1.5ZM12.75 11.6925L11.6925 12.75L9 10.0575L6.3075 12.75L5.25 11.6925L7.9425 9L5.25 6.3075L6.3075 5.25L9 7.9425L11.6925 5.25L12.75 6.3075L10.0575 9L12.75 11.6925Z"
+                          fill="#718096" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="texttag">
+                  <input #tagInputs (input)="addTag($event.target.value)" (keyup.enter)="saveTag()" autofocus
+                    focus-me="shouldBeOpen" id="tagInput" class="taginput"
+                    placeholder="this is the example, calls, etc" /><br />
+                  <span style="color: #718096; font-size: 11px; font-weight: 400">Use commas to enter multiply
+                    hashtags</span>
+                </div>
+                <div *ngIf="texttag" style="display: flex; justify-content: end;margin-top: 7px;">
+                  <button [disabled]="loading" (click)="saveTag()" class="saveBtn">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Save
+                  </button>
+                </div>
+              </div>
+              <div (clickOutside)="clickOutsideNote()" class="noteDiv">
+                <div class="tagBtn" style="cursor: pointer" (click)="activeTextArea()">
+                  Add a note
+                </div>
+                <div *ngIf="RECORDINGSDETAIL.notes && !textarea" (click)="textarea = !textarea"
+                  class="noteText cursor-pointer">
+                  {{ RECORDINGSDETAIL.notes }}
+                </div>
+                <div *ngIf="textarea">
+                  <textarea [value]="RECORDINGSDETAIL?.notes" #notearea (input)="noteValue($event.target.value)"
+                    placeholder="Type your message here" class="textarean" maxlength="1500"></textarea>
+                  <!-- <div class="Button">
+                    <button (click)="saveNote()" class="saveBtn">
+                      <span
+                        *ngIf="loadingNote"
+                        class="spinner-border spinner-border-sm mr-1"
+                      ></span
+                      ><span *ngIf="!loadingNote">Save</span>
+                    </button>
+                  </div> -->
+                </div>
+              </div>
+              <div class="closeButton">
+                <button (click)="isShow = false">Collapse</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="reportIssue" style="cursor: pointer"> -->
+        <!-- <a *ngIf="false" (click)="triggerModal(modalData)">Report an issue</a> -->
+        <!-- <a  (click)="triggerModal(rescore)">Rescore Request </a> -->
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #modalData let-modal>
+  <div class="modalWrapper">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Report an issue</h4>
+      <button type="button" class="close" aria-label="Close" (click)="
+          modal.dismiss('Cross click'); textareamsg.value = ''; fileName = ''
+        ">
+        <img src="/assets/crosspo.svg" style="position: absolute; top: 10px; right: 10px" />
+      </button>
+    </div>
+    <div class="modal-body">
+      <label style="
+          color: #425466;
+          font-size: 14px;
+          font-weight: 500;
+          margin-bottom: 10px;
+          margin-top: 15px;
+        ">Please describe the issue</label>
+      <textarea #textareamsg (input)="IssueReporting($event.target.value)" rows="11"
+        [placeholder]="onFocusEvt ? '' : 'Type your message here'" class="textareann" (focus)="onFocusEvt = true"
+        (blur)="onFocusEvt = false;"></textarea>
+      <label style="
+          color: #425466;
+          font-size: 14px;
+          font-weight: 500;
+          margin-bottom: 10px;
+        ">Attachment</label>
+
+      <input #attach type="file" (change)="uploadFile($event)" style="display: none" accept=".jpg,.png,.wav,.mp3" />
+      <div (click)="attach.click()" class="attach">
+        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="18" viewBox="0 0 21 18" fill="none">
+          <path
+            d="M15.1823 6.31947L8.79262 12.7091C8.60505 12.8968 8.35063 13.0022 8.08533 13.0022H6.49867C5.94615 13.0022 5.49825 12.5543 5.49825 12.0018V10.4152C5.49834 10.1496 5.60249 9.89459 5.78837 9.70488L12.8213 2.51188C13.5471 1.76948 14.5398 1.34841 15.578 1.34258C16.6162 1.33676 17.6135 1.74666 18.3476 2.48087L18.4196 2.5529C19.1693 3.29666 19.5897 4.30987 19.5867 5.36591C19.5837 6.42196 19.1576 7.43275 18.4036 8.17224C16.0446 10.4822 12.8133 13.6975 10.9625 15.5443C10.0247 16.4793 8.75433 17.0042 7.43005 17.0039H4.49783C2.84029 17.0039 1.49658 15.6602 1.49658 14.0027V11.0724C1.49658 9.74606 2.02342 8.47399 2.96119 7.53597L9.17978 1.31738"
+            stroke="#B2B1B1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span style="
+            color: #b5b5bd;
+            font-size: 13px;
+            font-weight: 500;
+            margin-left: 10px;
+          ">Add an attachment</span>
+      </div>
+      <div style="font-size: 11px; color: #2999fd; margin-top: 8px" *ngIf="fileName">
+        {{ fileName ? fileName : "" }} <span style="margin-left: 5px;"><svg (click)="fileName = ''; attach.value = '';"
+            xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none" class="pointer">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M1.53033 0.46967C1.23744 0.176777 0.762563 0.176777 0.46967 0.46967C0.176777 0.762563 0.176777 1.23744 0.46967 1.53033L3.93934 5L0.46967 8.46967C0.176777 8.76256 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23744 9.82322 1.53033 9.53033L5 6.06066L8.46967 9.53033C8.76256 9.82322 9.23744 9.82322 9.53033 9.53033C9.82322 9.23744 9.82322 8.76256 9.53033 8.46967L6.06066 5L9.53033 1.53033C9.82322 1.23744 9.82322 0.762563 9.53033 0.46967C9.23744 0.176777 8.76256 0.176777 8.46967 0.46967L5 3.93934L1.53033 0.46967Z"
+              fill="#585556"></path>
+          </svg></span>
+      </div>
+      <div class="qAndA">
+        <a>Questions and answers</a>
+      </div>
+      <div class="row">
+        <button [disabled]="reportText === '' || fileName === ''" type="button" class="btn sac"
+          (click)="reportIssue(); modal.close('Save click'); attach.value = ''">
+          Submit
+        </button>
+      </div>
+      <div class="row">
+        <button type="button" class="btn det" (click)="
+            attach.value = '';
+            textareamsg.value = '';
+            fileName = '';
+            reportText = ''
+          ">
+          Clear
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #rescore let-modal>
+
+  <div class="disbaleReview" *ngIf="RECORDINGSDETAIL?.disablereview === 1">
+    You can not rescore request anymore.
+  </div>
+  <div class="modalWrapper" *ngIf="RECORDINGSDETAIL?.disablereview === 0">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Rescore request </h4>
+      <button type="button" class="close" aria-label="Close" (click)="
+          modal.dismiss('Cross click'); textareamsg.value = ''; fileName = ''
+        ">
+        <img src="/assets/crosspo.svg" style="position: absolute; top: 10px; right: 10px" />
+      </button>
+    </div>
+    <div class="modal-body">
+      <label style="
+          color: #425466;
+          font-size: 14px;
+          font-weight: 500;
+          margin-bottom: 10px;
+          margin-top: 15px;
+        ">Please describe your request here </label>
+      <textarea #rescoremsgText (input)="rescoreText = $event.target.value" rows="11"
+        [placeholder]="onFocusEvt ? '' : 'Type your message here'" class="textareann" (focus)="onFocusEvt = true"
+        (blur)="onFocusEvt = false;"></textarea>
+      <div class="row">
+        <button [disabled]="rescoreText === ''" type="button" class="btn sac"
+          (click)="reportIssue(); modal.close('Save click');">
+          Submit
+        </button>
+      </div>
+      <div class="row">
+        <button type="button" class="btn det" (click)="
+            rescoremsgText.value = '';
+            rescoreText = ''
+          ">
+          Clear
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template class="reportDiv" #issueReported let-modal>
+  <div class="modalBody">
+    <div>
+      <div class="flex justify-center" style="margin-bottom: 15px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <mask id="mask0_2923_73743" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="3" y="3" width="34"
+            height="34">
+            <circle cx="19.665" cy="19.665" r="16.665" fill="#C4C4C4" />
+          </mask>
+          <g mask="url(#mask0_2923_73743)">
+            <path d="M26.913 15L17.3478 25L13 20.4545" stroke="#10C7C7" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <circle cx="19.665" cy="19.665" r="15.665" stroke="#10C7C7" stroke-width="2" />
+          </g>
+        </svg>
+      </div>
+      <div class="reportedText flex justify-center">
+        Rescore review is submitted.
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,985 @@
+<div *ngIf="isLoading" class="loader-bg">
+  <div class="loader">
+    <span></span>
+  </div>
+</div>
+<div *ngIf="!isLoading">
+  <div style="margin-top: 40px; margin-bottom: 35px"></div>
+  <div class="examplee">
+    <div style="height: 0px;">
+      <mat-progress-bar
+        *ngIf="predicttable"
+        mode="indeterminate"
+      ></mat-progress-bar>
+    </div>
+    <div style="position: relative;">
+      <div
+        style="    position: absolute;
+      top: 28px;
+      left: 300px;"
+        (clickOutside)="isDropDownActive6 = false"
+      >
+        <button
+          (click)="onTablePdfClick(); this.PDFTable = true; this.predicttable = true;"
+          class="flex item-center downloadBtn btnHover"
+          style="margin-left: 48px;"
+          [ngClass]="isDropDownActive6 ? 'blueBackGround' : ''"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            style="width: 18px; height: 18px; fill: #707070"
+          >
+            <path
+              _ngcontent-ldp-c299=""
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+            ></path>
+          </svg>
+          <span style="margin-left: 5px; margin-right: 10px;font-size: 14px;"
+            >Download</span
+          >
+        </button>
+        <div
+          *ngIf="isDropDownActive6"
+          class="dropdown"
+          style="margin-bottom: 10px;"
+        >
+          <div class="checkboxess flex item-center">
+            <mat-checkbox
+              id="tablebox"
+              [checked]="this.PDFTable"
+              (change)="showOptionsTable($event, 'PDF')"
+            >
+              PDF</mat-checkbox
+            >
+            <!-- <label for="tablebox" class="pdfpam">PDF</label> -->
+          </div>
+          <button
+            (click)="onTablePdfClick(); isDropDownActive6 = false"
+            class="dropdownDownloadBtn flex item-center"
+          >
+            <svg
+              *ngIf="!Loadings"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              style="width: 18px; height: 18px; fill: #fff;
+                margin-left: -2px;"
+            >
+              <path
+                _ngcontent-ldp-c299=""
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+              ></path>
+            </svg>
+            <!-- <div *ngIf="Loadings">fg</div> -->
+            <span style="font-size: 14px; font-weight: 600;">Download</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      id="PredictesTable"
+      style="
+        background-color: #ffffff;
+        margin-bottom: 50px;
+      "
+    >
+      <div
+        style="
+          padding-top: 30px;
+          padding-left: 30px;
+          padding-right: 30px;
+          padding-bottom: 8px;
+          display: flex;
+          justify-content: space-between;
+        "
+      >
+        <div class="graph_head">Indicators periodic table</div>
+        <div style="min-width: 280px">
+          <div
+            (clickOutside)="periodicDropdown = false"
+            style="
+              position: relative;
+              font-size: 11px;
+              margin-right: 15px;
+              margin-left: 25px;
+              background-color: #fff;
+              border-radius: 8px;
+            "
+          >
+            <div
+              [class.activeDrop]="periodicDropdown"
+              class="cusDropdown"
+              (click)="periodicDropdown = !periodicDropdown"
+            >
+              <div
+                [class.none]="!periodicDropdown"
+                style="font-size: 13px; font-weight: 500; color: #b5b5bd"
+              >
+                Select Table
+              </div>
+              <div
+                [class.none]="periodicDropdown"
+                style="font-size: 13px; font-weight: 500"
+              >
+              {{ currentTable === 'sales_indicators'? 'Sales' : '' }}
+              {{ currentTable === 'service_indicators'? 'Service' : '' }}
+              {{ currentTable === 'service_evaluation_indicators'? 'Service Evaluation' : '' }}
+              {{ currentTable === 'sales_evaluation_indicators'? 'Sales Evaluation' : '' }}
+              {{ currentTable === 'indicators'? 'Hemingway' : '' }}
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+              >
+                <path
+                  d="M5.48252 8.15869L2.18511 4.39022C1.79615 3.9457 2.11184 3.25 2.70251 3.25H9.29733C9.888 3.25 10.2037 3.9457 9.81473 4.39022L6.51732 8.15869C6.24341 8.47173 5.75643 8.47173 5.48252 8.15869Z"
+                  fill="#B2B1B1"
+                />
+              </svg>
+            </div>
+            <div class="dropdownList2" *ngIf="periodicDropdown">
+              <div
+              (click)="changeTable(item, i); tableTick = i; periodicDropdown = false; changeIndicators(item, i); IndicatorTick = i; indicatorDropdown = false"
+              [class.nameActive]="tableTick === i"
+              *ngFor="let item of allTables; let i = index"
+              >
+                <p
+                  class="classidrop"
+                  style="
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: space-between;
+                    font-weight: 500
+                  "
+                >
+                {{ item === 'sales_indicators'? 'Sales' : '' }}
+                {{ item === 'service_indicators'? 'Service' : '' }}
+                {{ item === 'service_evaluation_indicators'? 'Service Evaluation' : '' }}
+                {{ item === 'sales_evaluation_indicators'? 'Sales Evaluation' : '' }}
+                {{ item === 'indicators'? 'Hemingway' : '' }}
+                </p>
+                <span *ngIf="tableTick === i">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="11" viewBox="0 0 16 11" fill="none" style="margin-right: 20px;" class="ng-star-inserted"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7962 0.201364C16.0679 0.46985 16.0679 0.905151 15.7962 1.17364L6.05712 10.7986C5.92666 10.9276 5.74972 11 5.56522 11C5.38072 11 5.20378 10.9276 5.07332 10.7986L0.203752 5.98614C-0.0679173 5.71765 -0.0679173 5.28235 0.203752 5.01386C0.475421 4.74538 0.915884 4.74538 1.18755 5.01386L5.56522 9.34023L14.8124 0.201364C15.0841 -0.0671214 15.5246 -0.0671214 15.7962 0.201364Z" fill="#EA714A"></path></svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="currentTable === 'indicators'">
+        <app-periodic-table [table]="dashboardData"> </app-periodic-table>
+      </div>
+      <div *ngIf="currentTable === 'sales_indicators'">
+        <app-periodic-tables [table]="dashboardData.sales_indicators"> </app-periodic-tables>
+      </div>
+      <div *ngIf="currentTable === 'service_indicators'">
+        <app-periodic-tables [table]="dashboardData.service_indicators"> </app-periodic-tables>
+      </div>
+      <div *ngIf="currentTable === 'sales_evaluation_indicators'">
+        <app-periodic-tables [table]="dashboardData.sales_evaluation_indicators"> </app-periodic-tables>
+      </div>
+      <div *ngIf="currentTable === 'service_evaluation_indicators'">
+        <app-periodic-tables [table]="dashboardData.service_evaluation_indicators"> </app-periodic-tables>
+      </div>
+    </div>
+    <div style="height: 0px;">
+      <mat-progress-bar *ngIf="anaload" mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div style="position: relative;">
+      <div
+        style="    position: absolute;
+      top: 28px;
+      left: 179px;"
+        (clickOutside)="isDropDownActive = false"
+      >
+        <button
+          id="none_dis2"
+          (click)="isDropDownActive = !isDropDownActive"
+          class="flex item-center downloadBtn btnHover"
+          [ngClass]="isDropDownActive ? 'blueBackGround' : ''"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            style="width: 18px; height: 18px; fill: #707070"
+          >
+            <path
+              _ngcontent-ldp-c299=""
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+            ></path>
+          </svg>
+          <span style="margin-left: 5px; margin-right: 10px;font-size: 14px;"
+            >Download</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="8"
+            viewBox="0 0 14 8"
+            fill="none"
+          >
+            <path
+              d="M13 1L7 7L1 1"
+              stroke="#585556"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <div
+          id="none_diss2"
+          *ngIf="isDropDownActive"
+          class="dropdown"
+          style="margin-bottom: 10px;"
+        >
+          <div class="checkboxess flex item-center">
+            <mat-checkbox
+              [checked]="this.PDF"
+              (change)="showOptions($event, 'PDF')"
+              >PDF</mat-checkbox
+            >
+          </div>
+          <div class="checkboxess flex item-center">
+            <mat-checkbox
+              [checked]="this.CSV"
+              (change)="showOptions($event, 'CSV')"
+              >CSV</mat-checkbox
+            >
+          </div>
+          <button
+            (click)="OnAnalysisClicked(); isDropDownActive = false"
+            class="dropdownDownloadBtn flex item-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              style="width: 18px; height: 18px; fill: #fff;
+              margin-left: -2px;"
+            >
+              <path
+                _ngcontent-ldp-c299=""
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+              ></path>
+            </svg>
+            <span style="font-size: 14px; font-weight: 600;">Download</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      id="Analysis"
+      style="
+        background-color: #ffffff;
+        height: 450px;
+        margin-bottom: 50px;
+      "
+    >
+      <div
+        style="
+          padding-top: 30px;
+          padding-left: 30px;
+          padding-right: 30px;
+          padding-bottom: 8px;
+          display: flex;
+        "
+      >
+        <div class="graph_head">Call analysis</div>
+      </div>
+
+      <div>
+        <app-solid-guage-chart [data]="dashboardData"></app-solid-guage-chart>
+        <div class="pt-3">
+          <div class="analysisend">
+            <!-- <div class="col-lg-2"></div> -->
+            <div
+              class=""
+              style=" padding-left: 10px; display: flex; margin-right: 60px;"
+            >
+              <div
+                style="
+                height: 24px;
+                width: 24px;
+                background-color: #7cb5ec;
+                margin-right: 16px;
+
+              "
+              ></div>
+              <span style="color: #585556 !important; font-size: 18px;">
+                Total Calls ({{
+                  this.dashboardData?.call_analysis.total_calls
+                }})
+              </span>
+            </div>
+            <div
+              class=""
+              style=" padding-left: 10px; display: flex; margin-right: 60px;"
+            >
+              <div
+                style="
+                height: 24px;
+                width: 24px;
+                background-color: #f5eb8e;
+                margin-right: 16px;
+
+              "
+              ></div>
+              <span style="color: #585556 !important;font-size: 18px;">
+                Leads ({{ this.dashboardData?.call_analysis.leads }})</span
+              >
+            </div>
+            <div class="" style="display: flex;">
+              <div
+                style="
+                height: 24px;
+                width: 24px;
+                background-color: #24d4d3;
+                margin-right: 16px;
+
+              "
+              ></div>
+              <span style="color: #585556 !important;font-size: 18px;">
+                Missed Opportunities ({{
+                  this.dashboardData?.call_analysis.missed_opportunity
+                }})</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngIf="dashboardData.industries">
+      <div style="height: 0px;">
+        <mat-progress-bar
+          *ngIf="industrytub"
+          mode="indeterminate"
+        ></mat-progress-bar>
+      </div>
+      <div style="position: relative;">
+        <div
+          style="    position: absolute;
+        top: 28px;
+        left: 170px;"
+          (clickOutside)="isDropDownActive1 = false"
+        >
+          <button
+            (click)="isDropDownActive1 = !isDropDownActive1"
+            class="flex item-center downloadBtn btnHover"
+            [ngClass]="isDropDownActive1 ? 'blueBackGround' : ''"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              style="width: 18px; height: 18px; fill: #707070"
+            >
+              <path
+                _ngcontent-ldp-c299=""
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+              ></path>
+            </svg>
+            <span style="margin-left: 5px; margin-right: 10px;font-size: 14px;"
+              >Download</span
+            >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="8"
+              viewBox="0 0 14 8"
+              fill="none"
+            >
+              <path
+                d="M13 1L7 7L1 1"
+                stroke="#585556"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <div
+            *ngIf="isDropDownActive1"
+            class="dropdown"
+            style="margin-bottom: 10px;"
+          >
+            <div class="checkboxess flex item-center">
+              <mat-checkbox
+                class="checkk"
+                [checked]="this.PDFIndustry"
+                (change)="showOptionsIndustry($event, 'PDF')"
+                >PDF</mat-checkbox
+              >
+            </div>
+            <div class="checkboxess flex item-center">
+              <mat-checkbox
+                class="checkk"
+                [checked]="this.CSVIndustry"
+                (change)="showOptionsIndustry($event, 'CSV')"
+                >CSV</mat-checkbox
+              >
+            </div>
+            <button
+              (click)="OnIndustryClicked(); isDropDownActive1 = false"
+              class="dropdownDownloadBtn flex item-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                style="width: 18px; height: 18px; fill: #fff;
+              margin-left: -2px;"
+              >
+                <path
+                  _ngcontent-ldp-c299=""
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+                ></path>
+              </svg>
+              <span style="font-size: 14px; font-weight: 600;">Download</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+
+        id="Industry"
+        style="
+          background-color: #ffffff;
+          height: 525px;
+          margin-bottom: 50px;
+        "
+      >
+        <div
+          style="
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top: 30px;
+            display: flex;
+          "
+        >
+          <div class="graph_head">Call industry</div>
+        </div>
+        <div [class.event-none]="tooltipActive">
+          <app-sankey-diagrame [sankey]="dashboardData"></app-sankey-diagrame>
+        </div>
+      </div>
+    </ng-container>
+    <div style="height: 0px;">
+      <mat-progress-bar *ngIf="sindicate" mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div style="position: relative;">
+      <div
+        style="    position: absolute;
+      top: 28px;
+      left: 200px;"
+        (clickOutside)="isDropDownActive2 = false"
+      >
+        <button
+          (click)="isDropDownActive2 = !isDropDownActive2"
+          class="flex item-center downloadBtn btnHover"
+          [ngClass]="isDropDownActive2 ? 'blueBackGround' : ''"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            style="width: 18px; height: 18px; fill: #707070"
+          >
+            <path
+              _ngcontent-ldp-c299=""
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+            ></path>
+          </svg>
+          <span style="margin-left: 5px; margin-right: 10px;font-size: 14px;"
+            >Download</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="8"
+            viewBox="0 0 14 8"
+            fill="none"
+          >
+            <path
+              d="M13 1L7 7L1 1"
+              stroke="#585556"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <div
+          *ngIf="isDropDownActive2"
+          class="dropdown"
+          style="margin-bottom: 10px;"
+        >
+          <div class="checkboxess flex item-center">
+            <mat-checkbox
+              class="checkk"
+              [checked]="this.PDFIndicators"
+              (change)="showOptionsIndicators($event, 'PDF')"
+              >PDF</mat-checkbox
+            >
+          </div>
+          <div class="checkboxess flex item-center">
+            <mat-checkbox
+              class="checkk"
+              [checked]="this.CSVIndicators"
+              (change)="showOptionsIndicators($event, 'CSV')"
+              >CSV</mat-checkbox
+            >
+          </div>
+          <button
+            (click)="OnIndicatorsClicked(); isDropDownActive2 = false"
+            class="dropdownDownloadBtn flex item-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              style="width: 18px; height: 18px; fill: #fff;
+            margin-left: -2px;"
+            >
+              <path
+                _ngcontent-ldp-c299=""
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+              ></path>
+            </svg>
+            <span style="font-size: 14px; font-weight: 600;">Download</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      id="Indicators"
+      style="
+        background-color: #ffffff;
+        height: 740px;
+        margin-bottom: 50px;
+      "
+    >
+      <div style="padding: 30px; display: flex; justify-content: space-between">
+        <div style="display: flex; align-items: center">
+          <div class="graph_head">Call Indicators</div>
+        </div>
+        <div style="display: flex;">
+          <div style="min-width: 280px;">
+            <div
+              (clickOutside)="indicatorDropdown = false"
+              style="
+                position: relative;
+                font-size: 11px;
+                margin-right: 15px;
+                margin-left: 25px;
+                background-color: #fff;
+                border-radius: 8px;
+              "
+            >
+              <div
+                [class.activeDrop]="indicatorDropdown"
+                class="cusDropdown"
+                (click)="indicatorDropdown = !indicatorDropdown"
+              >
+                <div
+                  [class.none]="!indicatorDropdown"
+                  style="font-size: 13px; font-weight: 500; color: #b5b5bd"
+                >
+                  Select Indicators
+                </div>
+                <div
+                  [class.none]="indicatorDropdown"
+                  style="font-size: 13px; font-weight: 500"
+                >
+                  {{ currentIndicators === 'sales_indicators'? 'Sales' : '' }}
+                  {{ currentIndicators === 'service_indicators'? 'Service' : '' }}
+                  {{ currentIndicators === 'service_evaluation_indicators'? 'Service Evaluation' : '' }}
+                  {{ currentIndicators === 'sales_evaluation_indicators'? 'Sales Evaluation' : '' }}
+                  {{ currentIndicators === 'indicators'? 'Hemingway' : '' }}
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                >
+                  <path
+                    d="M5.48252 8.15869L2.18511 4.39022C1.79615 3.9457 2.11184 3.25 2.70251 3.25H9.29733C9.888 3.25 10.2037 3.9457 9.81473 4.39022L6.51732 8.15869C6.24341 8.47173 5.75643 8.47173 5.48252 8.15869Z"
+                    fill="#B2B1B1"
+                  />
+                </svg>
+              </div>
+              <div class="dropdownList2" *ngIf="indicatorDropdown">
+                <div
+                (click)="changeIndicators(item, i); IndicatorTick = i; indicatorDropdown = false; changeTable(item, i); tableTick = i; periodicDropdown = false;"
+                [class.nameActive]="tableTick === i"
+                *ngFor="let item of allTables; let i = index"
+                >
+                  <p
+                    class="classidrop"
+                    style="
+                      font-size: 14px;
+                      display: flex;
+                      justify-content: space-between;
+                      font-weight: 500
+                    "
+                  >
+                  {{ item === 'sales_indicators'? 'Sales' : '' }}
+                  {{ item === 'service_indicators'? 'Service' : '' }}
+                  {{ item === 'service_evaluation_indicators'? 'Service Evaluation' : '' }}
+                  {{ item === 'sales_evaluation_indicators'? 'Sales Evaluation' : '' }}
+                  {{ item === 'indicators'? 'Hemingway' : '' }}
+                  </p>
+                  <span *ngIf="tableTick === i">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="11" viewBox="0 0 16 11" fill="none" style="margin-right: 20px;" class="ng-star-inserted"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.7962 0.201364C16.0679 0.46985 16.0679 0.905151 15.7962 1.17364L6.05712 10.7986C5.92666 10.9276 5.74972 11 5.56522 11C5.38072 11 5.20378 10.9276 5.07332 10.7986L0.203752 5.98614C-0.0679173 5.71765 -0.0679173 5.28235 0.203752 5.01386C0.475421 4.74538 0.915884 4.74538 1.18755 5.01386L5.56522 9.34023L14.8124 0.201364C15.0841 -0.0671214 15.5246 -0.0671214 15.7962 0.201364Z" fill="#EA714A"></path></svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="min-width: 280px">
+            <div
+              (clickOutside)="indecatorDropDown = false"
+              style="
+                position: relative;
+                font-size: 11px;
+                margin-right: 15px;
+                background-color: #fff;
+                border-radius: 8px;
+              "
+            >
+              <div
+                [class.activeDrop]="indecatorDropDown"
+                class="cusDropdown"
+                (click)="indecatorDropDown = !indecatorDropDown"
+              >
+                <div
+                  [class.none]="!indecatorDropDown"
+                  style="font-size: 13px; font-weight: 500; color: #b5b5bd"
+                >
+                  Select indicator
+                </div>
+                <div
+                  [class.none]="indecatorDropDown"
+                  style="font-size: 13px; font-weight: 500; color: #585556;"
+                >
+                  <span *ngIf="count == totalIndicatorsLength"> All indicators</span>
+                  <span *ngIf="count < totalIndicatorsLength">
+                    Indicators ({{ count }}/{{ totalIndicatorsLength }})
+                  </span>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                >
+                  <path
+                    d="M5.48252 8.15869L2.18511 4.39022C1.79615 3.9457 2.11184 3.25 2.70251 3.25H9.29733C9.888 3.25 10.2037 3.9457 9.81473 4.39022L6.51732 8.15869C6.24341 8.47173 5.75643 8.47173 5.48252 8.15869Z"
+                    fill="#B2B1B1"
+                  />
+                </svg>
+              </div>
+              <div class="dropdownList" *ngIf="indecatorDropDown">
+                <div style="overflow-y: scroll; height: 63vh;">
+                  <div
+                    class="checkbox form-check"
+                    style="display: flex; margin-bottom: 10px;"
+                  >
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="exampleCheckall"
+                      (change)="selectall($event.target.checked)"
+                      [checked]="masterToggle"
+                    />
+                    <label
+                      class="form-check-label"
+                      for="exampleCheckall"
+                      style="
+                      font-size: 14px;
+                      font-weight: 500;
+                      padding-left: 16px;
+                      color: #425466;
+                      margin-bottom: 10px;
+                    "
+                      >All Indicators</label
+                    >
+                  </div>
+                  <div *ngFor="let item of indicatorsList; let i = index">
+                    <div
+                      class="checkbox form-check"
+                      style="display: flex; margin-bottom: 15px;align-items: center;"
+                    >
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        [id]="'exampleCheck' + i"
+                        [checked]="item.checked"
+                        (change)="
+                          item.checked = !item.checked;
+                          countChecking($event.target.checked, item)
+                        "
+                      />
+                      <label
+                        class="form-check-label"
+                        for="'exampleCheck'+i"
+                        style="
+                        font-size: 14px;
+                        font-weight: 500;
+                        padding-left: 16px;
+                        padding-top: 4px;
+                      "
+                        >{{ item.indicator }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="btn sacc"
+                  (click)="applyBtnClicked()"
+                >
+                  Apply
+                </button>
+                <button type="button" class="btn dett" (click)="resetall()">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div>
+          <app-polar-area [polor]="currentGraph"></app-polar-area>
+        </div>
+    </div>
+    <div style="height: 0px;">
+      <mat-progress-bar *ngIf="classi" mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div style="position: relative;">
+      <div
+        style="position: absolute;
+      top: 28px;
+      left: 256px;"
+        (clickOutside)="isDropDownActive3 = false"
+      >
+        <button
+          (click)="isDropDownActive3 = !isDropDownActive3"
+          class="flex item-center downloadBtn btnHover"
+          [ngClass]="isDropDownActive3 ? 'blueBackGround' : ''"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            style="width: 18px; height: 18px; fill: #707070"
+          >
+            <path
+              _ngcontent-ldp-c299=""
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+            ></path>
+          </svg>
+          <span style="margin-left: 5px; margin-right: 10px;font-size: 14px;"
+            >Download</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="8"
+            viewBox="0 0 14 8"
+            fill="none"
+          >
+            <path
+              d="M13 1L7 7L1 1"
+              stroke="#585556"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <div
+          *ngIf="isDropDownActive3"
+          class="dropdown"
+          style="margin-bottom: 10px;"
+        >
+          <div class="checkboxess flex item-center">
+            <mat-checkbox
+              [checked]="this.PDFClassfication"
+              (change)="showOptionsClassification($event, 'PDF')"
+              >PDF</mat-checkbox
+            >
+          </div>
+          <div class="checkboxess flex item-center">
+            <mat-checkbox
+              [checked]="this.CSVClassfication"
+              (change)="showOptionsClassification($event, 'CSV')"
+              >CSV</mat-checkbox
+            >
+          </div>
+          <button
+            (click)="OnclassificationClicked(); isDropDownActive3 = false"
+            class="dropdownDownloadBtn flex item-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              style="width: 18px; height: 18px; fill: #fff;
+            margin-left: -2px;"
+            >
+              <path
+                _ngcontent-ldp-c299=""
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+              ></path>
+            </svg>
+            <span style="font-size: 14px; font-weight: 600;">Download</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      id="Classifications"
+      style="
+        background-color: #ffffff;
+        height: 600px;
+        margin-bottom: 50px;
+      "
+    >
+      <div style="padding: 30px; display: flex; justify-content: space-between">
+        <div style="display: flex; align-items: center">
+          <div class="graph_head">Call Classifications</div>
+        </div>
+      </div>
+      <div>
+        <app-packed-circle-chart
+          [data]="dashboardData"
+        ></app-packed-circle-chart>
+      </div>
+    </div>
+    <div style="height: 0px;">
+      <mat-progress-bar *ngIf="callkey" mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div style="position: relative;">
+      <div
+        style="    position: absolute;
+      top: 28px;
+      left: 177px;"
+        (clickOutside)="isDropDownActive4 = false"
+      >
+        <button
+        style="margin-left: 40px;"
+          (click)="isDropDownActive4 = !isDropDownActive4"
+          class="flex item-center downloadBtn btnHover"
+          [ngClass]="isDropDownActive4 ? 'blueBackGround' : ''"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            style="width: 18px; height: 18px; fill: #707070"
+          >
+            <path
+              _ngcontent-ldp-c299=""
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+            ></path>
+          </svg>
+          <span style="margin-left: 5px; margin-right: 10px;font-size: 14px;"
+            >Download</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="8"
+            viewBox="0 0 14 8"
+            fill="none"
+          >
+            <path
+              d="M13 1L7 7L1 1"
+              stroke="#585556"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <div
+          *ngIf="isDropDownActive4"
+          class="dropdownn"
+          style="margin-bottom: 10px;"
+        >
+          <div class="checkboxess flex item-center">
+            <mat-checkbox
+              [checked]="this.PDFKeywords"
+              (change)="showOptionsKeywords($event, 'PDF')"
+              >PDF</mat-checkbox
+            >
+          </div>
+          <div class="checkboxess flex item-center">
+            <mat-checkbox
+              [checked]="this.CSVKeywords"
+              (change)="showOptionsKeywords($event, 'CSV')"
+              >CSV</mat-checkbox
+            >
+          </div>
+          <button
+            (click)="onKeywordClick(); isDropDownActive4 = false"
+            class="dropdownDownloadBtn flex item-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              style="width: 18px; height: 18px; fill: #fff;
+            margin-left: -2px;"
+            >
+              <path
+                _ngcontent-ldp-c299=""
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M3.75 12C3.75 7.69604 7.04473 4.16256 11.249 3.78364V13.0083L9.53033 11.2896C9.23744 10.9967 8.76256 10.9967 8.46967 11.2896C8.17678 11.5825 8.17678 12.0574 8.46967 12.3503L11.4038 15.2845C11.5409 15.4629 11.7565 15.578 11.999 15.578C12.2373 15.578 12.4497 15.4669 12.587 15.2936L15.5303 12.3503C15.8232 12.0574 15.8232 11.5825 15.5303 11.2896C15.2374 10.9967 14.7626 10.9967 14.4697 11.2896L12.749 13.0103V3C12.749 2.58579 12.4132 2.25 11.999 2.25C6.61473 2.25 2.25 6.61484 2.25 12C2.25 17.3852 6.61479 21.75 12 21.75C17.3852 21.75 21.75 17.3852 21.75 12C21.75 8.17092 19.5376 4.86972 16.3332 3.27459C15.9624 3.09 15.5122 3.24096 15.3276 3.61177C15.143 3.98258 15.294 4.43282 15.6648 4.61741C18.3824 5.97028 20.25 8.76508 20.25 12C20.25 16.5568 16.5568 20.25 12 20.25C7.44321 20.25 3.75 16.5568 3.75 12Z"
+              ></path>
+            </svg>
+            <span style="font-size: 14px; font-weight: 600;">Download</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      id="keywordss"
+      style="
+        background-color: #ffffff;
+        height: 510px;
+      "
+    >
+      <div style="padding: 30px; display: flex; justify-content: space-between">
+        <div style="display: flex; align-items: center">
+          <div class="graph_head">Call keywords</div>
+        </div>
+      </div>
+      <div id="keywords">
+        <app-world-cloud-chart [data]="dashboardData"></app-world-cloud-chart>
+      </div>
+    </div>
+  </div>
+</div>

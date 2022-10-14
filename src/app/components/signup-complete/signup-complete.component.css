@@ -1,0 +1,29 @@
+.mainclass {
+  height: 90vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #2999FD;
+  padding: 8px 24px 8px 24px;
+  border-radius: 8px;
+}
+
+.btn:focus {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+/*# sourceMappingURL=signup-complete.component.css.map */
